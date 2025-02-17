@@ -6,23 +6,19 @@
     <title>حاسبة الدرجات</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="../../css/styles.css" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EJVKVC71K"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6EJVKVC71K');
+    </script>
 </head>
 <body>
     <div class="stars" id="stars"></div>
-    
     <div class="container">
-        <h1>
-            📚 حاسبة المعدل 
-            <p>للصف الاول متوسط</p>
-        </h1>
-        <!--
-        <div class="result">
-            <h2>المعدل التراكمي 🏆</h2>
-            <p id="average">0.0</p>
-        </div>
-        -->
+        <h1>📚 حاسبة المعدل <p>للصف الاول متوسط</p></h1>
     </div>
-
     <script>
         function createStars() {
             const starsContainer = document.getElementById('stars');
@@ -65,73 +61,71 @@
                 input.min = '0';
                 input.max = '100';
                 input.value = '100';
-                input.id = `subject-${subject.id}`
+                input.id = `subject-${subject.id}`;
+                input.dataset.weight = subject.weight;
 
                 inputGroup.appendChild(label);
                 inputGroup.appendChild(input);
-
                 form.appendChild(inputGroup);
-        });
+            });
 
-        container.appendChild(form);
+            container.appendChild(form);
 
-        const submit = document.createElement('button')
-        submit.textContent = 'احسب المعدل الآن ✨'
-        submit.id = 'calculate'
-        submit.type = "submit"
+            const submit = document.createElement('button');
+            submit.textContent = 'احسب المعدل الآن ✨';
+            submit.id = 'calculate';
+            submit.type = "submit";
+            container.appendChild(submit);
+        })
+        .catch(error => console.error(error.message));
 
-        container.appendChild(submit)
-        container.appendChild(back)
-    })
-    .catch(error => console.error(error.message));
+        function getSubjectsAndGrades() {
+            let inputGroups = document.querySelectorAll("div.input-group");
+            let subjects = [];
+            let grades = [];
 
-    function getSubjectsAndGrades() {
-        let inputGroups = document.querySelectorAll("div.input-group");
-        let subjects = [];
-        let grades = [];
+            inputGroups.forEach(group => {
+                let input = group.querySelector("input");
+                let label = group.querySelector("label");
 
-        inputGroups.forEach(group => {
-            let input = group.querySelector("input");
-            let label = group.querySelector("label");
+                if (input && label) {
+                    let inputId = input.id;
+                    let match = inputId.match(/subject-(\d+)/);
+                    
+                    if (match) {
+                        let id = parseInt(match[1], 10);
+                        let grade = parseInt(input.value, 10);
+                        let subject = label.textContent.trim();
+                        let weight = parseInt(input.dataset.weight, 10);
 
-            if (input && label) {
-                let inputId = input.id;
-                let match = inputId.match(/subject-(\d+)/);
-                
-                if (match) {
-                    let id = parseInt(match[1], 10);
-                    let grade = parseInt(input.value, 10);
-                    let subject = label.textContent.trim();
-                    let weight = parseInt(input.dataset.weight, 10) || 500;
-
-                    if (!isNaN(id)) {
-                        subjects.push({ id, subject, weight });
-                    }
-                    if (!isNaN(grade)) {
-                        grades.push({ id, grade });
+                        if (!isNaN(id)) {
+                            subjects.push({ id, subject, weight });
+                        }
+                        if (!isNaN(grade)) {
+                            grades.push({ id, grade });
+                        }
                     }
                 }
+            });
+
+            return { subjects, grades };
+        };
+
+        const observer = new MutationObserver(() => {
+            let calculateButton = document.getElementById("calculate");
+            if (calculateButton) {
+                calculateButton.addEventListener("click", function() {
+                    const data = getSubjectsAndGrades();
+                    sessionStorage.setItem("subjects", JSON.stringify(data.subjects));
+                    sessionStorage.setItem("grades", JSON.stringify(data.grades));
+                    window.location.href = '/grades/show'
+                    console.log(data);
+                });
+                observer.disconnect();
             }
         });
 
-        return { subjects, grades };
-    };
-
-    const observer = new MutationObserver(() => {
-        let calculateButton = document.getElementById("calculate");
-        if (calculateButton) {
-            calculateButton.addEventListener("click", function() {
-                const data = getSubjectsAndGrades();
-                sessionStorage.setItem("subjects", JSON.stringify(data.subjects));
-                sessionStorage.setItem("grades", JSON.stringify(data.grades));
-                console.log(data)
-                window.location.href = "/grades/show";
-            });
-            observer.disconnect();
-        }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
+        observer.observe(document.body, { childList: true, subtree: true });
     </script>
 </body>
 </html>
