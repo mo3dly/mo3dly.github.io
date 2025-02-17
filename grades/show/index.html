@@ -5,257 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عرض الدرجات</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EJVKVC71K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6EJVKVC71K');
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 600px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        h1 {
-            color: #2a2a4a;
-            text-align: center;
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #e94560 0%, #ff6b6b 100%);
-            border-radius: 2px;
-        }
-
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 10;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #e94560;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            margin-top: 15px;
-            color: #2a2a4a;
-            font-size: 1.1em;
-        }
-
-        .grades-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .grades-table th,
-        .grades-table td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .grades-table th {
-            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
-            color: white;
-            font-weight: 500;
-        }
-
-        .grades-table tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .total-grade {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .total-grade h2 {
-            color: #4a4a6a;
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-
-        #final-grade {
-            font-size: 2em;
-            font-weight: 800;
-            color: #e94560;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-
-            .grades-table th,
-            .grades-table td {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-
-            .total-grade {
-                padding: 15px;
-            }
-
-            #final-grade {
-                font-size: 1.8em;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+        body { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); width: 100%; max-width: 600px; position: relative; overflow: hidden; }
+        h1 { color: #2a2a4a; text-align: center; font-size: 1.8em; margin-bottom: 25px; position: relative; padding-bottom: 10px; }
+        h1::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, #e94560 0%, #ff6b6b 100%); border-radius: 2px; }
+        .loading-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); display: flex; justify-content: center; align-items: center; flex-direction: column; z-index: 10; transition: opacity 0.5s ease; }
+        .loading-spinner { border: 4px solid #f3f3f3; border-top: 4px solid #e94560; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loading-text { margin-top: 15px; color: #2a2a4a; font-size: 1.1em; }
+        .grades-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .grades-table th, .grades-table td { padding: 12px; text-align: center; border-bottom: 1px solid #e0e0e0; }
+        .grades-table th { background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%); color: white; font-weight: 500; }
+        .grades-table tr:hover { background-color: #f8f9fa; }
+        .total-grade { margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 12px; text-align: center; }
+        .total-grade h2 { color: #4a4a6a; margin-bottom: 10px; font-size: 1.3em; }
+        #final-grade { font-size: 2em; font-weight: 800; color: #e94560; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
+        @media (max-width: 480px) { .container { padding: 20px; } h1 { font-size: 1.5em; } .grades-table th, .grades-table td { padding: 10px; font-size: 0.9em; } .total-grade { padding: 15px; } #final-grade { font-size: 1.8em; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- شاشة التحميل -->
         <div class="loading-overlay" id="loadingOverlay">
             <div class="loading-spinner"></div>
             <div class="loading-text">جاري حساب الدرجات...</div>
         </div>
-        
         <h1>📊 عرض الدرجات</h1>
-        
         <table class="grades-table" id="gradesTable">
             <thead>
-                <tr>
-                    <th>المادة</th>
-                    <th>الدرجة</th>
-                </tr>
+                <tr><th>المادة</th><th>الدرجة</th></tr>
             </thead>
-            <tbody>
-                <!-- البيانات سيتم إضافتها بواسطة JavaScript -->
-            </tbody>
+            <tbody></tbody>
         </table>
-        
         <div class="total-grade">
             <h2>المعدل النهائي</h2>
             <p id="final-grade">0.0</p>
         </div>
     </div>
-
     <script>
-        const subjects = JSON.parse(sessionStorage.getItem('subjects'))
-
-        const grades = JSON.parse(sessionStorage.getItem('grades'))
-
+        const subjects = JSON.parse(sessionStorage.getItem('subjects')) || [];
+        const grades = JSON.parse(sessionStorage.getItem('grades')) || [];
         function calculatePercentage(subjects, grades) {
-        let gradesDict = {};
-        grades.forEach(grade => {
-            gradesDict[grade.id] = grade.grade;
-        });
+    // إنشاء قاموس لربط ID المادة بالدرجة
+    const gradesDict = Object.fromEntries(grades.map(g => [g.id, g.grade]));
 
-        let weightedSum = subjects.reduce((sum, subject) => {
-            return sum + (gradesDict[subject.id] || 0) * subject.weight;
-        }, 0);
+    // حساب المجموع الموزون للدرجات
+    let weightedSum = subjects.reduce((sum, subject) => {
+        return sum + (gradesDict[subject.id] || 0) * subject.weight;
+    }, 0);
 
-        let totalWeightedMarks = subjects.reduce((sum, subject) => sum + subject.weight, 0);
+    // حساب مجموع الأوزان
+    let totalWeightedMarks = subjects.reduce((sum, subject) => sum + subject.weight, 0);
 
-        let totalLostWeight = 0;
+    // حساب المعدل التراكمي
+    let gpa = (weightedSum / totalWeightedMarks).toFixed(2);
 
-        let subjectsGrade = subjects.map(subject => {
-            let studentGrade = gradesDict[subject.id] || 0;
-            let weeklySessions = Math.floor(subject.weight / 100);
-            let missingWeight = (100 - studentGrade) * weeklySessions;
-
-            totalLostWeight += missingWeight;
-
-            return {
-                name: subject.subject,
-                grade: studentGrade,
-                missing_weight: missingWeight
-            };
-        });
+    // حساب كمية النقص لكل مادة
+    let subjectsGrade = subjects.map(subject => {
+        let studentGrade = gradesDict[subject.id] || 0;
+        let weeklySessions = subject.weight / 100;
+        let missingWeight = (100 - studentGrade) * weeklySessions;
 
         return {
-            TheGradePointAverage: Math.round((weightedSum / totalWeightedMarks) * 100) / 100,
-            subjects: subjectsGrade,
-            totalLostWeight: totalLostWeight
+            name: subject.subject,
+            grade: studentGrade,
+            missingWeight: missingWeight
         };
-    }
+    });
 
-        // عرض البيانات
+    return {
+        TheGradePointAverage: parseFloat(gpa),
+        subjects: subjectsGrade
+    };
+}
         function displayGrades() {
             const result = calculatePercentage(subjects, grades);
             const gradesTableBody = document.querySelector('#gradesTable tbody');
             const finalGradeElement = document.getElementById('final-grade');
-
-            // إضافة الدرجات إلى الجدول
-            gradesTableBody.innerHTML = result.subjects.map(subject => `
-                <tr>
-                    <td>${subject.name}</td>
-                    <td>${subject.grade}</td>
-                </tr>
-            `).join('');
-
-            // عرض المعدل النهائي
+            gradesTableBody.innerHTML = result.subjects.map(subject => `<tr><td>${subject.name}</td><td>${subject.grade}</td></tr>`).join('');
             finalGradeElement.textContent = result.TheGradePointAverage;
         }
-
-        const loadingOverlay = document.getElementById('loadingOverlay');
         function simulateLoading() {
             setTimeout(() => {
-                loadingOverlay.style.opacity = '0';
+                document.getElementById('loadingOverlay').style.opacity = '0';
                 setTimeout(() => {
-                    loadingOverlay.style.display = 'none';
+                    document.getElementById('loadingOverlay').style.display = 'none';
                     displayGrades();
                 }, 500);
             }, 2000);
         }
-
         simulateLoading();
     </script>
 </body>
