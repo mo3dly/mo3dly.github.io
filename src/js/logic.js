@@ -35,3 +35,30 @@ function selectTerm(card) {
     card.classList.add('selected');
     selectedTerm = card.dataset.term;
 }
+
+function calculateAverage(subjects, gradeNumber) {
+    let totalWeightedGrade = 0;
+    let totalWeight = 0;
+    const processedSubjects = [];
+
+    subjects.forEach(subject => {
+        const weightedGrade = subject.grade * subject.weight;
+        processedSubjects.push({
+            name: subject.name,
+            grade: subject.grade,
+            weightedGrade: weightedGrade
+        });
+
+        totalWeightedGrade += weightedGrade;
+        totalWeight += subject.weight;
+    });
+
+    if (Number(gradeNumber) < 10) {
+        totalWeightedGrade += 200 // (100 * 1) + (100 * 1)
+        totalWeight += 2 // 1 + 1
+    }
+
+    const average = (totalWeightedGrade / totalWeight).toFixed(2);
+
+    return { average, subjects: processedSubjects };
+}
