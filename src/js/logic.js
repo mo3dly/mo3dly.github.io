@@ -60,5 +60,5 @@ function calculateAverage(subjects, gradeNumber) {
 
     const average = (totalWeightedGrade / totalWeight).toFixed(2);
 
-    return { average, subjects: processedSubjects };
+    return {average: average, subjects: processedSubjects };
 }
