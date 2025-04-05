@@ -126,7 +126,6 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  /* إضافة مدخلات ونتائج */
   .input-group {
     margin-bottom: 25px;
     position: relative;
@@ -238,6 +237,7 @@
   }
   
   .grade-card, .term-card {
+    min-width: 100%;
     background: #fff;
     border: 2px solid #e0e0e0;
     border-radius: 12px;
@@ -251,6 +251,27 @@
     align-items: center;
     justify-content: center;
   }
+
+  @keyframes ripple {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    100% {
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+  }
+  
+  .grade-card.selected, .term-card.selected {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px;
+    background: #e94560;
+    color: white;
+    animation: ripple 0.5s linear;
+  }
+  
+  
+  
   
   @keyframes slideUp {
     from { transform: translateY(50px); opacity: 0; }
@@ -263,4 +284,4 @@
     .grades-table th, .grades-table td { padding: 10px; font-size: 0.9em; }
     .total-grade { padding: 15px; }
     #final-grade { font-size: 1.8em; }
-  }  
+  }
