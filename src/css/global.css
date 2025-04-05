@@ -153,15 +153,15 @@ button:hover, .next-button:hover {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
 }
-
-.grade-selection {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+.grade-selection, .term-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
     margin-bottom: 25px;
 }
 
-.grade-card {
+.grade-card, .term-card {
     background: #fff;
     border: 2px solid #e0e0e0;
     border-radius: 12px;
@@ -176,15 +176,16 @@ button:hover, .next-button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-.grade-card:hover {
+.grade-card:hover, .term-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(233, 69, 96, 0.2);
     border-color: #e94560;
 }
 
-.grade-card::before {
+.grade-card::before, .term-card::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -196,28 +197,28 @@ button:hover, .next-button:hover {
     transition: transform 0.5s ease;
 }
 
-.grade-card:hover::before {
+.grade-card:hover::before, .term-card:hover::before {
     transform: scale(1);
 }
 
-.grade-card.selected {
+.grade-card.selected, .term-card.selected {
     border-color: #e94560;
     background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
     color: white;
 }
 
-.grade-card h2 {
+.grade-card h2, .term-card h2 {
     font-size: 1.2em;
     margin-bottom: 8px;
 }
 
-.grade-card p {
+.grade-card p, .term-card p {
     color: #666;
     font-size: 0.8em;
     line-height: 1.4;
 }
 
-.grade-card.selected p {
+.grade-card.selected p, .term-card.selected {
     color: rgba(255, 255, 255, 0.8);
 }
 
