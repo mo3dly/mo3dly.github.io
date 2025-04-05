@@ -79,12 +79,23 @@ function showGradesTable(data) {
         </div>
     `;
 
+    setTimeout(() => {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+            loadingOverlay.style.opacity = '0';
+            loadingOverlay.style.display = 'none';
+            displayGrades(data);
+        }
+    }, 1500);
+}
+
+function displayGrades(data) {
     const gradesTableBody = document.querySelector('#gradesTable tbody');
     const finalGradeElement = document.getElementById('final-grade');
-    
+
     gradesTableBody.innerHTML = data.subjects.map(subject => 
         `<tr><td>${subject.name}</td><td>${subject.grade}</td></tr>`
     ).join('');
-    
+
     finalGradeElement.textContent = data.average;
 }
