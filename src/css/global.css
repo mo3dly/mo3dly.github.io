@@ -309,5 +309,62 @@
 .footer-links a:hover {
     text-decoration: underline;
     color: #ff6b6b;
-  }
-  
+}
+h3 {
+  color: #4a4a6a;
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #e94560 0%, #ff6b6b 100%);
+  border-radius: 2px;
+}
+
+a {
+  color: #e94560;
+  font-size: 1.1em;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ff6b6b;
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  font-size: 1.1em;
+  color: #4a4a6a;
+  margin-bottom: 12px;
+  padding-right: 20px;
+  position: relative;
+  text-align: right;
+}
+
+ul li::before {
+  content: '•';
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #e94560;
+  font-size: 1.5em;
+  line-height: 1;
+}
