@@ -28,7 +28,7 @@ function buildGradePage(subjects, gradeName) {
         inputGroup.classList.add('input-group');
 
         const label = document.createElement('label');
-        label.textContent = subject.subject;
+        label.textContent = subject.name;
 
         const input = document.createElement('input');
         input.type = 'number';
@@ -38,8 +38,10 @@ function buildGradePage(subjects, gradeName) {
         input.min = '0';
         input.max = '100';
         input.value = '100';
-        input.id = `subject-${subject.id}`;
+        input.setAttribute('value', '100')
         input.dataset.weight = subject.weight;
+        input.dataset.name = subject.name;
+        input.classList.add('subjectInput');
 
         inputGroup.appendChild(label);
         inputGroup.appendChild(input);
@@ -55,6 +57,13 @@ function buildGradePage(subjects, gradeName) {
     container.appendChild(submit);
 
     body.appendChild(container);
+
+    body.innerHTML += `<footer class="footer">
+        <p>جميع الحقوق محفوظة © 2025</p>
+        <div class="footer-links">
+          <a href="/src/privacy.html">سياسة الخصوصية</a>
+        </div>
+    </footer>`
 }
 
 

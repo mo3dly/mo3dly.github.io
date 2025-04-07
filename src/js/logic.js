@@ -22,7 +22,7 @@ function proceed() {
         }
     } else {
         if (selectedTerm) {
-            window.location.href = `/grades/${selectedGrade}/term${selectedTerm}.html`;
+            window.location.href = `/src/grades/${selectedGrade}/term${selectedTerm}.html`;
         } else {
             alert('الرجاء اختيار الفصل الدراسي أولاً');
         }
@@ -42,15 +42,18 @@ function calculateAverage(subjects, gradeNumber) {
     const processedSubjects = [];
 
     subjects.forEach(subject => {
-        const weightedGrade = subject.grade * subject.weight;
+        const grade = parseFloat(subject.grade);
+        const weight = parseFloat(subject.weight);
+
+        const weightedGrade = grade * weight;
         processedSubjects.push({
             name: subject.name,
-            grade: subject.grade,
+            grade: grade,
             weightedGrade: weightedGrade
         });
 
         totalWeightedGrade += weightedGrade;
-        totalWeight += subject.weight;
+        totalWeight += weight;
     });
 
     if (Number(gradeNumber) < 10) {
@@ -60,5 +63,32 @@ function calculateAverage(subjects, gradeNumber) {
 
     const average = (totalWeightedGrade / totalWeight).toFixed(2);
 
-    return {average: average, subjects: processedSubjects };
+    return { average: average, subjects: processedSubjects };
+}
+
+function startCalculatorApp(gradeName, gradeNumber, termNumber) {
+    fetch(`./weights/term-${termNumber}.json`)
+        .then(response => response.json())
+        .then(data => {
+            buildGradePage(data, gradeName);
+
+            document.addEventListener('click', function(event) {
+                if (event.target.id === 'calculate') {
+                    const inputs = document.querySelectorAll('.subjectInput');
+
+                    const subjects = Array.from(inputs).map(input => ({
+                        name: input.dataset.name,
+                        weight: parseFloat(input.dataset.weight),
+                        grade: parseFloat(input.value)
+                    }));
+
+                    const result = calculateAverage(subjects, gradeNumber);
+
+                    showGradesTable(result);
+                }
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
