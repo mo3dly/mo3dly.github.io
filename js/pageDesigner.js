@@ -32,7 +32,7 @@ function buildGradePage(subjects, gradeName) {
 
         const input = document.createElement('input');
         input.type = 'number';
-        input.inputMode = 'numeric';
+        input.inputMode = 'decimal';
         input.pattern = '[0-9]*';
         input.placeholder = 'أدخل الدرجة (0 - 100)';
         input.min = '0';
