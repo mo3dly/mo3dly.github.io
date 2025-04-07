@@ -61,7 +61,7 @@ function buildGradePage(subjects, gradeName) {
     body.innerHTML += `<footer class="footer">
         <p>جميع الحقوق محفوظة © 2025</p>
         <div class="footer-links">
-          <a href="/src/privacy.html">سياسة الخصوصية</a>
+          <a href="/privacy.html">سياسة الخصوصية</a>
         </div>
     </footer>`
 }

@@ -22,7 +22,7 @@ function proceed() {
         }
     } else {
         if (selectedTerm) {
-            window.location.href = `/src/grades/${selectedGrade}/term${selectedTerm}.html`;
+            window.location.href = `/grades/${selectedGrade}/term${selectedTerm}.html`;
         } else {
             alert('الرجاء اختيار الفصل الدراسي أولاً');
         }
