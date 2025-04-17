@@ -103,3 +103,8 @@ function startCalculatorApp(gradeName, gradeNumber, termNumber) {
             console.error(error);
         });
 }
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+}
