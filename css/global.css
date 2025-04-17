@@ -469,6 +469,6 @@ ul li::before {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 250px;
+  max-height: 450px;
   padding: 0 20px 15px;
 }
