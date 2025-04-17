@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://mo3dly.github.io/sitemap.xml
