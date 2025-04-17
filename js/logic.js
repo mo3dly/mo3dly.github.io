@@ -113,3 +113,14 @@ function faqQuestion(question) {
     const faqItem = question.parentElement;
     faqItem.classList.toggle('active');
 }
+
+
+document.addEventListener("click", function (event) {
+    const sidebar = document.getElementById("sidebar");
+  
+    if (sidebar.classList.contains("open")) {
+      if (!sidebar.contains(event.target) && !event.target.classList.contains("openbtn")) {
+        toggleSidebar();
+      }
+    }
+  });

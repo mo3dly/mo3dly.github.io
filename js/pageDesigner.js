@@ -70,25 +70,67 @@ function buildGradePage(subjects, gradeName) {
 
 
 function showGradesTable(data) {
-    let container = document.querySelector('.container');
+    const container = document.querySelector('.container');
     
-    container.innerHTML = `
-        <div class="loading-overlay" id="loadingOverlay">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">جاري حساب الدرجات...</div>
-        </div>
-        <h1>📊 عرض الدرجات</h1>
-        <table class="grades-table" id="gradesTable">
-            <thead>
-                <tr><th>المادة</th><th>الدرجة</th></tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <div class="total-grade">
-            <h2>المعدل النهائي</h2>
-            <p id="final-grade">0.0</p>
-        </div>
-    `;
+    container.innerHTML = "";
+
+    const overlay = document.createElement("div");
+    overlay.className = "loading-overlay";
+    overlay.id = "loadingOverlay";
+
+    const spinner = document.createElement("div");
+    spinner.className = "loading-spinner";
+
+    const text = document.createElement("div");
+    text.className = "loading-text";
+    text.textContent = "جاري حساب الدرجات...";
+
+    overlay.appendChild(spinner);
+    overlay.appendChild(text);
+    container.appendChild(overlay);
+
+    const title = document.createElement("h1");
+    title.textContent = "📊 عرض الدرجات";
+    container.appendChild(title);
+
+    const table = document.createElement("table");
+    table.className = "grades-table";
+    table.id = "gradesTable";
+
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+
+    const subjectHeader = document.createElement("th");
+    subjectHeader.textContent = "المادة";
+
+    const gradeHeader = document.createElement("th");
+    gradeHeader.textContent = "الدرجة";
+
+    headerRow.appendChild(subjectHeader);
+    headerRow.appendChild(gradeHeader);
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    table.appendChild(tbody);
+
+    container.appendChild(table);
+
+    const totalGrade = document.createElement("div");
+    totalGrade.className = "total-grade";
+
+    const totalTitle = document.createElement("h2");
+    totalTitle.textContent = "المعدل النهائي";
+
+    const finalGrade = document.createElement("p");
+    finalGrade.id = "final-grade";
+    finalGrade.textContent = "0.0";
+
+    totalGrade.appendChild(totalTitle);
+    totalGrade.appendChild(finalGrade);
+
+    container.appendChild(totalGrade);
+
 
     setTimeout(() => {
         const loadingOverlay = document.getElementById('loadingOverlay');
@@ -96,6 +138,11 @@ function showGradesTable(data) {
             loadingOverlay.style.opacity = '0';
             loadingOverlay.style.display = 'none';
             displayGrades(data);
+
+            const back = document.createElement("button");
+            back.textContent = "↩️ رجوع";
+            back.onclick = () => location.reload();
+            container.appendChild(back);
         }
     }, 1500);
 }
