@@ -239,6 +239,7 @@
   }
   
 .grade-card, .term-card {
+    font-size: 16px;
     min-width: 100%;
     background: #fff;
     border: 2px solid #e0e0e0;
@@ -281,6 +282,9 @@
   }
   
   @media (max-width: 480px) {
+  .grade-card, .term-card {
+      font-size: 14px;
+  }
   .container { padding: 20px; }
     h1 { font-size: 1.8em; }
   .grades-table th, .grades-table td { padding: 10px; font-size: 0.9em; }

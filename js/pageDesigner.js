@@ -24,6 +24,8 @@ function buildGradePage(subjects, gradeName) {
     form.id = 'subjectsForm';
 
     subjects.forEach(subject => {
+        if (subject.weight === 0) return;
+
         const inputGroup = document.createElement('div');
         inputGroup.classList.add('input-group');
 

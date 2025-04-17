@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معدلي</title>
+    <title>معدلي - الصفحة الرئيسية</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="./css/global.css" rel="stylesheet">
     <script src="./js/pageDesigner.js"></script>
     <script src="./js/logic.js"></script>
+    <meta name="description" content="موقع معدلي يساعدك تحسب معدلك الثانوي والمتوسط بسهولة، وبنفس طريقة حساب الوزارة.">
 </head>
 <body>
     <div class="stars" id="stars"></div>
@@ -26,19 +27,7 @@
                 <h2>الثالث متوسط</h2>
             </div>
         </div>
-        
-        <div class="term-selection" style="display: none;">
-            <div class="term-card" onclick="selectTerm(this)" data-term="1">
-                <h2>الفصل الدراسي الأول</h2>
-            </div>
-            <div class="term-card" onclick="selectTerm(this)" data-term="2">
-                <h2>الفصل الدراسي الثاني</h2>
-            </div>
-            <div class="term-card" onclick="selectTerm(this)" data-term="3">
-                <h2>الفصل الدراسي الثالث</h2>
-            </div>
-        </div>
-        
+
         <button class="next-button" onclick="proceed()">التالي →</button>
     </div>
     <script>createStars()</script>

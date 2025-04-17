@@ -1,6 +1,4 @@
 let selectedGrade = null;
-let selectedTerm = null;
-let choosingTerm = false;
 
 function selectGrade(card) {
     const cards = document.querySelectorAll('.grade-card');
@@ -10,24 +8,25 @@ function selectGrade(card) {
 }
 
 function proceed() {
-    if (!choosingTerm) {
-        if (selectedGrade) {
-            choosingTerm = true;
-            document.querySelector('.grade-selection').style.display = 'none';
-            document.querySelector('.term-selection').style.display = 'flex';
-            document.querySelector('h1').innerText = '📅 اختر الفصل الدراسي';
-            document.querySelector('.next-button').innerText = 'التالي →';
-        } else {
-            alert('الرجاء اختيار الصف أولاً');
-        }
+    if (selectedGrade) {
+        window.location.href = `/grades/${selectedGrade}`;
     } else {
-        if (selectedTerm) {
-            window.location.href = `/grades/${selectedGrade}/term${selectedTerm}.html`;
-        } else {
-            alert('الرجاء اختيار الفصل الدراسي أولاً');
-        }
+        alert('الرجاء اختيار الصف أولاً');
     }
 }
+
+let selectedTerm = null;
+
+function extractGradeFromUrl() {
+    const regex = /\/grades\/(\d+)/;
+    const match = window.location.pathname.match(regex);
+    
+    if (match) {
+        selectedGrade = match[1];
+    }
+}
+
+extractGradeFromUrl(); // اول ما تتحمل الصفحة  
 
 function selectTerm(card) {
     const cards = document.querySelectorAll('.term-card');
@@ -35,6 +34,15 @@ function selectTerm(card) {
     card.classList.add('selected');
     selectedTerm = card.dataset.term;
 }
+
+function proceedTerm() {
+    if (selectedTerm) {
+        window.location.href = `/grades/${selectedGrade}/term${selectedTerm}.html`;
+    } else {
+        alert('الرجاء اختيار الفصل الدراسي أولاً');
+    }
+}
+
 
 function calculateAverage(subjects, gradeNumber) {
     let totalWeightedGrade = 0;
@@ -44,6 +52,8 @@ function calculateAverage(subjects, gradeNumber) {
     subjects.forEach(subject => {
         const grade = parseFloat(subject.grade);
         const weight = parseFloat(subject.weight);
+
+        if (weight === 0) return;
 
         const weightedGrade = grade * weight;
         processedSubjects.push({
@@ -56,7 +66,8 @@ function calculateAverage(subjects, gradeNumber) {
         totalWeight += weight;
     });
 
-    if (Number(gradeNumber) < 10) {
+    if (parseInt(gradeNumber) < 10) {
+        console.log("Added")
         totalWeightedGrade += 200 // (100 * 1) + (100 * 1)
         totalWeight += 2 // 1 + 1
     }
