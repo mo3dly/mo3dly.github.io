@@ -108,3 +108,8 @@ function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('open');
 }
+
+function faqQuestion(question) {
+    const faqItem = question.parentElement;
+    faqItem.classList.toggle('active');
+}
