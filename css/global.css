@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  margin-top: 65px;
+  margin-top: 10px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 20px;
