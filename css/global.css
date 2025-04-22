@@ -472,3 +472,10 @@ ul li::before {
   max-height: 450px;
   padding: 0 20px 15px;
 }
+
+.ad {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  align-items: center;
+  align-content: center;
+}
