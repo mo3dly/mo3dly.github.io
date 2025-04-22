@@ -1,6 +1,6 @@
-function createAdElement() {
+function createAdElement(className) {
     const adDiv = document.createElement('div');
-    adDiv.className = 'ad';
+    adDiv.className = `ad ${className}`;
 
     const script1 = document.createElement('script');
     script1.type = 'text/javascript';
@@ -24,37 +24,44 @@ function createAdElement() {
     return adDiv;
 }
 
-function insertAds() {
-    if (!document.querySelector('.ad-before-container')) {
-        const container = document.querySelector('.container');
-        if (container) {
-            const ad1 = createAdElement();
-            ad1.classList.add('ad-before-container');
-            container.parentNode.insertBefore(ad1, container);
-        }
-    }
+function cleanAndInsertAd(targetSelector, className, positionCallback) {
+    const existingAd = document.querySelector(`.ad.${className}`);
+    if (existingAd) existingAd.remove();
 
-    if (!document.querySelector('.ad-before-footer')) {
-        const footer = document.querySelector('footer');
-        const ad2 = createAdElement();
-        ad2.classList.add('ad-before-footer');
-        if (footer) {
-            footer.parentNode.insertBefore(ad2, footer);
-        } else {
-            document.body.appendChild(ad2);
-        }
+    const target = document.querySelector(targetSelector);
+    if (target) {
+        const ad = createAdElement(className);
+        positionCallback(ad, target);
+    }
+}
+
+function checkAndFixAds() {
+    cleanAndInsertAd('.container', 'ad-before-container', (ad, container) => {
+        container.parentNode.insertBefore(ad, container);
+    });
+
+    const footer = document.querySelector('footer');
+    if (footer) {
+        cleanAndInsertAd('footer', 'ad-before-footer', (ad, footer) => {
+            footer.parentNode.insertBefore(ad, footer);
+        });
+    } else {
+        cleanAndInsertAd('body', 'ad-before-footer', (ad, body) => {
+            document.body.appendChild(ad);
+        });
     }
 }
 
 window.onload = function () {
-    insertAds();
+    checkAndFixAds();
 
     const observer = new MutationObserver(() => {
-        insertAds();
+        checkAndFixAds();
     });
 
     observer.observe(document.body, {
         childList: true,
-        subtree: true
+        subtree: true,
+        characterData: true
     });
 };
