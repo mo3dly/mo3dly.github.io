@@ -23,7 +23,9 @@ function buildGradePage(subjects, gradeName) {
     const form = document.createElement('form');
     form.id = 'subjectsForm';
 
-    subjects.forEach(subject => {
+    let inputCounter = 0;
+
+    subjects.forEach((subject) => {
         if (subject.weight === 0) return;
 
         const inputGroup = document.createElement('div');
@@ -40,7 +42,7 @@ function buildGradePage(subjects, gradeName) {
         input.min = '0';
         input.max = '100';
         input.value = '100';
-        input.setAttribute('value', '100')
+        input.setAttribute('value', '100');
         input.dataset.weight = subject.weight;
         input.dataset.name = subject.name;
         input.classList.add('subjectInput');
@@ -48,6 +50,13 @@ function buildGradePage(subjects, gradeName) {
         inputGroup.appendChild(label);
         inputGroup.appendChild(input);
         form.appendChild(inputGroup);
+
+        inputCounter++;
+
+        if (inputCounter % 5 === 0) {
+            const adBanner = createAdBanner();
+            form.appendChild(adBanner);
+        }
     });
 
     container.appendChild(form);
@@ -65,9 +74,38 @@ function buildGradePage(subjects, gradeName) {
         <div class="footer-links">
           <a href="/privacy.html">سياسة الخصوصية</a>
         </div>
-    </footer>`
+    </footer>`;
 }
 
+function createAdBanner() {
+    const adDiv = document.createElement('div');
+    adDiv.className = 'ad';
+
+    const script1 = document.createElement('script');
+    script1.type = 'text/javascript';
+    script1.textContent = `
+        atOptions = {
+            'key' : '1fa960edbaecaab085ced55d3c14a84f',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+        };
+    `;
+
+    const script2Src = '//www.highperformanceformat.com/1fa960edbaecaab085ced55d3c14a84f/invoke.js';
+
+    if (!document.querySelector('script[src="' + script2Src + '"]')) {
+        const script2 = document.createElement('script');
+        script2.type = 'text/javascript';
+        script2.src = script2Src;
+
+        adDiv.appendChild(script1);
+        adDiv.appendChild(script2);
+    }
+
+    return adDiv;
+}
 
 function showGradesTable(data) {
     const container = document.querySelector('.container');
