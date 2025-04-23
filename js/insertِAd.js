@@ -36,6 +36,7 @@ function cleanAndInsertAd(targetSelector, className, positionCallback) {
     if (target) {
         const ad = createAdElement(className);
         positionCallback(ad, target);
+        observeAd(ad, className, targetSelector, positionCallback);
     }
 }
 
@@ -56,20 +57,20 @@ function checkAndFixAds() {
     }
 }
 
-window.onload = function () {
-    checkAndFixAds();
-
-    let timeout;
+function observeAd(adElement, className, targetSelector, positionCallback) {
     const observer = new MutationObserver(() => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            checkAndFixAds();
-        }, 500);
+        if (!document.body.contains(adElement) || adElement.parentNode !== document.querySelector(targetSelector).parentNode) {
+            observer.disconnect();
+            cleanAndInsertAd(targetSelector, className, positionCallback);
+        }
     });
 
     observer.observe(document.body, {
         childList: true,
-        subtree: true,
-        characterData: true
+        subtree: true
     });
+}
+
+window.onload = function () {
+    checkAndFixAds();
 };
