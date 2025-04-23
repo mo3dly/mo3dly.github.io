@@ -14,12 +14,16 @@ function createAdElement(className) {
         };
     `;
 
-    const script2 = document.createElement('script');
-    script2.type = 'text/javascript';
-    script2.src = '//www.highperformanceformat.com/1fa960edbaecaab085ced55d3c14a84f/invoke.js';
+    const script2Src = '//www.highperformanceformat.com/1fa960edbaecaab085ced55d3c14a84f/invoke.js';
 
-    adDiv.appendChild(script1);
-    adDiv.appendChild(script2);
+    if (!document.querySelector(`script[src="${script2Src}"]`)) {
+        const script2 = document.createElement('script');
+        script2.type = 'text/javascript';
+        script2.src = script2Src;
+
+        adDiv.appendChild(script1);
+        adDiv.appendChild(script2);
+    }
 
     return adDiv;
 }
@@ -55,8 +59,12 @@ function checkAndFixAds() {
 window.onload = function () {
     checkAndFixAds();
 
+    let timeout;
     const observer = new MutationObserver(() => {
-        checkAndFixAds();
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            checkAndFixAds();
+        }, 500);
     });
 
     observer.observe(document.body, {
