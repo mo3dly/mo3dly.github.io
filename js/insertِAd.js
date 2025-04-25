@@ -40,26 +40,10 @@ function cleanAndInsertAd(targetSelector, className, positionCallback) {
     }
 }
 
-function checkAndFixAds() {
-    cleanAndInsertAd('.container', 'ad-before-container', (ad, container) => {
-        container.parentNode.insertBefore(ad, container);
-    });
-
-    const footer = document.querySelector('footer');
-    if (footer) {
-        cleanAndInsertAd('footer', 'ad-before-footer', (ad, footer) => {
-            footer.parentNode.insertBefore(ad, footer);
-        });
-    } else {
-        cleanAndInsertAd('body', 'ad-before-footer', (ad, body) => {
-            document.body.appendChild(ad);
-        });
-    }
-}
-
 function observeAd(adElement, className, targetSelector, positionCallback) {
     const observer = new MutationObserver(() => {
-        if (!document.body.contains(adElement) || adElement.parentNode !== document.querySelector(targetSelector).parentNode) {
+        const target = document.querySelector(targetSelector);
+        if (!document.body.contains(adElement) || !target || adElement.parentNode !== target.parentNode) {
             observer.disconnect();
             cleanAndInsertAd(targetSelector, className, positionCallback);
         }
@@ -69,6 +53,50 @@ function observeAd(adElement, className, targetSelector, positionCallback) {
         childList: true,
         subtree: true
     });
+}
+
+function waitForElement(selector, timeout = 10000) {
+    return new Promise((resolve, reject) => {
+        const element = document.querySelector(selector);
+        if (element) return resolve(element);
+
+        const observer = new MutationObserver(() => {
+            const el = document.querySelector(selector);
+            if (el) {
+                observer.disconnect();
+                resolve(el);
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        setTimeout(() => {
+            observer.disconnect();
+            reject(new Error(`Timeout waiting for ${selector}`));
+        }, timeout);
+    });
+}
+
+function checkAndFixAds() {
+    waitForElement('.container')
+        .then(container => {
+            cleanAndInsertAd('.container', 'ad-before-container', (ad, container) => {
+                container.parentNode.insertBefore(ad, container);
+            });
+        })
+        .catch(console.warn);
+
+    waitForElement('footer')
+        .then(footer => {
+            cleanAndInsertAd('footer', 'ad-before-footer', (ad, footer) => {
+                footer.parentNode.insertBefore(ad, footer);
+            });
+        })
+        .catch(() => {
+            cleanAndInsertAd('body', 'ad-before-footer', (ad, body) => {
+                document.body.appendChild(ad);
+            });
+        });
 }
 
 window.onload = function () {

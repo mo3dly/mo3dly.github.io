@@ -94,15 +94,12 @@ function createAdBanner() {
     `;
 
     const script2Src = '//www.highperformanceformat.com/1fa960edbaecaab085ced55d3c14a84f/invoke.js';
+    const script2 = document.createElement('script');
+    script2.type = 'text/javascript';
+    script2.src = script2Src;
 
-    if (!document.querySelector('script[src="' + script2Src + '"]')) {
-        const script2 = document.createElement('script');
-        script2.type = 'text/javascript';
-        script2.src = script2Src;
-
-        adDiv.appendChild(script1);
-        adDiv.appendChild(script2);
-    }
+    adDiv.appendChild(script1);
+    adDiv.appendChild(script2);
 
     return adDiv;
 }
