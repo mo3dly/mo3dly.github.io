@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب معدل الصف الأول متوسط - معدلي</title>
+    <meta name="description" content="احسب معدل الصف الاول متوسط بادق طريقة وبحسب نظام الحساب الخاص بوزارة التعليم">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="احسب معدل الصف الأول متوسط بسهولة ودقة باستخدام موقع معدلي. أدخل درجاتك واحصل على المعدل النهائي فورًا حسب نظام وزارة التعليم بالسعودية.">
+    <link rel="canonical" href="https://mo3dly.github.io/grades/7">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="حساب معدل الصف الأول متوسط - معدلي">
+    <meta property="og:description"
+        content="حاسبة معدل الصف الأول متوسط حسب نظام وزارة التعليم بالسعودية. نتيجة فورية وسهلة.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mo3dly.github.io/grades/7">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="حساب معدل الصف الأول متوسط - معدلي">
+    <meta name="twitter:description" content="احسب معدلك في الصف الأول متوسط بسهولة وبدون تعقيد.">
+    <meta name="twitter:image" content="https://mo3dly.github.io/grades/7">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <script src="/script.js" defer></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46KDT1HD6W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-46KDT1HD6W');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/js/nav.js" defer></script>
+    <script src="/js/logic.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="brand-area">
+            <div class="maeduly-graduation-cap"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+            <div class="site-title">
+                <h1>معدلي</h1>
+                <p>نحسب معدلك بدقة وبسرعة</p>
+            </div>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center">
+            <nav class="top-links" aria-label="روابط سريعة">
+                <a href="https://mo3dly.github.io/">حاسبة المعدل <span
+                        style="display:inline-block;width:8px;height:8px;background:var(--primary);border-radius:50%;margin-inline-start:8px"></span></a>
+                <a href="/faq/">الاسئلة الشائعة</a>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="قائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <div class="panel" role="dialog" aria-label="القائمة">
+            <a href="https://mo3dly.github.io/">حاسبة المعدل <span
+                    style="display:inline-block;width:8px;height:8px;background:var(--primary);border-radius:50%;margin-inline-start:8px"></span></a>
+            <a href="/">الاسئلة الشائعة</a>
+            <div style="height:8px"></div>
+            <button id="mobileClose"
+                style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:10px;width:100%;font-weight:700">إغلاق</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <div id="semester-toast" class="semester-toast"></div>
+        <section class="card active-step">
+            <h2 class="section-title" id="start">المواد الدراسية</h2>
+            <div class="semester-selector-container">
+                <div class="form-group">
+                    <label>اختر الفصل الدراسي:</label>
+                    <div class="semester-buttons">
+                        <button class="semester-btn active" data-semester="first">
+                            <i class="fas fa-book-open"></i>
+                            الفصل الدراسي الأول
+                        </button>
+                        <button class="semester-btn" data-semester="second">
+                            <i class="fas fa-book"></i>
+                            الفصل الدراسي الثاني
+                        </button>
+                    </div>
+                    <p style="margin-top: 10px; color: #6c757d; font-size: 14px;">
+                        اختر الفصل الدراسي ثم ابدأ بإدخال الدرجات
+                    </p>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="subjects-table">
+                    <thead>
+                        <tr>
+                            <th>اسم المادة</th>
+                            <th>الدرجة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="subjects-table-body"></tbody>
+                </table>
+            </div>
+
+            <div class="step-actions">
+                <a href="./index.html" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                    رجوع
+                </a>
+                <button id="calculate-average" class="btn btn-success">حساب المعدل</button>
+            </div>
+        </section>
+
+        <section id="step-result" class="card" style="display: none;">
+            <div class="result-container">
+                <h2 class="section-title">نتيجة حساب المعدل</h2>
+                <div class="result-value" id="average-result">0.00</div>
+                <p class="result-message" id="result-message"></p>
+                <p class="result-grade" id="result-grade"></p>
+
+                <div class="table-container">
+                    <table class="result-table">
+                        <thead>
+                            <tr>
+                                <th>اسم المادة</th>
+                                <th>الدرجة</th>
+                                <th>الوزن</th>
+                                <th>الدرجة الموزونة</th>
+                            </tr>
+                        </thead>
+                        <tbody id="result-table-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="step-actions">
+                    <button id="back-to-subjects" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                        رجوع
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 معدلي - جميع الحقوق محفوظة</p>
+            <p class="made-by">Powered by Fayez Al-Muaiqly</p>
+        </div>
+    </footer>
+
+    <script>
+        "use strict";
+
+        /*************************
+         * البيانات
+         *************************/
+        const middleSubjects = {
+            first: {
+                first: [
+                    { name: "القرآن الكريم والدراسات الاسلامية", weight: 5 },
+                    { name: "اللغة العربية", weight: 5 },
+                    { name: "الدراسات الاجتماعية", weight: 3 },
+                    { name: "الرياضيات", weight: 6 },
+                    { name: "العلوم", weight: 4 },
+                    { name: "اللغة الإنجليزية", weight: 4 },
+                    { name: "المهارات الرقمية", weight: 2 },
+                    { name: "التربية الفنية", weight: 2 },
+                    { name: "التربية البدنية", weight: 2 },
+                    { name: "المهارات الحياتية والاسرية", weight: 1 }
+                ],
+                second: [
+                    { name: "القرآن الكريم والدراسات الاسلامية", weight: 5 },
+                    { name: "اللغة العربية", weight: 5 },
+                    { name: "الدراسات الاجتماعية", weight: 3 },
+                    { name: "الرياضيات", weight: 6 },
+                    { name: "العلوم", weight: 4 },
+                    { name: "اللغة الإنجليزية", weight: 4 },
+                    { name: "المهارات الرقمية", weight: 2 },
+                    { name: "التربية الفنية", weight: 2 },
+                    { name: "التربية البدنية", weight: 2 },
+                    { name: "المهارات الحياتية والاسرية", weight: 1 }
+                ]
+            }
+        };
+
+        const grade = "first";
+        let currentSemester = "first";
+        let subjectsGrades = [];
+        document.addEventListener("DOMContentLoaded", () => {
+            loadSubjects("first");
+
+            document.querySelectorAll(".semester-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    loadSubjects(btn.dataset.semester);
+                });
+            });
+
+            document
+                .getElementById("calculate-average")
+                .addEventListener("click", calculateAverage);
+
+            document
+                .getElementById("back-to-subjects")
+                .addEventListener("click", () => {
+                    document.getElementById("step-result").style.display = "none";
+                    document.querySelector(".card.active-step").style.display = "block";
+                });
+        });
+
+    </script>
+
+
+    <noscript>
+        <div id=js-warning-overlay>
+            <div class=js-warning-card>
+                <div class=warning-icon><svg fill=none height=80 stroke=#e53e3e stroke-linecap=round
+                        stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=80
+                        xmlns=http://www.w3.org/2000/svg>
+                        <circle cx=12 cy=12 r=10></circle>
+                        <line x1=12 x2=12 y1=8 y2=12></line>
+                        <line x1=12 x2=12.01 y1=16 y2=16></line>
+                    </svg></div>
+                <h2>الجافاسكريبت غير مفعل</h2>
+                <p>يعتمد موقع معدلي على الجافاسكريبت لتقديم خدمة حساب المعدل.<br>يرجى تمكين الجافاسكريبت في متصفحك
+                    للمتابعة.
+                <div class=warning-actions><button class=reload-btn onclick=location.reload()>إعادة تحميل
+                        الصفحة</button> <a class=help-link href=https://enable-javascript.com/ar/ target=_blank>تعليمات
+                        تفصيلية</a></div>
+            </div>
+        </div>
+    </noscript>
+    <style>
+        #js-warning-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, .95) !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 2147483647 !important;
+            color: #fff;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            overflow: auto !important
+        }
+
+        .js-warning-card {
+            background: #fff !important;
+            color: #333 !important;
+            padding: 40px !important;
+            border-radius: 12px !important;
+            max-width: 900px !important;
+            width: 95% !important;
+            max-height: 90vh !important;
+            text-align: center !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .3) !important;
+            box-sizing: border-box !important;
+            margin: auto !important;
+            overflow-y: auto !important;
+            position: relative !important
+        }
+
+        .warning-icon {
+            width: 100px !important;
+            height: 100px !important;
+            margin: 0 auto 25px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            background: #fff5f5 !important;
+            border-radius: 50% !important;
+            border: 3px solid #fed7d7 !important
+        }
+
+        .js-warning-card h2 {
+            color: #e53e3e !important;
+            margin-bottom: 15px !important;
+            font-size: 1.8rem !important;
+            font-weight: 700 !important
+        }
+
+        .js-warning-card p {
+            margin-bottom: 30px !important;
+            line-height: 1.6 !important;
+            font-size: 1.1rem !important;
+            color: #4a5568 !important
+        }
+
+        .browser-steps {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 20px !important;
+            margin: 30px 0 !important
+        }
+
+        .browser {
+            background: #f7fafc !important;
+            border-radius: 8px !important;
+            padding: 20px !important;
+            border: 1px solid #e2e8f0 !important;
+            text-align: center !important;
+            transition: transform .3s !important
+        }
+
+        .browser:hover {
+            transform: translateY(-5px) !important
+        }
+
+        .browser-icon {
+            width: 40px !important;
+            height: 40px !important;
+            margin: 0 auto 15px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important
+        }
+
+        .browser h3 {
+            color: #2d3748 !important;
+            margin-bottom: 15px !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important
+        }
+
+        .browser ul {
+            list-style-type: none !important;
+            text-align: right !important;
+            color: #4a5568 !important;
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .browser li {
+            margin-bottom: 8px !important;
+            padding-right: 15px !important;
+            position: relative !important;
+            font-size: .9rem !important
+        }
+
+        .browser li:before {
+            content: "•" !important;
+            color: #4299e1 !important;
+            font-weight: 700 !important;
+            position: absolute !important;
+            right: 0 !important
+        }
+
+        .warning-actions {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 15px !important;
+            margin-top: 30px !important;
+            flex-wrap: wrap !important
+        }
+
+        .reload-btn {
+            background: #4299e1 !important;
+            color: #fff !important;
+            border: none !important;
+            padding: 12px 25px !important;
+            border-radius: 6px !important;
+            font-size: 1rem !important;
+            cursor: pointer !important;
+            transition: background .3s !important;
+            font-weight: 600 !important;
+            min-width: 160px !important
+        }
+
+        .reload-btn:hover {
+            background: #3182ce !important
+        }
+
+        .help-link {
+            color: #4299e1 !important;
+            text-decoration: none !important;
+            padding: 12px 25px !important;
+            border: 1px solid #4299e1 !important;
+            border-radius: 6px !important;
+            transition: all .3s !important;
+            font-weight: 600 !important;
+            min-width: 160px !important;
+            display: inline-block !important
+        }
+
+        .help-link:hover {
+            background: #4299e1 !important;
+            color: #fff !important
+        }
+
+        @media (max-width:768px) {
+            .js-warning-card {
+                padding: 30px 20px !important;
+                width: 98% !important
+            }
+
+            .browser-steps {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important
+            }
+
+            .warning-actions {
+                flex-direction: column !important;
+                align-items: center !important
+            }
+
+            .help-link,
+            .reload-btn {
+                width: 100% !important;
+                max-width: 250px !important
+            }
+        }
+
+        @media (max-width:480px) {
+            #js-warning-overlay {
+                padding: 10px !important
+            }
+
+            .js-warning-card {
+                padding: 20px 15px !important;
+                max-height: 95vh !important
+            }
+
+            .warning-icon {
+                width: 80px !important;
+                height: 80px !important;
+                margin-bottom: 20px !important
+            }
+
+            .js-warning-card h2 {
+                font-size: 1.5rem !important
+            }
+
+            .js-warning-card p {
+                font-size: 1rem !important
+            }
+
+            .browser {
+                padding: 15px 10px !important
+            }
+
+            .browser li {
+                font-size: .85rem !important
+            }
+        }
+
+        @supports not (display:grid) {
+            .browser-steps {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important
+            }
+
+            .browser {
+                flex: 1 1 200px !important;
+                margin: 10px !important;
+                min-width: 200px !important
+            }
+        }
+    </style>
+
+
+</body>
+
+</html>

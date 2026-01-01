@@ -1,0 +1,160 @@
+/* أساسيات التصميم */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: var(--dark-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* محتوى صفحة الخطأ */
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.svg-container {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.error-svg {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+}
+
+.error-message {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-message h1 {
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.error-message p {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* زر العودة للصفحة الرئيسية */
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    margin-top: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.home-btn:hover {
+    background: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.home-btn svg {
+    transform: rotate(180deg);
+}
+
+/* التذييل */
+footer {
+    background: var(--secondary-color);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+.made-by {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .error-message h1 {
+        font-size: 2rem;
+    }
+    
+    .error-message p {
+        font-size: 1rem;
+    }
+    
+    .svg-container {
+        max-width: 500px;
+    }
+    
+    .made-by {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-content {
+        padding: 1rem 0;
+    }
+    
+    .error-message h1 {
+        font-size: 1.8rem;
+    }
+    
+    .svg-container {
+        max-width: 350px;
+    }
+    
+    .home-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 1rem;
+    }
+}

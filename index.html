@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معدلي - حساب المعدل الدراسي</title>
+    <head>
+        <title>معدلي - حاسبة المعدل للمتوسط والثانوي</title>
+        <meta name="description"
+            content="موقع معدلي لحساب المعدل الدراسي للمرحلة المتوسطة والثانوية في السعودية. احسب معدلك بسهولة وبدقة حسب نظام وزارة التعليم.">
+        <link rel="canonical" href="https://mo3dly.github.io/">
+        <meta name="robots" content="index, follow">
+        <meta property="og:title" content="معدلي - حاسبة حساب المعدل الدراسي">
+        <meta property="og:description" content="احسب معدلك للمرحلة المتوسطة والثانوية بسهولة عبر موقع معدلي.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://mo3dly.github.io/">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="معدلي - حاسبة حساب المعدل الدراسي">
+        <meta name="twitter:description" content="حاسبة معدل للطلاب في السعودية.">
+    </head>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46KDT1HD6W"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-46KDT1HD6W');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/js/nav.js" defer></script>
+    <script src="/js/logic.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="brand-area">
+            <div class="maeduly-graduation-cap"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+            <div class="site-title">
+                <h1>معدلي</h1>
+                <p>نحسب معدلك بدقة وبسرعة</p>
+            </div>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center">
+            <nav class="top-links" aria-label="روابط سريعة">
+                <a href="https://mo3dly.github.io/">حاسبة المعدل <span
+                        style="display:inline-block;width:8px;height:8px;background:var(--primary);border-radius:50%;margin-inline-start:8px"></span></a>
+                <a href="/faq/">الاسئلة الشائعة</a>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="قائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <div class="panel" role="dialog" aria-label="القائمة">
+            <a href="https://mo3dly.github.io/">حاسبة المعدل <span
+                    style="display:inline-block;width:8px;height:8px;background:var(--primary);border-radius:50%;margin-inline-start:8px"></span></a>
+            <a href="/">الاسئلة الشائعة</a>
+            <div style="height:8px"></div>
+            <button id="mobileClose"
+                style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:10px;width:100%;font-weight:700">إغلاق</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <h1 style="color: #2c3e50; margin-bottom: 1rem; text-align: center; margin-top: 10px;">مرحباً بك في موقع معدلي
+        </h1>
+        <p style="color: #7f8c8d; font-size: 1.1rem; text-align: center;">احسب معدلك بكل سهولة ودقة</p>
+        <div class="services-grid">
+            <div class="service-card" onclick="location.href='/mid/'">
+                <div class="service-icon">📚</div>
+                <h3>حساب معدل المتوسطة</h3>
+                <p>لطلاب الصفوف الأول والثاني والثالث متوسط</p>
+                <button class="btn btn-primary">ابدأ الآن</button>
+            </div>
+
+            <div class="service-card" onclick="location.href='high-school.html'">
+                <div class="service-icon">🎓</div>
+                <h3>حساب معدل الثانوية</h3>
+                <p>لطلاب الصفوف الأول والثاني والثالث ثانوي</p>
+                <button class="btn btn-secondary">قريباً</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>حساب درجات اعمال السنة</h3>
+                <p>حساب درجات اعمال السنة للفترة الاولى والثانية</p>
+                <button class="btn btn-secondary">قريباً</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 معدلي - جميع الحقوق محفوظة</p>
+            <p>أداة سهلة لحساب المعدل الدراسي لطلاب المتوسطة والثانوية</p>
+            <p class="made-by">Powered by Fayez Al-Muaiqly</p>
+        </div>
+    </footer>
+    <noscript>
+        <div id=js-warning-overlay>
+            <div class=js-warning-card>
+                <div class=warning-icon><svg fill=none height=80 stroke=#e53e3e stroke-linecap=round
+                        stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=80
+                        xmlns=http://www.w3.org/2000/svg>
+                        <circle cx=12 cy=12 r=10></circle>
+                        <line x1=12 x2=12 y1=8 y2=12></line>
+                        <line x1=12 x2=12.01 y1=16 y2=16></line>
+                    </svg></div>
+                <h2>الجافاسكريبت غير مفعل</h2>
+                <p>يعتمد موقع معدلي على الجافاسكريبت لتقديم خدمة حساب المعدل.<br>يرجى تمكين الجافاسكريبت في متصفحك
+                    للمتابعة.
+                <div class=warning-actions><button class=reload-btn onclick=location.reload()>إعادة تحميل
+                        الصفحة</button> <a class=help-link href=https://enable-javascript.com/ar/ target=_blank>تعليمات
+                        تفصيلية</a></div>
+            </div>
+        </div>
+    </noscript>
+    <style>
+        #js-warning-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, .95) !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 2147483647 !important;
+            color: #fff;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif !important;
+            padding: 20px !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            overflow: auto !important
+        }
+
+        .js-warning-card {
+            background: #fff !important;
+            color: #333 !important;
+            padding: 40px !important;
+            border-radius: 12px !important;
+            max-width: 900px !important;
+            width: 95% !important;
+            max-height: 90vh !important;
+            text-align: center !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .3) !important;
+            box-sizing: border-box !important;
+            margin: auto !important;
+            overflow-y: auto !important;
+            position: relative !important
+        }
+
+        .warning-icon {
+            width: 100px !important;
+            height: 100px !important;
+            margin: 0 auto 25px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            background: #fff5f5 !important;
+            border-radius: 50% !important;
+            border: 3px solid #fed7d7 !important
+        }
+
+        .js-warning-card h2 {
+            color: #e53e3e !important;
+            margin-bottom: 15px !important;
+            font-size: 1.8rem !important;
+            font-weight: 700 !important
+        }
+
+        .js-warning-card p {
+            margin-bottom: 30px !important;
+            line-height: 1.6 !important;
+            font-size: 1.1rem !important;
+            color: #4a5568 !important
+        }
+
+        .browser-steps {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 20px !important;
+            margin: 30px 0 !important
+        }
+
+        .browser {
+            background: #f7fafc !important;
+            border-radius: 8px !important;
+            padding: 20px !important;
+            border: 1px solid #e2e8f0 !important;
+            text-align: center !important;
+            transition: transform .3s !important
+        }
+
+        .browser:hover {
+            transform: translateY(-5px) !important
+        }
+
+        .browser-icon {
+            width: 40px !important;
+            height: 40px !important;
+            margin: 0 auto 15px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important
+        }
+
+        .browser h3 {
+            color: #2d3748 !important;
+            margin-bottom: 15px !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important
+        }
+
+        .browser ul {
+            list-style-type: none !important;
+            text-align: right !important;
+            color: #4a5568 !important;
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .browser li {
+            margin-bottom: 8px !important;
+            padding-right: 15px !important;
+            position: relative !important;
+            font-size: .9rem !important
+        }
+
+        .browser li:before {
+            content: "•" !important;
+            color: #4299e1 !important;
+            font-weight: 700 !important;
+            position: absolute !important;
+            right: 0 !important
+        }
+
+        .warning-actions {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 15px !important;
+            margin-top: 30px !important;
+            flex-wrap: wrap !important
+        }
+
+        .reload-btn {
+            background: #4299e1 !important;
+            color: #fff !important;
+            border: none !important;
+            padding: 12px 25px !important;
+            border-radius: 6px !important;
+            font-size: 1rem !important;
+            cursor: pointer !important;
+            transition: background .3s !important;
+            font-weight: 600 !important;
+            min-width: 160px !important
+        }
+
+        .reload-btn:hover {
+            background: #3182ce !important
+        }
+
+        .help-link {
+            color: #4299e1 !important;
+            text-decoration: none !important;
+            padding: 12px 25px !important;
+            border: 1px solid #4299e1 !important;
+            border-radius: 6px !important;
+            transition: all .3s !important;
+            font-weight: 600 !important;
+            min-width: 160px !important;
+            display: inline-block !important
+        }
+
+        .help-link:hover {
+            background: #4299e1 !important;
+            color: #fff !important
+        }
+
+        @media (max-width:768px) {
+            .js-warning-card {
+                padding: 30px 20px !important;
+                width: 98% !important
+            }
+
+            .browser-steps {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important
+            }
+
+            .warning-actions {
+                flex-direction: column !important;
+                align-items: center !important
+            }
+
+            .help-link,
+            .reload-btn {
+                width: 100% !important;
+                max-width: 250px !important
+            }
+        }
+
+        @media (max-width:480px) {
+            #js-warning-overlay {
+                padding: 10px !important
+            }
+
+            .js-warning-card {
+                padding: 20px 15px !important;
+                max-height: 95vh !important
+            }
+
+            .warning-icon {
+                width: 80px !important;
+                height: 80px !important;
+                margin-bottom: 20px !important
+            }
+
+            .js-warning-card h2 {
+                font-size: 1.5rem !important
+            }
+
+            .js-warning-card p {
+                font-size: 1rem !important
+            }
+
+            .browser {
+                padding: 15px 10px !important
+            }
+
+            .browser li {
+                font-size: .85rem !important
+            }
+        }
+
+        @supports not (display:grid) {
+            .browser-steps {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important
+            }
+
+            .browser {
+                flex: 1 1 200px !important;
+                margin: 10px !important;
+                min-width: 200px !important
+            }
+        }
+    </style>
+</body>
+
+</html>
