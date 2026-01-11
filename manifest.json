@@ -1,0 +1,20 @@
+{
+  "name": "معدلي - احسب معدلك الدراسي",
+  "short_name": "معدلي",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#33365B",
+  "icons": [
+    {
+      "src": "/icons/mo3dly.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/mo3dly.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

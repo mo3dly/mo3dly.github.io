@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-46KDT1HD6W"></script>
+  <script>
+    window.addEventListener("load", () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-46KDT1HD6W');
+    });
+  </script>
+  <link rel="icon" href="/icons/mo3dly.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/icons/mo3dly.ico" type="image/x-icon">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>معدلي — الاسئلة الشائعة</title>
+  <meta name="description" content="معدلي — حساب المعدل وفق إجراءات وزارة التعليم ">
+  <link rel="manifest" href="/manifest.json">
+  <script src="/js/nav.js" defer></script>
+  <link rel="preload" href="/fonts/arabic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/css/faq.css" as="style">
+  <link rel="stylesheet" href="/css/faq.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand-area" onclick="window.location.href='/'">
+        <div class="mo3dly-graduation-cap">
+          <img src="/icons/mo3dly.webp" alt="mo3dly icon" height="48px" width="48px">
+        </div>
+        <div class="site-title">
+          <h1>معدلي</h1>
+          <p>نحسب معدلك بدقة وبسرعة</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <nav class="top-links" aria-label="روابط سريعة">
+          <a href="/">الرئيسية</a>
+          <a href="/mid/">المرحلة المتوسطة</a>
+          <a href="/sec/">المرحلة الثانوية</a>
+          <a href="/faq/">الاسئلة الشائعة</a>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="قائمة">
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <div class="panel" role="dialog" aria-label="القائمة">
+        <a href="/">الرئيسية</a>
+        <a href="/mid/">المرحلة المتوسطة</a>
+        <a href="/sec/">المرحلة الثانوية</a>
+        <a href="/faq/">الاسئلة الشائعة</a>
+        <div style="height:8px"></div>
+        <button id="mobileClose"
+          style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:10px;width:100%;font-weight:700">إغلاق</button>
+      </div>
+    </div>
+
+    <section class="intro-card" id="how-it-works">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>
+          <h2 style="margin:0;color:var(--primary);font-size:18px">آلية حساب المعدل</h2>
+          <p style="margin:8px 0 0;color:var(--muted)">الموقع يطبق القاعدة الرسمية لوزارة التعليم  لحساب المعدل
+            والتقدير العام.</p>
+        </div>
+        <div>
+          <a class="primary-btn" href="https://mo3dly.github.io/">ابدأ الخدمة</a>
+        </div>
+      </div>
+    </section>
+
+    <main class="grid" role="main">
+      <div class="faq-column" id="faq">
+        <article class="faq-item">
+          <h3>كيف تتم عملية حساب المعدل؟</h3>
+          <ol>
+            <li>تُضرب الدرجة التي حصل عليها الطالب في عدد الحصص المخصصة للمادة فيكون الناتج الدرجة الموزونة للمادة</li>
+            <li>تُجمع نواتج الضرب لجميع المواد الدراسية</li>
+            <li>يُجمع عدد الحصص الأسبوعية لجميع المواد</li>
+            <li>يُقسم المجموع الكلي للدرجات الموزونة على مجموع عدد الحصص الأسبوعية فيكون الناتج معدل الطالب النهائي</li>
+          </ol>
+        </article>
+
+        <article class="faq-item">
+          <h3>هل تختلف طريقة الحساب حسب المدرسة؟</h3>
+          <p>لا، الطريقة موحدة ومبنية على الإجراءات التنفيذية للائحة التقويم  من وزارة التعليم.</p>
+          <p><span style="color: rgb(200, 0, 0);">* </span>مع العلم أن الموقع حالياً لا يدعم مدارس تحفيظ القرآن</p>
+        </article>
+
+        <!--
+        // ميزة مستقبلية
+        <article class="faq-item">
+          <h3>هل يمكن حفظ درجاتي لكل فصل؟</h3>
+          <p>نعم يمكن تخزين الدرجات محليًا واستعادتها لاحقًا لتسهيل الاستخدام عند التنقل بين الفصول.</p>
+        </article>
+        -->
+        <article class="faq-item">
+          <h3>المصدر الرسمي</h3>
+          <div class="small-note">وزارة التعليم – الإجراءات التنفيذية للائحة التقويم ، القاعدة الخامسة: حساب المعدل
+            والتقدير العام</div>
+        </article>
+      </div>
+
+      <aside class="right-column" aria-labelledby="calc-aside">
+        <div class="summary-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-weight:800;color:var(--primary)">الصيغة المختصرة</div>
+            <div style="color:var(--muted);font-size:13px">مرجعي</div>
+          </div>
+          <div class="formula">المعدل = مجموع (الدرجة × عدد الحصص) ÷ مجموع الحصص</div>
+          <div class="calc-note">الوزن = عدد الحصص الأسبوعية لكل مادة</div>
+        </div>
+        <div class="small-note">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>مناسب للجوال • سريع • يتبع تعليمات وزارة التعليم</div>
+            <div><a href="/" class="internal-link"
+                style="color:var(--primary);text-decoration:none;font-weight:700">انتقل للحاسبة</a></div>
+          </div>
+        </div>
+
+        <a class="primary-btn" href="/">🚀 ابدأ الخدمة الآن</a>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <div style="margin-bottom:6px">© 2026 معدلي</div>
+      <div><a href="https://mo3dly.github.io/" target="_blank" rel="noopener"
+          style="color:var(--muted);text-decoration:none">https://mo3dly.github.io/</a></div>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>

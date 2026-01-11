@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة غير موجودة - معدلي</title>
+    <link rel="stylesheet" href="/css/404.css">
+    <link rel="icon" href="/icons/mo3dly.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/icons/mo3dly.ico" type="image/x-icon">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="manifest" href="/manifest.json">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46KDT1HD6W"></script>
+    <script>
+        window.addEventListener("load", () => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-46KDT1HD6W');
+        });
+    </script>
+    <script src="/js/nav.js" defer></script>
+    <link rel="preload" href="/fonts/arabic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+
+<body>
+    <header class="header">
+        <div class="brand-area" onclick="window.location.href='/'">
+            <div class="mo3dly-graduation-cap"><img src="/icons/mo3dly.webp" alt="mo3dly icon" height="48px"
+                    width="48px"></div>
+            <div class="site-title">
+                <h1>معدلي</h1>
+                <p>نحسب معدلك بدقة وبسرعة</p>
+            </div>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center">
+            <nav class="top-links" aria-label="روابط سريعة">
+                <a href="/">الرئيسية</a>
+                <a href="/mid/">المرحلة المتوسطة</a>
+                <a href="/sec/">المرحلة الثانوية</a>
+                <a href="/faq/">الاسئلة الشائعة</a>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="قائمة">☰</button>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <div class="panel" role="dialog" aria-label="القائمة">
+            <a href="/">الرئيسية</a>
+            <a href="/mid/">المرحلة المتوسطة</a>
+            <a href="/sec/">المرحلة الثانوية</a>
+            <a href="/faq/">الاسئلة الشائعة</a>
+            <div style="height:8px"></div>
+            <button id="mobileClose"
+                style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:10px;width:100%;font-weight:700">إغلاق</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="error-content">
+            <div class="svg-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" class="error-svg">
+                    <defs>
+                        <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#e3f2fd" />
+                            <stop offset="100%" stop-color="#bbdefb" />
+                        </linearGradient>
+                        <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffeb3b" />
+                            <stop offset="100%" stop-color="#ffc107" />
+                        </linearGradient>
+                        <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#f5f5f5" />
+                        </linearGradient>
+                        <linearGradient id="boardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#33365B" />
+                            <stop offset="100%" stop-color="#33365B" />
+                        </linearGradient>
+                        <linearGradient id="skinGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffccbc" />
+                            <stop offset="100%" stop-color="#ffab91" />
+                        </linearGradient>
+                        <linearGradient id="shirtGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#33365B" />
+                            <stop offset="100%" stop-color="#33365B" />
+                        </linearGradient>
+                        <linearGradient id="pantsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#2c3e50" />
+                            <stop offset="100%" stop-color="#1a252f" />
+                        </linearGradient>
+                        <linearGradient id="book1Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#e74c3c" />
+                            <stop offset="100%" stop-color="#c0392b" />
+                        </linearGradient>
+                        <linearGradient id="book2Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#2ecc71" />
+                            <stop offset="100%" stop-color="#27ae60" />
+                        </linearGradient>
+                        <linearGradient id="book3Gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#f39c12" />
+                            <stop offset="100%" stop-color="#e67e22" />
+                        </linearGradient>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.3" />
+                        </filter>
+                        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.2" />
+                        </filter>
+                    </defs>
+
+                    <rect width="800" height="600" fill="url(#skyGradient)" />
+
+                    <rect x="0" y="500" width="800" height="100" fill="#8d6e63" />
+                    <rect x="0" y="500" width="800" height="20" fill="#795548" />
+
+                    <circle cx="700" cy="80" r="40" fill="url(#sunGradient)" filter="url(#shadow)" />
+                    <circle cx="700" cy="80" r="35" fill="#ffeb3b" />
+
+                    <g filter="url(#softShadow)">
+                        <ellipse cx="200" cy="150" rx="60" ry="30" fill="url(#cloudGradient)" />
+                        <ellipse cx="240" cy="140" rx="50" ry="25" fill="url(#cloudGradient)" />
+                        <ellipse cx="180" cy="140" rx="40" ry="20" fill="url(#cloudGradient)" />
+                    </g>
+
+                    <g filter="url(#softShadow)">
+                        <ellipse cx="600" cy="120" rx="50" ry="25" fill="url(#cloudGradient)" />
+                        <ellipse cx="640" cy="110" rx="40" ry="20" fill="url(#cloudGradient)" />
+                        <ellipse cx="560" cy="110" rx="30" ry="15" fill="url(#cloudGradient)" />
+                    </g>
+
+                    <g filter="url(#shadow)">
+                        <rect x="300" y="200" width="200" height="150" rx="10" fill="url(#boardGradient)" />
+                        <rect x="320" y="220" width="160" height="110" rx="5" fill="#2c3e50" />
+
+                        <text x="400" y="280" text-anchor="middle" fill="#fff" font-family="Arial" font-size="48"
+                            font-weight="bold">404</text>
+                        <text x="400" y="320" text-anchor="middle" fill="#ecf0f1" font-family="Arial"
+                            font-size="14">Page Not Found</text>
+                    </g>
+                    <g>
+                        <rect x="100" y="100" width="200" height="40" rx="20" fill="#fff" stroke="#3498db"
+                            stroke-width="2" filter="url(#softShadow)" />
+                        <text x="200" y="125" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="14">أين
+                            هذه الصفحة؟</text>
+
+                        <rect x="550" y="350" width="180" height="40" rx="20" fill="#fff" stroke="#3498db"
+                            stroke-width="2" filter="url(#softShadow)" />
+                        <text x="640" y="375" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="14">لا
+                            أستطيع العثور عليها!</text>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="error-message">
+                <h1>عذراً، هذه الصفحة غير موجودة</h1>
+                <p>يبدو أن الصفحة التي تبحث عنها قد تم نقلها أو أنها غير موجودة.</p>
+                <p>يمكنك العودة إلى الصفحة الرئيسية بالضغط على الزر بالاسفل ومتابعة استخدام موقع معدلي</p>
+
+                <a href="/" class="home-btn">
+                    العودة إلى الصفحة الرئيسية
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 معدلي - جميع الحقوق محفوظة</p>
+            <p>أداة سهلة لحساب المعدل الدراسي لطلاب المتوسطة والثانوية</p>
+            <p class="made-by">Powered by Fayez Al-Muaiqly</p>
+        </div>
+    </footer>
+</body>
+
+</html>
