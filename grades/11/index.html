@@ -211,7 +211,7 @@
             const activePathwayBtn = document.querySelector(".pathway-btn.active");
             currentPathway = activePathwayBtn?.dataset.pathway || "gen";
 
-            loadSubjects(currentSemester, false, currentPathway);
+            loadSubjects(currentSemester, true, currentPathway);
 
             document.querySelectorAll(".semester-btn").forEach(btn => {
                 btn.addEventListener("click", () => {
