@@ -1,6 +1,6 @@
-const CACHE_NAME = "mo3dly-v1.1";
+const CACHE_NAME = "mo3dly-v1.2";
 
-const ASSETS = [
+const STATIC_ASSETS = [
   "/",
   "/index.html",
 
@@ -43,32 +43,85 @@ const ASSETS = [
   "/calc/gpa/"
 ];
 
+// ================= INSTALL =================
 self.addEventListener("install", event => {
+  self.skipWaiting();
+
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
-      for (const asset of ASSETS) {
+      for (const asset of STATIC_ASSETS) {
         try {
           await cache.add(asset);
-        } catch (e) {
-
-        }
+        } catch (e) { }
       }
     })
   );
 });
 
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) {
-        return cached;
-      }
-
-      return fetch(event.request).catch(() => {
-        if (event.request.mode === "navigate") {
-          return caches.match("/404.html");
-        }
-      });
-    })
+// ================= ACTIVATE =================
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(names =>
+      Promise.all(
+        names.map(name => {
+          if (name !== CACHE_NAME) {
+            return caches.delete(name);
+          }
+        })
+      )
+    )
   );
+
+  self.clients.claim();
+});
+
+// ================= FETCH =================
+self.addEventListener("fetch", event => {
+  const req = event.request;
+  const url = new URL(req.url);
+
+  if (
+    req.mode === "navigate" ||
+    url.pathname.endsWith("/") ||
+    url.pathname.endsWith(".html")
+  ) {
+    event.respondWith(
+      fetch(req)
+        .then(res => {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+          return res;
+        })
+        .catch(() =>
+          caches.match(req).then(r => r || caches.match("/404.html"))
+        )
+    );
+    return;
+  }
+
+  if (
+    url.pathname.endsWith(".css") ||
+    url.pathname.endsWith(".js") ||
+    url.pathname.endsWith(".woff2") ||
+    url.pathname.endsWith(".png") ||
+    url.pathname.endsWith(".webp") ||
+    url.pathname.endsWith(".ico")
+  ) {
+    event.respondWith(
+      caches.match(req).then(cached => {
+        if (cached) return cached;
+
+        return fetch(req).then(res => {
+          if (res && res.status === 200) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+          }
+          return res;
+        });
+      })
+    );
+    return;
+  }
+
+  event.respondWith(fetch(req));
 });
