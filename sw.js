@@ -1,4 +1,4 @@
-const CACHE_NAME = "mo3dly-v1.0";
+const CACHE_NAME = "mo3dly-v1.1";
 
 const ASSETS = [
   "/",
@@ -36,19 +36,39 @@ const ASSETS = [
   "/grades/9/",
   "/grades/10/",
   "/grades/11/",
-  "/grades/12/"
+  "/grades/12/",
+
+  "/js/gpa.js",
+  "/css/gpa.css",
+  "/calc/gpa/"
 ];
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then(async cache => {
+      for (const asset of ASSETS) {
+        try {
+          await cache.add(asset);
+        } catch (e) {
+
+        }
+      }
+    })
   );
 });
 
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then(cached => {
+      if (cached) {
+        return cached;
+      }
+
+      return fetch(event.request).catch(() => {
+        if (event.request.mode === "navigate") {
+          return caches.match("/404.html");
+        }
+      });
     })
   );
 });

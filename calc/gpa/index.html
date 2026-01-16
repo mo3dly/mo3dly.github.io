@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب المعدل التراكمي الثانوي - معدلي</title>
+    <meta name="description" content="احسب المعدل التراكمي للمرحلة الثانوية.">
+    <link rel="canonical" href="https://mo3dly.github.io/calc/gpa/">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="حساب المعدل التراكمي الثانوي - معدلي">
+    <meta property="og:description"
+        content="حاسبة المعدل التراكمي للمرحلة الثانوية.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mo3dly.github.io/calc/gpa/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="حساب المعدل التراكمي الثانوي - معدلي">
+    <meta name="twitter:description" content="احسب معدلك التراكمي بسهولة وبسرعة.">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46KDT1HD6W"></script>
+    <script>
+        window.addEventListener("load", () => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-46KDT1HD6W');
+        });
+    </script>
+    <link rel="icon" href="/icons/mo3dly.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/icons/mo3dly.ico" type="image/x-icon">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" href="/fonts/arabic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/css/main.css" as="style">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gpa.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+        crossorigin="anonymous"></script>
+    <script src="/js/gpa.js" defer></script>
+</head>
+
+<body>
+    <header class="header" style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px">
+        <div class="brand-area" onclick="window.location.href='/'"
+            style="cursor:pointer;display:flex;gap:8px;align-items:center">
+            <img src="/icons/mo3dly.webp" alt="mo3dly icon" height="48" width="48">
+            <div>
+                <h1 style="margin:0;font-size:1.125rem">معدلي</h1>
+                <p style="margin:0;font-size:0.875rem">نحسب معدلك بدقة وبسرعة</p>
+            </div>
+        </div>
+        <nav class="top-links" aria-label="روابط سريعة" style="display:flex;gap:12px">
+            <a href="/">الرئيسية</a>
+            <a href="/mid/">المرحلة المتوسطة</a>
+            <a href="/sec/">المرحلة الثانوية</a>
+            <a href="/faq/">الاسئلة الشائعة</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="card" id="inputCard">
+            <h2 class="section-title" id="start"><a href="/" style="text-decoration: none;"><svg style="transform: rotate(0deg);" style="transform: rotate(0deg);"
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 6L20 12L14 18" stroke="#5B61C9" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M4 12H20" stroke="#5B61C9" stroke-width="2" stroke-linecap="round" />
+                    </svg> </a>حساب المعدل التراكمي الثانوي</h2>
+            <p style="margin-bottom:12px;color:#374151">أدخل معدلاتك لكل من (الصف الاول الثانوي, الثاني ثانوي, الثالث ثانوي):</p>
+
+            <div class="form-group">
+                <label for="grade1">معدل أول ثانوي <span style="color:var(--muted)">(20%)</span></label>
+                <input type="number" id="grade1" placeholder="100" min="0" max="100" step="0.01"
+                    inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" value="100">
+                <div class="input-error" id="err-grade1" aria-live="polite"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade2">معدل ثاني ثانوي <span style="color:var(--muted)">(40%)</span></label>
+                <input type="number" id="grade2" placeholder="100" min="0" max="100" step="0.01"
+                    inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" value="100">
+                <div class="input-error" id="err-grade2" aria-live="polite"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="grade3">معدل ثالث ثانوي <span style="color:var(--muted)">(40%)</span></label>
+                <input type="number" id="grade3" placeholder="100" min="0" max="100" step="0.01"
+                    inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" value="100">
+                <div class="input-error" id="err-grade3" aria-live="polite"></div>
+            </div>
+
+            <div class="step-actions">
+                <button id="calculateGpaBtn" class="btn btn-primary">حساب المعدل التراكمي</button>
+            </div>
+        </section>
+
+        <section class="card" id="resultCard" style="display:none">
+            <h2 class="section-title">النتيجة</h2>
+                <center>
+                    <div class="wrapper" id="wrapper" data-percent="0">
+                        <svg style="transform: rotate(0deg);" width="160" height="160">
+                            <circle class="bg" cx="80" cy="80" r="70" />
+                            <circle class="progress" cx="80" cy="80" r="70" />
+                        </svg>
+                        <div class="value" id="average-result">0.00%</div>
+                    </div>
+                </center>
+
+                <div style="margin-top:8px">
+                    <table class="result-table" aria-live="polite">
+                        <thead>
+                            <tr>
+                                <th>السنة</th>
+                                <th>المعدل</th>
+                                <th>الوزن</th>
+                                <th>الدرجة الموزونة</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="step-actions" style="margin-top:12px">
+                    <button id="backBtn" class="btn btn-primary">رجوع</button>
+                </div>
+        </section>
+    </main>
+
+    <footer style="padding:16px 0;text-align:center">
+        <div class="container">
+            <p style="margin:4px 0">© 2026 معدلي - جميع الحقوق محفوظة</p>
+            <p style="margin:4px 0">Powered by Fayez Al-Muaiqly</p>
+        </div>
+    </footer>
+</body>
+</html>
