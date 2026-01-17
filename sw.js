@@ -1,4 +1,4 @@
-const CACHE_NAME = "mo3dly-v1.5";
+const CACHE_NAME = "mo3dly-v1.6";
 
 const STATIC_ASSETS = [
   "/",
@@ -25,22 +25,22 @@ const STATIC_ASSETS = [
   "/subjects/11.js",
   "/subjects/12.js",
 
-  "/faq/",
-  "/sec/",
-  "/mid/",
+  "/faq/index.html",
+  "/sec/index.html",
+  "/mid/index.html",
 
   "/404.html",
 
-  "/grades/7/",
-  "/grades/8/",
-  "/grades/9/",
-  "/grades/10/",
-  "/grades/11/",
-  "/grades/12/",
+  "/grades/7/index.html",
+  "/grades/8/index.html",
+  "/grades/9/index.html",
+  "/grades/10/index.html",
+  "/grades/11/index.html",
+  "/grades/12/index.html",
 
   "/js/gpa.js",
   "/css/gpa.css",
-  "/calc/gpa/"
+  "/calc/gpa/index.html"
 ];
 
 // ================= INSTALL =================
@@ -52,7 +52,9 @@ self.addEventListener("install", event => {
       for (const asset of STATIC_ASSETS) {
         try {
           await cache.add(asset);
-        } catch (e) { }
+        } catch (e) {
+          // Pass
+        }
       }
     })
   );
@@ -80,6 +82,11 @@ self.addEventListener("fetch", event => {
   const req = event.request;
   const url = new URL(req.url);
 
+  if (!req.url.startsWith("http")) return;
+
+  if (url.origin !== location.origin) return;
+
+  // ===== HTML (Network First) =====
   if (
     req.mode === "navigate" ||
     url.pathname.endsWith("/") ||
@@ -88,8 +95,10 @@ self.addEventListener("fetch", event => {
     event.respondWith(
       fetch(req)
         .then(res => {
-          const copy = res.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+          if (res && res.status === 200) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+          }
           return res;
         })
         .catch(() =>
@@ -99,6 +108,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
+  // ===== Static Files (Cache First) =====
   if (
     url.pathname.endsWith(".css") ||
     url.pathname.endsWith(".js") ||
@@ -111,17 +121,22 @@ self.addEventListener("fetch", event => {
       caches.match(req).then(cached => {
         if (cached) return cached;
 
-        return fetch(req).then(res => {
-          if (res && res.status === 200) {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
-          }
-          return res;
-        });
+        return fetch(req)
+          .then(res => {
+            if (res && res.status === 200) {
+              const copy = res.clone();
+              caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+            }
+            return res;
+          })
+          .catch(() => cached);
       })
     );
     return;
   }
 
-  event.respondWith(fetch(req));
+  // ===== Fallback =====
+  event.respondWith(
+    fetch(req).catch(() => caches.match(req))
+  );
 });
