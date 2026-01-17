@@ -40,9 +40,10 @@
 
 <body>
     <header class="header">
-        <div class="brand-area" onclick="window.location.href='/'">
-            <div class="mo3dly-graduation-cap"><img src="/icons/mo3dly.webp" alt="mo3dly icon" height="48px"
-                    width="48px"></div>
+        <div class="brand-area" onclick="window.location.href='/'" role="button" tabindex="0" aria-label="الذهاب للصفحة الرئيسية">
+            <div class="mo3dly-graduation-cap">
+                <img src="/icons/mo3dly.webp" alt="شعار معدلي" width="48" height="48">
+            </div>
             <div class="site-title">
                 <h1>معدلي</h1>
                 <p>نحسب معدلك بدقة وبسرعة</p>
@@ -57,7 +58,7 @@
                 <a href="/faq/">الاسئلة الشائعة</a>
             </nav>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="قائمة">☰</button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="فتح القائمة" aria-expanded="false">☰</button>
         </div>
     </header>
 
@@ -68,29 +69,31 @@
             <a href="/sec/">المرحلة الثانوية</a>
             <a href="/faq/">الاسئلة الشائعة</a>
             <div style="height:8px"></div>
-            <button id="mobileClose"
+            <button id="mobileClose" aria-label="إغلاق القائمة"
                 style="background:var(--primary);color:#fff;border:0;padding:10px;border-radius:10px;width:100%;font-weight:700">إغلاق</button>
         </div>
     </div>
 
     <main class="container">
-        <h1 style="color: #2c3e50; margin-bottom: 1rem; text-align: center; margin-top: 10px;">مرحباً بك في موقع معدلي
-        </h1>
+        <h2 style="color: #2c3e50; margin-bottom: 1rem; text-align: center; margin-top: 10px;">مرحباً بك في موقع معدلي</h2>
         <p style="color: #7f8c8d; font-size: 1.1rem; text-align: center;">احسب معدلك بكل سهولة ودقة</p>
-        <div class="services-grid">
-            <div class="service-card" data-link="/mid/">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
+        
+        <section class="services-grid" aria-label="خدمات الموقع">
+            <article class="service-card" data-link="/mid/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <rect x="5" y="10" width="4" height="9" rx="1" fill="#7C80B8" />
                     <rect x="10" y="7" width="4" height="12" rx="1" fill="#33365B" />
                     <rect x="15" y="4" width="4" height="15" rx="1" fill="#E3E4F2" />
                 </svg>
                 <h3>حساب معدل المتوسطة</h3>
                 <p>حساب معدل الفصل الدراسي لطلاب الصفوف الأول والثاني والثالث متوسط</p>
-                <a href="/mid"><button class="btn btn-primary">ابدأ الآن</button></a>
-            </div>
+                <a href="/mid" aria-label="انتقل لحساب معدل المتوسطة">
+                    <button class="btn btn-primary">ابدأ الآن</button>
+                </a>
+            </article>
 
-            <div class="service-card" data-link="/sec/">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <article class="service-card" data-link="/sec/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <rect x="4" y="4" width="16" height="16" rx="3" stroke="#33365B" stroke-width="2" />
                     <path d="M9 15L11 9L13 15M9.8 13H12.2" stroke="#33365B" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" />
@@ -98,40 +101,179 @@
                 </svg>
                 <h3>حساب معدل الثانوية</h3>
                 <p>حساب معدل الفصل الدراسي لطلاب الصفوف الأول والثاني والثالث ثانوي</p>
-                <a href="/sec"><button class="btn btn-primary">ابدأ الآن</button></a>
-            </div>
+                <a href="/sec" aria-label="انتقل لحساب معدل الثانوية">
+                    <button class="btn btn-primary">ابدأ الآن</button>
+                </a>
+            </article>
 
-            <div class="service-card" data-link="/calc/gpa/">
+            <article class="service-card" data-link="/calc/gpa/">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" role="img" aria-label="أيقونة حساب المعدل التراكمي الثانوي">
-                    <rect x="4"  y="14" width="3.8" height="6" rx="0.6" fill="#E3E4F2"/>
+                    <rect x="4" y="14" width="3.8" height="6" rx="0.6" fill="#E3E4F2"/>
                     <rect x="10" y="10" width="3.8" height="10" rx="0.6" fill="#7C80B8"/>
-                    <rect x="16" y="8"  width="3.8" height="12" rx="0.6" fill="#33365B"/>
+                    <rect x="16" y="8" width="3.8" height="12" rx="0.6" fill="#33365B"/>
                     <rect x="2" y="20.2" width="20" height="1.2" rx="0.6" fill="#E9E9F5"/>
                     <circle cx="18.7" cy="4.2" r="3.2" fill="#5B61C9"/>
                     <text x="18.7" y="4.5" text-anchor="middle" alignment-baseline="middle" font-size="4" font-family="Arial, Helvetica, sans-serif" fill="#ffffff">%</text>
                 </svg>
                 <h3>حساب المعدل التراكمي الثانوي</h3>
                 <p>حساب المعدل التراكمي الثانوي المطلوب عند التقديم للجامعات</p>
-                <a href="/calc/gpa/"><button class="btn btn-primary">ابدأ الآن</button></a>
-</div>
+                <a href="/calc/gpa/" aria-label="انتقل لحساب المعدل التراكمي">
+                    <button class="btn btn-primary">ابدأ الآن</button>
+                </a>
+            </article>
+        </section>
 
-        </div>
+        <section class="how-it-works">
+            <div class="how-it-works-container">
+                <h2>كيف يعمل معدلي؟</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number" aria-hidden="true">1</div>
+                        <h3>اختر المرحلة الدراسية</h3>
+                        <p>حدد ما إذا كنت في المرحلة المتوسطة أو الثانوية</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number" aria-hidden="true">2</div>
+                        <h3>أدخل درجاتك</h3>
+                        <p>أدخل درجات المواد الدراسية الخاصة بك</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number" aria-hidden="true">3</div>
+                        <h3>احصل على النتيجة</h3>
+                        <p>احصل على معدلك بشكل فوري ودقيق</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>لماذا تختار معدلي؟</h2>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">✨</div>
+                    <h3>سهولة الاستخدام</h3>
+                    <p>واجهة بسيطة وسهلة تناسب جميع الفئات العمرية</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🎯</div>
+                    <h3>دقة عالية</h3>
+                    <p>اول موقع يقدم نتائج دقيقة 100% مطابقة للنظام التعليم السعودي</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">⚡</div>
+                    <h3>سرعة فائقة</h3>
+                    <p>احصل على نتيجتك في ثوانٍ معدودة</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔐</div>
+                    <h3>خصوصية تامة</h3>
+                    <p>لا نحتفظ بأي بيانات شخصية أو درجات</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="faq-preview">
+            <div class="faq-container">
+                <h2>الأسئلة الشائعة</h2>
+
+                <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
+                    <div class="faq-question">
+                        <span>كيف يتم حساب المعدل؟</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        يتم احتساب المعدل وفق معادلة دقيقة ومعتمدة من وزارة التعليم في المملكة العربية السعودية، وذلك بقسمة
+                        مجموع الدرجات الموزونة على إجمالي عدد الحصص الأسبوعية، ليتم استخراج المعدل.
+                    </div>
+                </div>
+
+                <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
+                    <div class="faq-question">
+                        <span>هل الموقع مجاني؟</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، جميع خدمات الموقع مجانية بالكامل ولا توجد أي رسوم خفية. يمكنك استخدام جميع الميزات دون الحاجة
+                        للتسجيل أو الدفع.
+                    </div>
+                </div>
+
+                <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
+                    <div class="faq-question">
+                        <span>هل بياناتي آمنة؟</span>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، نحن لا نحتفظ بأي بيانات شخصية أو درجات. جميع الحسابات تتم على جهازك مباشرة ولا يتم إرسال أي
+                        معلومات إلى خوادمنا.
+                    </div>
+                </div>
+
+                <div class="faq-more">
+                    <a href="/faq/" class="btn btn-primary">المزيد من الأسئلة</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <div class="container">
-            <p><a style="color: #f1f1f1;" href="/privacy-policy/">سياسة الخصوصية</a> | <a style="color: #f1f1f1;"
-                href="/faq/">الاسئلة الشائعة</a></p>
-        <p>© 2026 معدلي - جميع الحقوق محفوظة</p>
-        <p class="made-by">Powered by Fayez Al-Muaiqly</p>
+            <p>
+                <a style="color: #f1f1f1;" href="/privacy-policy/">سياسة الخصوصية</a> | 
+                <a style="color: #f1f1f1;" href="/faq/">الاسئلة الشائعة</a>
+            </p>
+            <p>© 2026 معدلي - جميع الحقوق محفوظة</p>
+            <p class="made-by">Powered by Fayez Al-Muaiqly</p>
         </div>
     </footer>
 
     <script>
         document.querySelectorAll(".service-card").forEach(card => {
-            card.addEventListener("click", () => {
+            card.addEventListener("click", (e) => {
+                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
                 location.href = card.dataset.link;
             });
+            
+            card.addEventListener("keypress", (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    location.href = card.dataset.link;
+                }
+            });
+        });
+
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                item.setAttribute('aria-expanded', 'false');
+            });
+            
+            if (!isActive) {
+                element.classList.add('active');
+                element.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                toggleFaq(this);
+            });
+            
+            item.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFaq(this);
+                }
+            });
+        });
+
+        document.querySelector('.brand-area').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.location.href = '/';
+            }
         });
     </script>
 </body>
