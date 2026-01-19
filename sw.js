@@ -1,4 +1,4 @@
-const CACHE_NAME = "mo3dly-v1.9";
+const CACHE_NAME = "mo3dly-v2.0";
 
 const STATIC_ASSETS = [
   "/",
