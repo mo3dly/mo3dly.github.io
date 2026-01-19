@@ -1,25 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #33365B;
+  --muted: #6c757d;
+  --header-bg: #ffffff;
+  --border: #e5e7eb;
+  --background: #f5f7fa;
+  --foreground: #2c3e50;
 }
 
 @theme inline {
+  --color-primary: var(--primary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-cairo);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-cairo), system-ui, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+
+.brand-area {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.site-title h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.site-title p {
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: 0;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 50;
+}
+
+.mobile-nav .panel {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: var(--background);
+  padding: 20px;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
