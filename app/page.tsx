@@ -3,6 +3,8 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Faq } from "@/components/Faq";
+
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -108,6 +110,7 @@ export default function Home() {
             "name": "معدلي الدراسي",
             "url": "https://mo3dly.github.io/",
             "description": "معدلي أول موقع دقيق لحساب المعدل الدراسي لطلاب المرحلتين المتوسطة والثانوية في السعودية وفق نظام وزارة التعليم.",
+
             "potentialAction": [
               {
                 "@type": "SiteNavigationElement",
@@ -138,6 +141,41 @@ export default function Home() {
                 "@type": "SiteNavigationElement",
                 "name": "ثالث ثانوي",
                 "url": "https://mo3dly.github.io/grades/12/"
+              }
+            ],
+
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "كيف يتم حساب المعدل؟",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "يقوم موقع معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "هل يدعم الموقع جميع مسارات المرحلة الثانوية؟",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "نعم، يدعم موقع معدلي مسارات الثانوية الخمس جميعها بما فيها المسار العام، الصحة والحياة، علوم الحاسب والهندسة، إدارة الأعمال، والمسار الشرعي."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "هل الخدمة مجانية؟",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "نعم، جميع خدمات موقع معدلي مجانية بالكامل ولا تتطلب أي رسوم."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "هل يتم حفظ بياناتي؟",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "لا، لا يتم حفظ أي بيانات دراسية، وجميع العمليات تتم مباشرة على جهاز المستخدم."
+                }
               }
             ]
           })
@@ -261,129 +299,63 @@ export default function Home() {
         </section>
 
         <section className="mb-12 px-2">
-          <div
-            className="bg-white rounded-2xl shadow p-6 md:p-8"
-            style={{ border: "1px solid #e5e7eb" }}
-          >
-            <h2
-              className="text-xl md:text-2xl font-bold text-center mb-8"
-              style={{ color: "#33365B" }}
-            >
-              الأسئلة الشائعة
-            </h2>
-
-            <div className="space-y-4 max-w-3xl mx-auto">
-
-              {/* سؤال 1 */}
-              <div className="border rounded-lg overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                <button
-                  className="w-full flex justify-between items-center p-4 text-right hover:bg-gray-50 transition-colors duration-200"
-                  onClick={() => toggleFaq(0)}
-                  aria-expanded={activeFaq === 0}
-                >
-                  <span className="font-semibold text-lg flex-1" style={{ color: "#33365B" }}>
+          <Faq>
+            <Faq.Item index={0}>
+              {(open, toggle) => (
+                <>
+                  <Faq.Question isOpen={open} onClick={toggle}>
                     كيف يتم حساب المعدل؟
-                  </span>
-                  <span className="text-xl ml-4" style={{ color: "#33365B" }}>
-                    {activeFaq === 0 ? "−" : "+"}
-                  </span>
-                </button>
+                  </Faq.Question>
+                  <Faq.Answer isOpen={open}>
+                    يقوم موقع معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة
+                    على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم.
+                  </Faq.Answer>
+                </>
+              )}
+            </Faq.Item>
 
-                {activeFaq === 0 && (
-                  <div className="p-4 pt-0">
-                    <div className="border-t pt-4" style={{ borderColor: "#e5e7eb" }}>
-                      <p className="leading-relaxed" style={{ color: "#6c757d" }}>
-                        يقوم موقع معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة
-                        على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم.
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* سؤال 2 */}
-              <div className="border rounded-lg overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                <button
-                  className="w-full flex justify-between items-center p-4 text-right hover:bg-gray-50 transition-colors duration-200"
-                  onClick={() => toggleFaq(1)}
-                  aria-expanded={activeFaq === 1}
-                >
-                  <span className="font-semibold text-lg flex-1" style={{ color: "#33365B" }}>
+            <Faq.Item index={1}>
+              {(open, toggle) => (
+                <>
+                  <Faq.Question isOpen={open} onClick={toggle}>
                     هل يدعم الموقع جميع مسارات المرحلة الثانوية؟
-                  </span>
-                  <span className="text-xl ml-4" style={{ color: "#33365B" }}>
-                    {activeFaq === 1 ? "−" : "+"}
-                  </span>
-                </button>
+                  </Faq.Question>
+                  <Faq.Answer isOpen={open}>
+                    نعم، يدعم موقع معدلي مسارات الثانوية الخمس جميعها
+                    (المسار العام، الصحة والحياة، علوم الحاسب والهندسة،
+                    إدارة الأعمال، المسار الشرعي).
+                  </Faq.Answer>
+                </>
+              )}
+            </Faq.Item>
 
-                {activeFaq === 1 && (
-                  <div className="p-4 pt-0">
-                    <div className="border-t pt-4" style={{ borderColor: "#e5e7eb" }}>
-                      <p className="leading-relaxed" style={{ color: "#6c757d" }}>
-                        نعم، يدعم موقع معدلي مسارات الثانوية الخمس جميعها
-                        (المسار العام، الصحة والحياة، علوم الحاسب والهندسة،
-                        إدارة الأعمال، المسار الشرعي).
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* سؤال 3 */}
-              <div className="border rounded-lg overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                <button
-                  className="w-full flex justify-between items-center p-4 text-right hover:bg-gray-50 transition-colors duration-200"
-                  onClick={() => toggleFaq(2)}
-                  aria-expanded={activeFaq === 2}
-                >
-                  <span className="font-semibold text-lg flex-1" style={{ color: "#33365B" }}>
+            <Faq.Item index={2}>
+              {(open, toggle) => (
+                <>
+                  <Faq.Question isOpen={open} onClick={toggle}>
                     هل الخدمة مجانية؟
-                  </span>
-                  <span className="text-xl ml-4" style={{ color: "#33365B" }}>
-                    {activeFaq === 2 ? "−" : "+"}
-                  </span>
-                </button>
+                  </Faq.Question>
+                  <Faq.Answer isOpen={open}>
+                    نعم، جميع الخدمات مجانية بالكامل ولا تتطلب أي رسوم.
+                  </Faq.Answer>
+                </>
+              )}
+            </Faq.Item>
 
-                {activeFaq === 2 && (
-                  <div className="p-4 pt-0">
-                    <div className="border-t pt-4" style={{ borderColor: "#e5e7eb" }}>
-                      <p className="leading-relaxed" style={{ color: "#6c757d" }}>
-                        نعم، جميع الخدمات مجانية بالكامل ولا تتطلب أي رسوم.
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* سؤال 4 */}
-              <div className="border rounded-lg overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                <button
-                  className="w-full flex justify-between items-center p-4 text-right hover:bg-gray-50 transition-colors duration-200"
-                  onClick={() => toggleFaq(3)}
-                  aria-expanded={activeFaq === 3}
-                >
-                  <span className="font-semibold text-lg flex-1" style={{ color: "#33365B" }}>
+            <Faq.Item index={3}>
+              {(open, toggle) => (
+                <>
+                  <Faq.Question isOpen={open} onClick={toggle}>
                     هل يتم حفظ بياناتي؟
-                  </span>
-                  <span className="text-xl ml-4" style={{ color: "#33365B" }}>
-                    {activeFaq === 3 ? "−" : "+"}
-                  </span>
-                </button>
-
-                {activeFaq === 3 && (
-                  <div className="p-4 pt-0">
-                    <div className="border-t pt-4" style={{ borderColor: "#e5e7eb" }}>
-                      <p className="leading-relaxed" style={{ color: "#6c757d" }}>
-                        لا، نحن لا نخزن أي بيانات دراسية، جميع العمليات
-                        تتم على جهازك مباشرة.
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-            </div>
-          </div>
+                  </Faq.Question>
+                  <Faq.Answer isOpen={open}>
+                    لا، نحن لا نخزن أي بيانات دراسية، جميع العمليات
+                    تتم على جهازك مباشرة.
+                  </Faq.Answer>
+                </>
+              )}
+            </Faq.Item>
+          </Faq>
         </section>
 
         <div className="mb-8">
