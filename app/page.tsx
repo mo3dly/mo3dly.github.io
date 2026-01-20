@@ -183,7 +183,6 @@ export default function Home() {
       </Head>
 
       <main className="mx-auto max-w-5xl px-4 md:px-6 py-8" style={{
-        fontFamily: 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
         backgroundColor: '#f5f7fa',
         color: '#2c3e50'
       }}>
