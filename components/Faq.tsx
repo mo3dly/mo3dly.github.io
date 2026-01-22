@@ -23,23 +23,9 @@ export function Faq({ children }: FaqProps) {
 
   return (
     <FaqContext.Provider value={{ active, setActive }}>
-      <section className="mb-12 px-2">
-        <div
-          className="bg-white rounded-2xl shadow p-6 md:p-8"
-          style={{ border: "1px solid #e5e7eb" }}
-        >
-          <h2
-            className="text-xl md:text-2xl font-bold text-center mb-8"
-            style={{ color: "#33365B" }}
-          >
-            الأسئلة الشائعة
-          </h2>
-
           <div className="space-y-4 max-w-3xl mx-auto">
             {children}
           </div>
-        </div>
-      </section>
     </FaqContext.Provider>
   );
 }
@@ -101,14 +87,18 @@ type FaqAnswerProps = {
 };
 
 Faq.Answer = function Answer({ children, isOpen }: FaqAnswerProps) {
-  if (!isOpen) return null;
-
   return (
-    <div className="p-4 pt-0">
-      <div className="border-t pt-4" style={{ borderColor: "#e5e7eb" }}>
-        <p className="leading-relaxed" style={{ color: "#6c757d" }}>
-          {children}
-        </p>
+    <div
+      className={`overflow-hidden transition-all duration-300 ease-in-out ${
+        isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+      }`}
+    >
+      <div className="p-4 pt-0">
+        <div className="border-t pt-4" style={{ borderColor: "#e5e7eb" }}>
+          <p className="leading-relaxed" style={{ color: "#6c757d" }}>
+            {children}
+          </p>
+        </div>
       </div>
     </div>
   );

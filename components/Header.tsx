@@ -70,7 +70,7 @@ export default function Header() {
             <div className="flex items-center justify-between">
               <span className="font-semibold">المرحلة الثانوية</span>
               <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)]">
-                ندعم جميع المسارات
+              جميع المسارات متوفرة
               </span>
             </div>
             <div className="grid gap-2">
