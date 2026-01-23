@@ -5,54 +5,28 @@ import Link from 'next/link';
 import { Faq } from "@/components/Faq";
 import Script from "next/script";
 
+const Divider = ({ label }: { label?: string }) => (
+    <div className="my-12 flex items-center gap-4">
+        <div className="h-px flex-1 bg-gray-200" />
+        {label && (
+            <span className="text-sm text-gray-400 whitespace-nowrap">
+                {label}
+            </span>
+        )}
+        <div className="h-px flex-1 bg-gray-200" />
+    </div>
+);
+
 export default function Home() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null);
-    const [showGradeDialog, setShowGradeDialog] = useState(false);
-    const [selectedLevel, setSelectedLevel] = useState<'middle' | 'secondary' | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const toggleFaq = (index: number) => {
-        setActiveFaq(activeFaq === index ? null : index);
-    };
-
-    const openGradeDialog = () => {
-        setShowGradeDialog(true);
-        setSelectedLevel(null);
-        setIsDialogOpen(true);
-    };
-
-    const closeGradeDialog = () => {
-        setShowGradeDialog(false);
-        setIsDialogOpen(false);
-    };
-
-    const selectLevel = (level: 'middle' | 'secondary') => {
-        setSelectedLevel(level);
-    };
-
     useEffect(() => {
-        if (isDialogOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-
+        document.body.style.overflow = isDialogOpen ? 'hidden' : 'unset';
         return () => {
             document.body.style.overflow = 'unset';
         };
     }, [isDialogOpen]);
-
-    const middleGrades = [
-        { name: 'أول متوسط', link: '/grades/7/' },
-        { name: 'ثاني متوسط', link: '/grades/8/' },
-        { name: 'ثالث متوسط', link: '/grades/9/' }
-    ];
-
-    const secondaryGrades = [
-        { name: 'أول ثانوي', link: '/grades/10/' },
-        { name: 'ثاني ثانوي', link: '/grades/11/' },
-        { name: 'ثالث ثانوي', link: '/grades/12/' }
-    ];
 
     const steps = [
         { number: 1, title: 'اختر مرحلتك الدراسية', description: '' },
@@ -63,37 +37,44 @@ export default function Home() {
     const features = [
         {
             icon: (
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 17L9 12" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M12 17L12 7" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M15 17L15 10" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M18 17L18 13" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
-                    <rect x="4" y="4" width="16" height="16" rx="2" stroke="#33365B" strokeWidth="2" />
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 4h16v16H4z" stroke="#33365B" strokeWidth="2" rx="2" />
+                    <path d="M7 9h10M7 13h6" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'دقة حسابية',
-            description: 'مطابق لنظام الوزارة'
+            title: 'مطابق لنظام وزارة التعليم',
+            description: 'يتم حساب المعدل وفق آلية وزارة التعليم في المملكة العربية السعودية، مع دعم أوزان المواد، السلوك، والمواظبة.'
         },
         {
             icon: (
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#33365B" strokeWidth="2" />
-                    <path d="M12 6L12 12L16 14" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="3" width="16" height="18" rx="2" stroke="#33365B" strokeWidth="2" />
+                    <path d="M8 7h8M8 11h4M10 15l2-2 2 2" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'سرعة',
-            description: 'نتائج فورية'
+            title: 'ميزة "ماذا لو نقصت في مادة ...؟"',
+            description: 'احسب تأثير نقص الدرجات في مادة معينة على معدلك النهائي، واعرف كم بتجيب اذا نقصت فيها.'
         },
         {
             icon: (
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#33365B" strokeWidth="2" />
-                    <path d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19Z" stroke="#33365B" strokeWidth="2" />
-                    <path d="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z" stroke="#33365B" strokeWidth="2" />
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 4v6" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M6 14h12" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M6 14l-2 4M12 14v4M18 14l2 4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'أمان',
-            description: 'بياناتك محمية'
+            title: 'دعم جميع مسارات المرحلة الثانوية',
+            description: 'يشمل المسار العام، مسار علوم الحاسب والهندسة، المسار الصحي، والمسار الشرعي، مسار ادارة الاعمال.'
+        },
+        {
+            icon: (
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#33365B" strokeWidth="2" />
+                    <path d="M8 15l2-2 2 2 4-4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+            ),
+            title: 'مشاركة المعدل عبر الصور',
+            description: 'إنشاء صورة تلقائية لنتيجة المعدل قابلة للمشاركة عبر واتساب ووسائل التواصل الاجتماعي.'
         }
     ];
 
@@ -111,166 +92,87 @@ export default function Home() {
                         url: "https://mo3dly.github.io/",
                         description:
                             "معدلي أول موقع دقيق لحساب المعدل الدراسي لطلاب المرحلتين المتوسطة والثانوية في السعودية وفق نظام وزارة التعليم.",
-
                         potentialAction: [
-                            {
-                                "@type": "SiteNavigationElement",
-                                name: "أول متوسط",
-                                url: "https://mo3dly.github.io/grades/7/",
-                            },
-                            {
-                                "@type": "SiteNavigationElement",
-                                name: "ثاني متوسط",
-                                url: "https://mo3dly.github.io/grades/8/",
-                            },
-                            {
-                                "@type": "SiteNavigationElement",
-                                name: "ثالث متوسط",
-                                url: "https://mo3dly.github.io/grades/9/",
-                            },
-                            {
-                                "@type": "SiteNavigationElement",
-                                name: "أول ثانوي",
-                                url: "https://mo3dly.github.io/grades/10/",
-                            },
-                            {
-                                "@type": "SiteNavigationElement",
-                                name: "ثاني ثانوي",
-                                url: "https://mo3dly.github.io/grades/11/",
-                            },
-                            {
-                                "@type": "SiteNavigationElement",
-                                name: "ثالث ثانوي",
-                                url: "https://mo3dly.github.io/grades/12/",
-                            },
-                        ],
-
-                        mainEntity: [
-                            {
-                                "@type": "Question",
-                                name: "كيف يتم حساب المعدل؟",
-                                acceptedAnswer: {
-                                    "@type": "Answer",
-                                    text:
-                                        "يقوم موقع معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم.",
-                                },
-                            },
-                            {
-                                "@type": "Question",
-                                name: "هل يدعم الموقع جميع مسارات المرحلة الثانوية؟",
-                                acceptedAnswer: {
-                                    "@type": "Answer",
-                                    text:
-                                        "نعم، يدعم موقع معدلي مسارات الثانوية الخمس جميعها بما فيها المسار العام، الصحة والحياة، علوم الحاسب والهندسة، إدارة الأعمال، والمسار الشرعي.",
-                                },
-                            },
-                            {
-                                "@type": "Question",
-                                name: "هل الخدمة مجانية؟",
-                                acceptedAnswer: {
-                                    "@type": "Answer",
-                                    text:
-                                        "نعم، جميع خدمات موقع معدلي مجانية بالكامل ولا تتطلب أي رسوم.",
-                                },
-                            },
-                            {
-                                "@type": "Question",
-                                name: "هل يتم حفظ بياناتي؟",
-                                acceptedAnswer: {
-                                    "@type": "Answer",
-                                    text:
-                                        "لا، لا يتم حفظ أي بيانات دراسية، وجميع العمليات تتم مباشرة على جهاز المستخدم.",
-                                },
-                            },
-                        ],
+                            { "@type": "SiteNavigationElement", name: "أول متوسط", url: "https://mo3dly.github.io/grades/7/" },
+                            { "@type": "SiteNavigationElement", name: "ثاني متوسط", url: "https://mo3dly.github.io/grades/8/" },
+                            { "@type": "SiteNavigationElement", name: "ثالث متوسط", url: "https://mo3dly.github.io/grades/9/" },
+                            { "@type": "SiteNavigationElement", name: "أول ثانوي", url: "https://mo3dly.github.io/grades/10/" },
+                            { "@type": "SiteNavigationElement", name: "ثاني ثانوي", url: "https://mo3dly.github.io/grades/11/" },
+                            { "@type": "SiteNavigationElement", name: "ثالث ثانوي", url: "https://mo3dly.github.io/grades/12/" },
+                        ]
                     }),
                 }}
             />
 
-            <main className="mx-auto max-w-5xl px-4 md:px-6 py-8" style={{
-                backgroundColor: '#f5f7fa',
-                color: '#2c3e50'
-            }}>
-                <div className="text-center mb-10">
-                    <div className="mb-4">
-                        <h1 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: '#33365B' }}>
-                            مرحباً بك في موقع <span style={{ color: '#33365B' }}>معدلي</span>
-                        </h1>
-                        <p className="text-base md:text-lg" style={{ color: '#6c757d' }}>
-                            اول موقع دقيق لحساب معدلك الدراسي للمرحلة المتوسطة والثانوية
-                        </p>
-                    </div>
-                </div>
-
-                <div className="mb-6">
-                    <div className="ad-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    </div>
-                </div>
-
+            <main className="mx-auto max-w-5xl px-4 md:px-6 py-8" style={{ backgroundColor: '#ffffff', color: '#2c3e50' }}>
                 <section className="mb-12 px-2">
                     <div className="max-w-2xl mx-auto">
                         <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center" style={{ border: '1px solid #e5e7eb' }}>
                             <div className="mb-6">
-                                <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full" style={{ backgroundColor: 'rgba(51, 54, 91, 0.1)' }}>
-                                    <svg width="42" height="42" viewBox="0 0 200 280">
-                                        <rect x="10" y="10" width="180" height="260" rx="10" fill="#33365B" />
-                                        <rect x="20" y="20" width="160" height="50" rx="5" fill="#E8EAF6" />
-                                        <rect x="20" y="85" width="35" height="35" rx="5" fill="#C5CAE9" />
-                                        <rect x="65" y="85" width="35" height="35" rx="5" fill="#C5CAE9" />
-                                        <rect x="110" y="85" width="35" height="35" rx="5" fill="#C5CAE9" />
-                                        <rect x="155" y="85" width="35" height="35" rx="5" fill="#7986CB" />
-                                        <rect x="20" y="130" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="65" y="130" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="110" y="130" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="155" y="130" width="35" height="35" rx="5" fill="#7986CB" />
-                                        <rect x="20" y="175" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="65" y="175" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="110" y="175" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="155" y="175" width="35" height="35" rx="5" fill="#7986CB" />
-                                        <rect x="20" y="220" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="65" y="220" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="110" y="220" width="35" height="35" rx="5" fill="#E8EAF6" />
-                                        <rect x="155" y="220" width="35" height="35" rx="5" fill="#7986CB" />
-                                    </svg>
-                                </div>
                                 <h2 className="text-xl md:text-2xl font-bold mb-3" style={{ color: '#33365B' }}>
-                                    احسب معدلك الدراسي بدقة مع معدلي
+                                    احسب معدلك الدراسي بدقة مع حاسبة معدلي
                                 </h2>
                                 <p className="text-base md:text-lg mb-6" style={{ color: '#6c757d' }}>
-                                    اختر صفك فقط، ودع معدلي يحسب معدلك الدراسي بدقة للمرحلتين المتوسطة والثانوية حسب نظام وزارة التعليم في السعودية.
+                                    اختر مرحلتك فقط، ودع حاسبة معدلي تحسب لك معدلك الدراسي بدقة للمرحلتين المتوسطة والثانوية حسب نظام وزارة التعليم في السعودية.
                                 </p>
                             </div>
+                            <div className="flex flex-col items-center gap-4">
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                                    <Link
+                                        href="/mid/"
+                                        aria-label="المرحلة المتوسطة"
+                                        title="المرحلة المتوسطة"
+                                        className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"
+                                    >
+                                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                                            <path d="M3 5.5C3 4.67 3.67 4 4.5 4H19.5C20.33 4 21 4.67 21 5.5V18.5C21 19.33 20.33 20 19.5 20H4.5C3.67 20 3 19.33 3 18.5V5.5Z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M7 8.5H17" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
+                                            <path d="M7 11.5H13" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
+                                            <path d="M14.5 14.5l4-4" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M18 13l1 1l-1 1l-1-1 1-1z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
 
-                            <button
-                                onClick={openGradeDialog}
-                                className="w-full md:w-auto mx-auto px-8 py-4 rounded-xl font-bold text-lg text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group"
-                                style={{
-                                    backgroundColor: '#33365B',
-                                    minWidth: '200px',
-                                }}
-                            >
-                                <span>ابدأ حساب معدلك</span>
+                                        <span>المرحلة المتوسطة</span>
+                                    </Link>
 
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="22"
-                                    height="22"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="transition-transform duration-300 group-hover:translate-x-1"
+                                    <Link
+                                        href="/sec/"
+                                        aria-label="المرحلة الثانوية"
+                                        title="المرحلة الثانوية"
+                                        className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"
+                                    >
+                                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                                            <path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                            <path d="M12 8v5" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
+                                            <path d="M12 13l2 2" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
+                                            <path d="M16 15c0 .8-.7 1.5-1.5 1.5H9.5C8.7 16.5 8 15.8 8 15v-1.5" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                            <circle cx="17.5" cy="16.5" r="0.9" stroke="#33365B" strokeWidth="1.2" />
+                                        </svg>
+
+                                        <span>المرحلة الثانوية</span>
+                                    </Link>
+                                </div>
+
+                                <Link
+                                    href="/what-if/"
+                                    aria-label='ماذا لو نقصت في مادة'
+                                    title='ماذا لو نقصت في مادة'
+                                    className="w-full sm:w-72 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl font-semibold transition-transform duration-200 text-sm
+                   bg-gradient-to-r from-[#2b3448] to-[#3b4460] text-white shadow-lg hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-[#33365B]/30"
                                 >
-                                    <path d="M13 5l7 7-7 7M5 12h14" />
-                                </svg>
-                            </button>
+                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden>
+                                        <rect x="4" y="3" width="16" height="18" rx="2" stroke="white" strokeWidth="1.6" />
+                                        <path d="M8 7h8" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+                                        <path d="M8 11h2M12 11h2M16 11h0" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+                                        <path d="M8 15h2M12 15h2" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+                                    </svg>
+                                    ماذا لو نقصت في مادة ...
+                                </Link>
+                            </div>
 
                         </div>
                     </div>
                 </section>
-
-                <div className="mb-6">
-                    <div className="ad-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    </div>
-                </div>
 
                 <section className="mb-12 px-2">
                     <h2 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: '#33365B' }}>
@@ -315,14 +217,8 @@ export default function Home() {
                 </section>
 
                 <section className="mb-12 px-2">
-                    <div
-                        className="bg-white rounded-2xl shadow p-6 md:p-8"
-                        style={{ border: "1px solid #e5e7eb" }}
-                    >
-                        <h2
-                            className="text-xl md:text-2xl font-bold text-center mb-8"
-                            style={{ color: "#33365B" }}
-                        >
+                    <div className="bg-white rounded-2xl shadow p-6 md:p-8" style={{ border: "1px solid #e5e7eb" }}>
+                        <h2 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: "#33365B" }}>
                             الأسئلة الشائعة
                         </h2>
                         <Faq>
@@ -333,7 +229,7 @@ export default function Home() {
                                             كيف يتم حساب المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            يقوم موقع معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة
+                                            يقوم موقع حاسبة معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة
                                             على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم.
                                         </Faq.Answer>
                                     </>
@@ -347,7 +243,7 @@ export default function Home() {
                                             هل يدعم الموقع جميع مسارات المرحلة الثانوية؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            نعم، يدعم موقع معدلي مسارات الثانوية الخمس جميعها
+                                            نعم، يدعم موقع حاسبة معدلي مسارات الثانوية الخمس جميعها
                                             (المسار العام، الصحة والحياة، علوم الحاسب والهندسة،
                                             إدارة الأعمال، المسار الشرعي).
                                         </Faq.Answer>
@@ -359,161 +255,38 @@ export default function Home() {
                                 {(open, toggle) => (
                                     <>
                                         <Faq.Question isOpen={open} onClick={toggle}>
-                                            هل الخدمة مجانية؟
+                                            هل يتم احتساب مادة المواظبة ضمن المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            نعم، جميع الخدمات مجانية بالكامل ولا تتطلب أي رسوم.
+                                            نعم، يتم احتساب مادة المواظبة ضمن المعدل حسب الإجراءات التنفيذية للائحة تقويم الطالب المعتمدة من وزارة التعليم، ويكون وزنها (نصابها) خمس حصص أسبوعية.
                                         </Faq.Answer>
-                                    </>
-                                )}
-                            </Faq.Item>
 
-                            <Faq.Item index={3}>
-                                {(open, toggle) => (
-                                    <>
-                                        <Faq.Question isOpen={open} onClick={toggle}>
-                                            هل يتم حفظ بياناتي؟
-                                        </Faq.Question>
-                                        <Faq.Answer isOpen={open}>
-                                            لا، نحن لا نخزن أي بيانات دراسية، جميع العمليات
-                                            تتم على جهازك مباشرة.
-                                        </Faq.Answer>
                                     </>
                                 )}
                             </Faq.Item>
                         </Faq>
                     </div>
                 </section>
-
-                <div className="mb-8">
-                    <div className="ad-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    </div>
-                </div>
-
-                {showGradeDialog && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
-                        <div className="bg-white rounded-2xl max-w-md w-full" style={{ maxHeight: '90vh', overflowY: 'auto', border: '1px solid #e5e7eb' }}>
-
-                            <div className="p-6 border-b" style={{ borderColor: '#e5e7eb' }}>
-                                <div className="flex justify-between items-center">
-                                    <h3 className="text-xl font-bold" style={{ color: '#33365B' }}>
-                                        اختر مرحلتك الدراسية
-                                    </h3>
-                                    <button
-                                        onClick={closeGradeDialog}
-                                        className="text-gray-500 hover:text-gray-700"
-                                        style={{ fontSize: '24px', lineHeight: '1' }}
-                                    >
-                                        ×
-                                    </button>
-                                </div>
-                                <p className="mt-2" style={{ color: '#6c757d' }}>
-                                    اختر المرحلة الدراسية ثم الصف المناسب لك
-                                </p>
-                            </div>
-
-                            <div className="p-6">
-                                {!selectedLevel ? (
-                                    <div className="space-y-4">
-                                        <button
-                                            onClick={() => selectLevel('middle')}
-                                            className="w-full p-4 rounded-xl border hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 text-right flex items-center justify-between"
-                                            style={{ borderColor: '#e5e7eb' }}
-                                        >
-                                            <div className="flex items-center">
-                                                <div className="w-10 h-10 rounded-full flex items-center justify-center ml-4" style={{ backgroundColor: 'rgba(51, 54, 91, 0.1)' }}>
-                                                    <span className="text-lg" style={{ color: '#33365B' }}>م</span>
-                                                </div>
-                                                <div className="text-right">
-                                                    <h4 className="font-bold" style={{ color: '#33365B' }}>المرحلة المتوسطة</h4>
-                                                </div>
-                                            </div>
-                                            <span style={{ color: '#6c757d' }}>→</span>
-                                        </button>
-
-                                        <button
-                                            onClick={() => selectLevel('secondary')}
-                                            className="w-full p-4 rounded-xl border hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 text-right flex items-center justify-between"
-                                            style={{ borderColor: '#e5e7eb' }}
-                                        >
-                                            <div className="flex items-center">
-                                                <div className="w-10 h-10 rounded-full flex items-center justify-center ml-4" style={{ backgroundColor: 'rgba(51, 54, 91, 0.1)' }}>
-                                                    <span className="text-lg" style={{ color: '#33365B' }}>ث</span>
-                                                </div>
-                                                <div className="text-right">
-                                                    <h4 className="font-bold" style={{ color: '#33365B' }}>المرحلة الثانوية</h4>
-                                                    <p className="text-sm" style={{ color: '#6c757d' }}>جميع مسارات الثانوية متوفرة</p>
-                                                </div>
-                                            </div>
-                                            <span style={{ color: '#6c757d' }}>→</span>
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <button
-                                            onClick={() => setSelectedLevel(null)}
-                                            className="mb-6 flex items-center text-sm hover:text-gray-700 transition-colors duration-200"
-                                            style={{ color: '#6c757d' }}
-                                        >
-                                            <span className="ml-2">←</span>
-                                            العودة للخيارات
-                                        </button>
-
-                                        <h4 className="font-bold mb-4" style={{ color: '#33365B' }}>
-                                            {selectedLevel === 'middle' ? 'المرحلة المتوسطة' : 'المرحلة الثانوية'}
-                                        </h4>
-
-                                        <div className="space-y-3">
-                                            {(selectedLevel === 'middle' ? middleGrades : secondaryGrades).map((grade, index) => (
-                                                <Link href={grade.link} key={index} onClick={closeGradeDialog}>
-                                                    <div className="p-4 rounded-lg border hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 cursor-pointer"
-                                                        style={{ borderColor: '#e5e7eb' }}>
-                                                        <div className="flex items-center justify-between">
-                                                            <div className="flex items-center">
-                                                                <div className="w-8 h-8 rounded-full flex items-center justify-center ml-3" style={{ backgroundColor: 'rgba(51, 54, 91, 0.1)' }}>
-                                                                    <span className="text-sm font-bold" style={{ color: '#33365B' }}>
-                                                                        {index + 1}
-                                                                    </span>
-                                                                </div>
-                                                                <span className="font-semibold" style={{ color: '#33365B' }}>
-                                                                    {grade.name}
-                                                                </span>
-                                                            </div>
-                                                            <span style={{ color: '#6c757d' }}>
-                                                                ←
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                )}
-
                 <style jsx global>{`
           body {
-            background-color: #f5f7fa;
+            background-color: #ffffff;
             color: #2c3e50;
           }
-          
+
           ::-webkit-scrollbar {
             width: 8px;
           }
-          
+
           ::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 4px;
           }
-          
+
           ::-webkit-scrollbar-thumb {
             background: #33365B;
             border-radius: 4px;
           }
-          
+
           ::-webkit-scrollbar-thumb:hover {
             background: #2a2d4a;
           }
