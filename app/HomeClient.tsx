@@ -48,16 +48,6 @@ export default function Home() {
         {
             icon: (
                 <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
-                    <rect x="4" y="3" width="16" height="18" rx="2" stroke="#33365B" strokeWidth="2" />
-                    <path d="M8 7h8M8 11h4M10 15l2-2 2 2" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-            ),
-            title: 'ميزة "ماذا لو نقصت في مادة ...؟"',
-            description: 'احسب تأثير نقص الدرجات في مادة معينة على معدلك النهائي، واعرف كم بتجيب اذا نقصت فيها.'
-        },
-        {
-            icon: (
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
                     <path d="M12 4v6" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                     <path d="M6 14h12" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                     <path d="M6 14l-2 4M12 14v4M18 14l2 4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
@@ -152,22 +142,6 @@ export default function Home() {
                                         <span>المرحلة الثانوية</span>
                                     </Link>
                                 </div>
-
-                                <Link
-                                    href="/what-if/"
-                                    aria-label='ماذا لو نقصت في مادة'
-                                    title='ماذا لو نقصت في مادة'
-                                    className="w-full sm:w-72 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl font-semibold transition-transform duration-200 text-sm
-                   bg-gradient-to-r from-[#2b3448] to-[#3b4460] text-white shadow-lg hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-[#33365B]/30"
-                                >
-                                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden>
-                                        <rect x="4" y="3" width="16" height="18" rx="2" stroke="white" strokeWidth="1.6" />
-                                        <path d="M8 7h8" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
-                                        <path d="M8 11h2M12 11h2M16 11h0" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
-                                        <path d="M8 15h2M12 15h2" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
-                                    </svg>
-                                    ماذا لو نقصت في مادة ...
-                                </Link>
                             </div>
 
                         </div>
@@ -198,21 +172,35 @@ export default function Home() {
                 </section>
 
                 <section className="mb-12 px-2">
-                    <h2 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: '#33365B' }}>
+                    <h2
+                        className="text-xl md:text-2xl font-bold text-center mb-8"
+                        style={{ color: "#33365B" }}
+                    >
                         مميزات موقع معدلي
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {features.map((feature, index) => (
-                            <div key={index} className="bg-white rounded-xl p-5 text-center hover:shadow-lg transition-shadow duration-300" style={{ border: '1px solid #e5e7eb' }}>
-                                <div className="flex justify-center mb-3">{feature.icon}</div>
-                                <h3 className="text-lg font-semibold mb-2" style={{ color: '#33365B' }}>
-                                    {feature.title}
-                                </h3>
-                                <p className="text-sm" style={{ color: '#6c757d' }}>
-                                    {feature.description}
-                                </p>
-                            </div>
-                        ))}
+
+                    <div className="flex justify-center">
+                        <div className="inline-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                            {features.map((feature, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-white rounded-xl p-5 text-center hover:shadow-lg transition-shadow duration-300 w-64"
+                                    style={{ border: "1px solid #e5e7eb" }}
+                                >
+                                    <div className="flex justify-center mb-3">
+                                        {feature.icon}
+                                    </div>
+
+                                    <h3 className="text-lg font-semibold mb-2" style={{ color: "#33365B" }}>
+                                        {feature.title}
+                                    </h3>
+
+                                    <p className="text-sm" style={{ color: "#6c757d" }}>
+                                        {feature.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
 
