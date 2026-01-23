@@ -6,6 +6,17 @@ import { useState } from "react";
 export default function Header() {
   const [open, setOpen] = useState(false);
 
+  const baseBtn =
+    "inline-flex rtl-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-transform duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const primaryBtn =
+    baseBtn +
+    " bg-gradient-to-r from-[var(--primary)]/95 to-[var(--primary)]/65 text-white shadow-md hover:scale-[1.02] active:scale-95 focus:ring-[var(--primary)]";
+  const ghostBtn =
+    baseBtn +
+    " bg-white/60 border border-black/5 text-[var(--text)] hover:shadow hover:bg-white transition-shadow";
+  const cardLink =
+    "flex rtl-flex items-center justify-between w-full p-3 rounded-xl bg-white/60 border border-black/5 hover:shadow-md transition-shadow text-right";
+
   return (
     <>
       <header className="sticky top-0 z-40 bg-[var(--header-bg)] border-b border-black/10">
@@ -17,7 +28,16 @@ export default function Header() {
               <p className="text-xs text-muted">نحسب معدلك بدقة</p>
             </div>
           </Link>
-          <button onClick={() => setOpen(true)} aria-label="القائمة" className="text-2xl font-bold">☰</button>
+
+          <button
+            onClick={() => setOpen(true)}
+            aria-label="القائمة"
+            aria-expanded={open}
+            className={`${ghostBtn} text-xl px-3`}
+          >
+            <span className="sr-only">افتح القائمة</span>
+            ☰
+          </button>
         </div>
       </header>
 
@@ -41,26 +61,41 @@ export default function Header() {
             <Image src="/icons/mo3dly.webp" alt="شعار" width={34} height={34} priority />
             <span className="font-bold text-lg">القائمة</span>
           </div>
-          <button onClick={() => setOpen(false)} aria-label="إغلاق" className="text-2xl font-bold">✕</button>
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="إغلاق"
+            className={`${ghostBtn} text-lg px-3`}
+          >
+            <span className="sr-only">أغلق القائمة</span>✕
+          </button>
         </div>
 
         <div className="flex-1 overflow-y-auto overscroll-contain p-5 space-y-6">
-          <Link href="/" onClick={() => setOpen(false)} className="block font-medium">
+          <Link href="/" onClick={() => setOpen(false)} className={`${cardLink} font-medium`}>
             الرئيسية
           </Link>
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="font-semibold">المرحلة المتوسطة</span>
+
+              <Link
+                href="/mid/"
+                onClick={() => setOpen(false)}
+                className="text-xs text-black/40 hover:text-black/60 transition-colors"
+              >
+                عرض الكل
+              </Link>
             </div>
+
             <div className="grid gap-2">
-              <Link href="/grades/7/" onClick={() => setOpen(false)} className="p-3 rounded-xl bg-white/60 border">
+              <Link href="/grades/7/" onClick={() => setOpen(false)} className={cardLink}>
                 الصف الأول متوسط
               </Link>
-              <Link href="/grades/8/" onClick={() => setOpen(false)} className="p-3 rounded-xl bg-white/60 border">
+              <Link href="/grades/8/" onClick={() => setOpen(false)} className={cardLink}>
                 الصف الثاني متوسط
               </Link>
-              <Link href="/grades/9/" onClick={() => setOpen(false)} className="p-3 rounded-xl bg-white/60 border">
+              <Link href="/grades/9/" onClick={() => setOpen(false)} className={cardLink}>
                 الصف الثالث متوسط
               </Link>
             </div>
@@ -69,18 +104,23 @@ export default function Header() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <span className="font-semibold">المرحلة الثانوية</span>
-              <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)]">
-              جميع المسارات متوفرة
-              </span>
+
+              <Link
+                href="/sec/"
+                className="text-xs px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/20 transition-colors"
+              >
+                جميع المسارات متوفرة
+              </Link>
             </div>
+
             <div className="grid gap-2">
-              <Link href="/grades/10/" onClick={() => setOpen(false)} className="p-3 rounded-xl bg-white/60 border flex justify-between">
+              <Link href="/grades/10/" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
                 <span>اول ثانوي</span>
               </Link>
-              <Link href="/grades/11/" onClick={() => setOpen(false)} className="p-3 rounded-xl bg-white/60 border flex justify-between">
+              <Link href="/grades/11/" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
                 <span>ثاني ثانوي</span>
               </Link>
-              <Link href="/grades/12/" onClick={() => setOpen(false)} className="p-3 rounded-xl bg-white/60 border flex justify-between">
+              <Link href="/grades/12/" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
                 <span>ثالث ثانوي</span>
               </Link>
             </div>
@@ -89,15 +129,26 @@ export default function Header() {
           <Link
             href="/faq/"
             onClick={() => setOpen(false)}
-            className="block p-3 rounded-lg bg-gradient-to-r from-[var(--primary)]/10 to-transparent"
+            className={`${primaryBtn} block text-center`}
           >
             الأسئلة الشائعة
           </Link>
 
-          <div className="pt-4 border-t">
-            <a href="mailto:i9fayez@proton.me" className="text-sm">
+          <div className="pt-4 border-t space-y-2 text-sm">
+            <a
+              href="mailto:i9fayez@proton.me"
+              className="block hover:underline"
+            >
               تواصل معنا
             </a>
+
+            <Link
+              href="/privacy-policy/"
+              onClick={() => setOpen(false)}
+              className="block hover:underline"
+            >
+              سياسة الخصوصية
+            </Link>
           </div>
         </div>
       </nav>
