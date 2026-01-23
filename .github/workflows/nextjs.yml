@@ -54,8 +54,7 @@ jobs:
 
       - run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
-      - name: Add .nojekyll
-        run: touch out/.nojekyll
+      - run: touch out/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:
