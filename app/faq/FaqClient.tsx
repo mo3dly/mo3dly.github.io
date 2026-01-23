@@ -2,23 +2,63 @@
 
 import { Faq } from "@/components/Faq";
 import BackButton from "@/components/BackButton";
+import Script from "next/script";
 
 export default function FAQ() {
     return (
         <>
-            <head>
-                <title>معدلي - الاسئلة الشائعة</title>
-                <meta name="description" content="الاسئلة الشائعة عن موقع معدلي وطريقة حساب المعدل  " />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="canonical" href="https://mo3dly.github.io/faq/" />
-            </head>
+            <Script
+                id="faq-schema"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "كيف يتم حساب المعدل؟",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "يتم احتساب المعدل وفق نظام وزارة التعليم من خلال ضرب درجة كل مادة في عدد حصصها الأسبوعية، ثم جمع نتائج جميع المواد، وبعد ذلك قسمة المجموع على إجمالي عدد الحصص الأسبوعية. ومن هنا جاءت حاسبة معدلي لتقوم بهذه العملية عنك بكل سهولة، وتوفّر عليك الوقت والجهد دون أي تعقيد."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "هل يدعم الموقع جميع مسارات المرحلة الثانوية؟",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "نعم، يدعم موقع معدلي مسارات الثانوية الخمس جميعها (المسار العام، الصحة والحياة، علوم الحاسب والهندسة، إدارة الأعمال، المسار الشرعي)."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "هل تدخل مادتي المواظبة والسلوك ضمن المعدل؟",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "نعم، بعد آخر تحديث لنظام احتساب المعدل من وزارة التعليم، أصبحت مادتا السلوك والمواظبة تُحتسبان ضمن المعدل؛ حيث يُحسب للسلوك وزن حصة أسبوعية واحدة، وللمواظبة وزن خمس حصص أسبوعية."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "هل تدخل مادة النشاط ضمن المعدل؟",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "نعم، إذا كانت مادة النشاط من ضمن مقررات الطالب، فإنها تُحتسب ضمن المعدل، ويختلف وزنها باختلاف الصف الدراسي والمرحلة."
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
             <main className="mx-auto max-w-5xl px-4 md:px-6 py-8" style={{ backgroundColor: '#f5f7fa', color: '#2c3e50' }}>
                 <section className="mb-12 px-2">
                     <div
                         className="bg-white rounded-2xl shadow p-6 md:p-8"
                         style={{ border: "1px solid #e5e7eb" }}
                     >
-                         <BackButton />
+                        <BackButton />
                         <h2
                             className="text-xl md:text-2xl font-bold text-center mb-8"
                             style={{ color: "#33365B" }}
@@ -34,8 +74,8 @@ export default function FAQ() {
                                             كيف يتم حساب المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            يقوم موقع معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة
-                                            على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم.
+                                            يتم احتساب المعدل وفق نظام وزارة التعليم من خلال ضرب درجة كل مادة في عدد حصصها الأسبوعية، ثم جمع نتائج جميع المواد، وبعد ذلك قسمة المجموع على إجمالي عدد الحصص الأسبوعية.
+                                            ومن هنا جاءت حاسبة معدلي لتقوم بهذه العملية عنك بكل سهولة، وتوفّر عليك الوقت والجهد دون أي تعقيد.
                                         </Faq.Answer>
                                     </>
                                 )}
@@ -55,16 +95,16 @@ export default function FAQ() {
                                     </>
                                 )}
                             </Faq.Item>
-
                             <Faq.Item index={2}>
                                 {(open, toggle) => (
                                     <>
                                         <Faq.Question isOpen={open} onClick={toggle}>
-                                            هل الخدمة مجانية؟
+                                            هل تدخل المواظبة والسلوك ضمن المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            نعم، جميع الخدمات مجانية بالكامل ولا تتطلب أي رسوم.
+                                            نعم، بعد آخر تحديث لنظام احتساب المعدل من وزارة التعليم، أصبحت مادتا السلوك والمواظبة تُحتسبان ضمن المعدل؛ حيث يُحسب للسلوك وزن حصة أسبوعية واحدة، وللمواظبة وزن خمس حصص أسبوعية.
                                         </Faq.Answer>
+
                                     </>
                                 )}
                             </Faq.Item>
@@ -73,12 +113,12 @@ export default function FAQ() {
                                 {(open, toggle) => (
                                     <>
                                         <Faq.Question isOpen={open} onClick={toggle}>
-                                            هل يتم حفظ بياناتي؟
+                                            هل تدخل مادة النشاط ضمن المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            لا، نحن لا نخزن أي بيانات دراسية، جميع العمليات
-                                            تتم على جهازك مباشرة.
+                                            نعم، إذا كانت مادة النشاط من ضمن مقررات الطالب، فإنها تُحتسب ضمن المعدل، ويختلف وزنها باختلاف الصف الدراسي والمرحلة.
                                         </Faq.Answer>
+
                                     </>
                                 )}
                             </Faq.Item>
