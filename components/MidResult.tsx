@@ -51,7 +51,6 @@ export default function MidResult({ calculationResult, onReset }: Props) {
             img.onerror = reject;
         });
 
-
     const exportImage = async () => {
         const node = nodeRef.current;
         const subjectsTable = subjectsRef.current;
@@ -59,21 +58,25 @@ export default function MidResult({ calculationResult, onReset }: Props) {
 
         if (!node || !subjectsTable || !logoEl) return;
 
-        const originalWidth = node.style.width;
+        const CSS_CONTENT_WIDTH = 900;
+        const OUTPUT_PX_WIDTH = 2160;
 
+        const originalWidth = node.style.width;
         try {
             subjectsTable.hidden = false;
 
-            const CONTENT_WIDTH = 900;
-            node.style.width = `${CONTENT_WIDTH}px`;
+            node.style.width = `${CSS_CONTENT_WIDTH}px`;
 
+            await new Promise((r) => requestAnimationFrame(r));
             const nodeRect = node.getBoundingClientRect();
             const logoRect = logoEl.getBoundingClientRect();
 
             logoEl.style.visibility = "hidden";
 
+            const scaleForSnap = OUTPUT_PX_WIDTH / nodeRect.width;
+
             const result = await snapdom.toPng(node, {
-                scale: 2,
+                scale: scaleForSnap,
                 backgroundColor: "#ffffff",
             });
 
@@ -83,54 +86,58 @@ export default function MidResult({ calculationResult, onReset }: Props) {
                 await new Promise<void>((res) => (result.onload = () => res()));
             }
 
-            const STORY_W = 1080;
-            const STORY_H = 1920;
+            const imgW = result.naturalWidth;
+            const imgH = result.naturalHeight;
 
             const canvas = document.createElement("canvas");
-            canvas.width = STORY_W;
-            canvas.height = STORY_H;
-
+            canvas.width = imgW;
+            canvas.height = imgH;
             const ctx = canvas.getContext("2d");
             if (!ctx) return;
 
             ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0, 0, STORY_W, STORY_H);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = "high";
+            ctx.drawImage(result, 0, 0, imgW, imgH);
 
-            const scale = Math.min(
-                STORY_W / result.naturalWidth,
-                STORY_H / result.naturalHeight
-            );
+            const domToImageScale = imgW / nodeRect.width;
 
-            const drawW = result.naturalWidth * scale;
-            const drawH = result.naturalHeight * scale;
-
-            const x = (STORY_W - drawW) / 2;
-            const y = (STORY_H - drawH) / 2;
-
-            ctx.drawImage(result, x, y, drawW, drawH);
-
-            const logo = await loadImage("/icons/mo3dly.png");
-
-            const domToImageScale = drawW / nodeRect.width;
-
-            const lx =
-                x + (logoRect.left - nodeRect.left) * domToImageScale;
-            const ly =
-                y + (logoRect.top - nodeRect.top) * domToImageScale;
+            const lx = (logoRect.left - nodeRect.left) * domToImageScale;
+            const ly = (logoRect.top - nodeRect.top) * domToImageScale;
             const lw = logoRect.width * domToImageScale;
             const lh = logoRect.height * domToImageScale;
 
-            ctx.drawImage(logo, lx, ly, lw, lh);
+            const logoImg = await loadImage("/icons/mo3dly.png");
+            ctx.drawImage(logoImg, lx, ly, lw, lh);
 
-            canvas.toBlob((blob) => {
+            canvas.toBlob(async (blob) => {
                 if (!blob) return;
+
+                const file = new File(
+                    [blob],
+                    "mo3dly-image.png",
+                    { type: "image/png" }
+                );
+
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try {
+                        await navigator.share({
+                            title: "حاسبة معدلي الدراسي",
+                            text: "احسب معدلك الدراسي للمرحلة المتوسطة والثانوية في السعودية بسهولة وبدقة 🎯\nوفق نظام وزارة التعليم\n🔗 https://mo3dly.github.io/\n",
+                            files: [file],
+                        });
+                        return;
+                    } catch (err) {
+                        console.warn("Share cancelled", err);
+                    }
+                }
+                
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "mo3dly-story.png";
+                a.download = file.name;
                 a.click();
                 URL.revokeObjectURL(url);
             }, "image/png");
@@ -140,7 +147,6 @@ export default function MidResult({ calculationResult, onReset }: Props) {
             node.style.width = originalWidth;
             logoEl.style.visibility = "visible";
         }
-
     };
 
     return (
