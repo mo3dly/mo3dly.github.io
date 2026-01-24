@@ -77,19 +77,49 @@ export default function Home() {
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "WebSite",
-                        name: "معدلي الدراسي",
-                        url: "https://mo3dly.github.io/",
-                        description:
-                            "معدلي أول موقع دقيق لحساب المعدل الدراسي لطلاب المرحلتين المتوسطة والثانوية في السعودية وفق نظام وزارة التعليم.",
-                        potentialAction: [
-                            { "@type": "SiteNavigationElement", name: "أول متوسط", url: "https://mo3dly.github.io/grades/7/" },
-                            { "@type": "SiteNavigationElement", name: "ثاني متوسط", url: "https://mo3dly.github.io/grades/8/" },
-                            { "@type": "SiteNavigationElement", name: "ثالث متوسط", url: "https://mo3dly.github.io/grades/9/" },
-                            { "@type": "SiteNavigationElement", name: "أول ثانوي", url: "https://mo3dly.github.io/grades/10/" },
-                            { "@type": "SiteNavigationElement", name: "ثاني ثانوي", url: "https://mo3dly.github.io/grades/11/" },
-                            { "@type": "SiteNavigationElement", name: "ثالث ثانوي", url: "https://mo3dly.github.io/grades/12/" },
-                        ]
+                        "@type": "WebPage",
+                        "name": "حاسبة معدلي - الصفحة الرئيسية",
+                        "url": "https://mo3dly.github.io/",
+                        "inLanguage": "ar-SA",
+                        "description": "معدلي أول موقع دقيق لحساب المعدل الدراسي لطلاب المرحلتين المتوسطة والثانوية في السعودية وفق نظام وزارة التعليم.",
+                        "mainEntity": {
+                            "@type": "SiteNavigationElement",
+                            "name": "التنقل الرئيسي",
+                            "hasPart": [
+                                {
+                                    "@type": "WebPage",
+                                    "name": "أول متوسط",
+                                    "url": "https://mo3dly.github.io/grades/7/"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "name": "ثاني متوسط",
+                                    "url": "https://mo3dly.github.io/grades/8/"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "name": "ثالث متوسط",
+                                    "url": "https://mo3dly.github.io/grades/9/"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "name": "أول ثانوي",
+                                    "url": "https://mo3dly.github.io/grades/10/"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "name": "ثاني ثانوي",
+                                    "url": "https://mo3dly.github.io/grades/11/"
+                                },
+                                {
+                                    "@type": "WebPage",
+                                    "name": "ثالث ثانوي",
+                                    "url": "https://mo3dly.github.io/grades/12/"
+                                }
+                            ]
+                        }
+
+
                     }),
                 }}
             />

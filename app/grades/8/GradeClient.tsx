@@ -15,7 +15,7 @@ import type {
 } from "@/types/gpa";
 import MidResult from "@/components/MidResult";
 import { useRef } from "react";
-
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const Subjects: SubjectsType = {
     first: [
@@ -205,6 +205,8 @@ export default function Grade() {
     const anyErrors = Object.values(errors).some(Boolean);
 
     return (
+        <>
+        <BreadcrumbSchema grade="8" />
         <main ref={headingRef} className="container mx-auto px-4 py-10">
             <section className="mx-auto max-w-4xl rounded-2xl border border-black/10 bg-gradient-to-b from-white to-gray-50 p-6 sm:p-8 shadow-lg overflow-hidden">
                 <BackButton />
@@ -365,5 +367,6 @@ export default function Grade() {
                 )}
             </section>
         </main>
+        </>
     );
 }
