@@ -1,0 +1,1 @@
+export type Term = "first" | "second";
