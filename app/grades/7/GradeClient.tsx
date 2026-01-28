@@ -2,7 +2,7 @@
 
 import BackButton from "@/components/BackButton";
 import type { SubjectsType, Term } from "@/types/gpa";
-import MidResult from "@/components/MidResult";
+import Result from "@/components/Result";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { useGradePage } from "@/components/useGrade";
 import SubjectIcon from "@/components/SubjectIcon";
@@ -151,23 +151,36 @@ export default function Grade() {
                                 ))}
                             </div>
 
-                            <div className="mt-4 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+                            <div
+                                className="fixed bottom-4 left-1/2 z-50 w-[90%] max-w-[420px]
+             -translate-x-1/2"
+                                style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+                            >
                                 <button
                                     onClick={onCalculate}
                                     disabled={anyErrors}
-                                    className={`flex items-center gap-2 rounded-xl px-4 py-2
-    text-sm font-semibold text-white shadow transition
-    ${anyErrors
-                                            ? 'bg-gray-300 cursor-not-allowed'
-                                            : 'bg-[#33365B] hover:brightness-[1.05]'
+                                    className={`relative flex w-full items-center justify-center gap-2
+      rounded-2xl px-4 py-3
+      text-sm font-semibold text-white
+      transition
+      ${anyErrors
+                                            ? "bg-gray-300 text-gray-400 cursor-not-allowed"
+                                            : "bg-[#0f172a] shadow-xl hover:shadow-2xl hover:-translate-y-0.5 hover:brightness-[1.05] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#0f172a]/40 focus-visible:ring-offset-2"
                                         }`}
                                 >
+
+                                    {!anyErrors && (
+                                        <span
+                                            aria-hidden
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-[#f59e0b]"
+                                        />
+                                    )}
+
                                     <svg
                                         width="18"
                                         height="18"
                                         viewBox="0 0 24 24"
                                         fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
                                         aria-hidden
                                         className="shrink-0"
                                     >
@@ -201,7 +214,7 @@ export default function Grade() {
                                 </button>
                             </div>
                             {calculationResult && (
-                                <MidResult
+                                <Result
                                     calculationResult={calculationResult}
                                     onReset={() => {
                                         setCalculationResult(null);
@@ -211,7 +224,7 @@ export default function Grade() {
                         </section>
                     ) : (
                         showResult && calculationResult && (
-                            <MidResult
+                            <Result
                                 calculationResult={calculationResult}
                                 onReset={() => {
                                     setCalculationResult(null);

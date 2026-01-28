@@ -5,11 +5,25 @@ export type Term = "first" | "second";
 export type PathwaySystem =
     | "cy"
     | "gen"
-    | "eng"    
+    | "eng"
     | "hlth"
     | "biz"
     | "shar";
 
+export const PATHWAY_LABELS: Record<PathwaySystem, string> = {
+    cy: "السنة الأولى المشتركة",
+    gen: "المسار العام",
+    eng: "مسار علوم الحاسب والهندسة",
+    hlth: "مسار الصحة والحياة",
+    biz: "مسار إدارة الأعمال",
+    shar: "المسار الشرعي",
+};
+
+export const PATHWAYS_BY_GRADE: Partial<Record<GradeLevel, PathwaySystem[]>> = {
+    10: ["cy"],
+    11: ["gen", "eng", "hlth", "biz", "shar"],
+    12: ["gen", "eng", "hlth", "biz", "shar"],
+};
 
 export interface SubjectInput {
     name: string;

@@ -3,36 +3,15 @@
 import React, { useRef, useState } from "react";
 import { GPAResult as CalculationResult } from "@/types/gpa";
 import { snapdom } from "@zumer/snapdom";
+import DrawrProgressbar from "@/components/DrawrProgressbar";
+import { getPathwayLabel, getTermLabel, getGradeLevelLabel, getGPARating } from "@/utils/labels";
 
 type Props = {
     calculationResult: CalculationResult;
     onReset: () => void;
 };
 
-function getTermLabel(term: string | null | undefined) {
-    if (!term) return "";
-    const t = String(term).toLowerCase();
-    if (t === "first") return "الفصل الدراسي الأول";
-    if (t === "second") return "الفصل الدراسي الثاني";
-    return term;
-}
-
-function getGradeLevelLabel(level: number | string | null | undefined) {
-    if (level === 7 || String(level) === "7") return "الصف الأول متوسط";
-    if (level === 8 || String(level) === "8") return "الصف الثاني متوسط";
-    if (level === 9 || String(level) === "9") return "الصف الثالث متوسط";
-    return level ? `الصف ${level}` : "";
-}
-
-function getGPARating(gpa: number) {
-    if (gpa >= 90 && gpa <= 100) return "ممتاز";
-    if (gpa >= 80 && gpa < 90) return "جيد جداً";
-    if (gpa >= 70 && gpa < 80) return "جيد";
-    if (gpa >= 50 && gpa < 70) return "مقبول";
-    return "راسب";
-}
-
-export default function MidResult({ calculationResult, onReset }: Props) {
+export default function Result({ calculationResult, onReset }: Props) {
     const nodeRef = useRef<HTMLElement | null>(null);
     const subjectsRef = useRef<HTMLTableElement | null>(null);
     const logoImgRef = useRef<HTMLImageElement | null>(null);
@@ -40,7 +19,15 @@ export default function MidResult({ calculationResult, onReset }: Props) {
 
     const termLabel = getTermLabel(calculationResult.term as unknown as string);
     const gradeLevelLabel = getGradeLevelLabel(calculationResult.gradeLevel as unknown as number);
-    const ratingLabel = getGPARating(Number(calculationResult.gpa ?? 0));
+    const ratingLabel = getGPARating(
+        Number(calculationResult.gpa ?? 0),
+        Number(calculationResult.gradeLevel)
+    );
+    const pathwayLabel = getPathwayLabel(
+        calculationResult.pathwaySystem as unknown as string
+    );
+
+    const [isCapturing, setIsCapturing] = useState(false);
 
     const loadImage = (src: string) =>
         new Promise<HTMLImageElement>((resolve, reject) => {
@@ -57,6 +44,8 @@ export default function MidResult({ calculationResult, onReset }: Props) {
         const logoEl = logoImgRef.current;
 
         if (!node || !subjectsTable || !logoEl) return;
+
+        setIsCapturing(true);
 
         const CSS_CONTENT_WIDTH = 900;
         const OUTPUT_PX_WIDTH = 2160;
@@ -133,7 +122,7 @@ export default function MidResult({ calculationResult, onReset }: Props) {
                         console.warn("Share cancelled", err);
                     }
                 }
-                
+
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
@@ -146,11 +135,23 @@ export default function MidResult({ calculationResult, onReset }: Props) {
         } finally {
             node.style.width = originalWidth;
             logoEl.style.visibility = "visible";
+            setIsCapturing(false);
         }
     };
 
     return (
         <div className="px-0 sm:px-0">
+            {isCapturing && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                    <div className="flex flex-col items-center gap-3 rounded-2xl bg-white px-8 py-6 shadow-xl">
+                        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-blue-600" />
+                        <p className="text-sm font-semibold text-gray-700">
+                            جارٍ إنشاء الصورة…
+                        </p>
+                    </div>
+                </div>
+            )}
+
             <section
                 ref={nodeRef as any}
                 id="ForImageCapture"
@@ -191,23 +192,29 @@ export default function MidResult({ calculationResult, onReset }: Props) {
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between py-2 px-1">
-                    <div className="flex items-center gap-4">
-                        <div className="text-right">
-                            <div className="text-sm text-gray-600">معدلك</div>
-                            <div className="text-xl sm:text-2xl font-extrabold text-[#0f172a]">
-                                {Number(calculationResult.gpa)}%
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between py-3 px-2">
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
+                        <div className="flex-shrink-0">
+                            <DrawrProgressbar value={Number(calculationResult.gpa.toFixed(2))} size={120} />
+                        </div>
+
+                        <div className="text-right min-w-0">
+                            <div className="text-sm text-gray-500">معدلك</div>
+                            <div className="text-3xl sm:text-4xl font-extrabold text-[var(--primary)] leading-tight">
+                                {calculationResult.gpa.toFixed(2)}%
                             </div>
                             <div className="mt-1 text-sm text-gray-500">
-                                {gradeLevelLabel} • {termLabel}
+                                {gradeLevelLabel}
+                                {pathwayLabel && <> • {pathwayLabel}</>}
+                                {termLabel && <> • {termLabel}</>}
                             </div>
                         </div>
                     </div>
 
-                    <div className="px-3 text-right">
-                        <div className="inline-flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-1.5 text-sm text-gray-600">
-                            <span>التقدير: </span>
-                            <span className="font-bold text-[#0f172a]">{ratingLabel}</span>
+                    <div className="mt-3 sm:mt-0 px-3 text-right">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-[#f3f4f6] px-3 py-2 text-sm text-gray-600 shadow-sm">
+                            <span>التقدير:</span>
+                            <span className="font-semibold text-[var(--primary)]">{ratingLabel}</span>
                         </div>
                     </div>
                 </div>
@@ -218,7 +225,7 @@ export default function MidResult({ calculationResult, onReset }: Props) {
                             <path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.3L12 14.9 7.2 16.8l.9-5.3L4.2 7.7l5.4-.8L12 2z" />
                         </svg>
                         <div className="whitespace-normal break-words max-w-[280px] sm:max-w-none">
-                            تحتاج تحسب معدلك؟ ابحث في قوقل عن <span className="font-medium">"معدلي الدراسي"</span>
+                            تحتاج تحسب معدلك؟ ابحث في قوقل عن: <span className="font-medium">"معدلي الدراسي"</span>
                         </div>
                     </div>
 
@@ -257,23 +264,19 @@ export default function MidResult({ calculationResult, onReset }: Props) {
                 </div>
             </section>
 
-            <div className="fixed bottom-4 left-1/2 z-50 w-[90%] max-w-[420px] -translate-x-1/2 sm:static sm:mt-4">
+            <div
+                className="fixed bottom-4 left-1/2 z-50 w-[92%] max-w-[420px] -translate-x-1/2 flex flex-col gap-3"
+                style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+            >
                 <button
                     onClick={exportImage}
-                    aria-label="مشاركة كصورة"
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#0f172a] px-4 py-3 text-sm font-medium text-white shadow hover:opacity-90 transition disabled:opacity-60"
+                    className="w-full rounded-xl bg-[#0f172a] px-4 py-3 text-white"
                 >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a3.3 3.3 0 000-1.39l7-4.11A3 3 0 0018 7.91a3.09 3.09 0 10-3.09-3.09c0 .23.03.45.08.66l-7 4.11a3.09 3.09 0 100 4.41l7.05 4.15c-.05.2-.08.41-.08.63A3.09 3.09 0 1018 16.08z" />
-                    </svg>
                     مشاركة كصورة
                 </button>
                 <button
                     onClick={onReset}
-                    className="mt-3 flex w-full items-center justify-center gap-2
-               rounded-xl border border-[#0f172a]
-               bg-white px-4 py-3 text-sm font-medium
-               text-[#0f172a] hover:bg-gray-50 transition"
+                    className="w-full rounded-xl border bg-white px-4 py-3"
                 >
                     إعادة الحساب
                 </button>
