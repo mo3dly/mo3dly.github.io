@@ -54,3 +54,7 @@ export type SubjectsType = {
     first: Subject[];
     second: Subject[];
 };
+
+export type SecSubjectsType = Partial<Record<PathwaySystem, SubjectsType>>;
+
+export type Grade = "7" | "8" | "9" | "10" | "11" | "12";
