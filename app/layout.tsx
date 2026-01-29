@@ -2,6 +2,7 @@ import { Cairo } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <GoogleAnalytics gaId="G-46KDT1HD6W" />
       </body>
     </html>
   );
