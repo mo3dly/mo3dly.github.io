@@ -18,47 +18,35 @@ export default function BackButton({
       const ref = typeof document !== "undefined" ? document.referrer : "";
       const origin = typeof window !== "undefined" ? window.location.origin : "";
 
-      if (ref) {
-        const isInternal = ref.startsWith(origin);
-        if (isInternal) {
-          const pathname = new URL(ref).pathname.replace(/\/+$/, "");
-          if (pathname === "/mid" || pathname === "/sec" || pathname === "/faq") {
-            router.push("/");
-            return;
-          }
-          const gradesMatch = pathname.match(/^\/grades\/(\d+)(?:\/|$)/);
-          if (gradesMatch) {
-            const gradeNum = Number(gradesMatch[1]);
-            if ([7, 8, 9].includes(gradeNum)) {
-              router.push("/mid/");
-              return;
-            }
-            if ([10, 11, 12].includes(gradeNum)) {
-              router.push("/sec/");
-              return;
-            }
-            router.back();
-            return;
-          }
-          if (window.history.length > 1) {
-            router.back();
-            return;
-          }
-          router.push(fallback);
-          return;
-        } else {
+      if (ref && ref.startsWith(origin)) {
+        const pathname = new URL(ref).pathname.replace(/\/+$/, "");
+
+        if (pathname === "/mid" || pathname === "/sec" || pathname === "/faq") {
           router.push("/");
           return;
         }
-      }
 
-      if (window.history.length > 1) {
-        router.back();
+        const gradesMatch = pathname.match(/^\/grades\/(\d+)(?:\/|$)/);
+        if (gradesMatch) {
+          const gradeNum = Number(gradesMatch[1]);
+
+          if ([7, 8, 9].includes(gradeNum)) {
+            router.push("/mid/");
+            return;
+          }
+
+          if ([10, 11, 12].includes(gradeNum)) {
+            router.push("/sec/");
+            return;
+          }
+        }
+
+        router.push("/");
         return;
       }
 
-      router.push(fallback);
-    } catch (e) {
+      router.push("/");
+    } catch {
       router.push(fallback);
     }
   };
