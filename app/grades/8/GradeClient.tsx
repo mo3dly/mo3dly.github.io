@@ -57,7 +57,7 @@ export default function Grade() {
         readableTerm,
         scrollToTop,
         loading,
-    } = useGradePage({ Subjects, defaultGradeLevel: 8 });
+    } = useGradePage({ Subjects, gradeLevel: 8 });
     return (
         <>
             <BreadcrumbSchema grade="8" />

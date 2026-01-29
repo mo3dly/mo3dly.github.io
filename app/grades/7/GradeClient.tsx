@@ -59,7 +59,7 @@ export default function Grade() {
         readableTerm,
         scrollToTop,
         loading,
-    } = useGradePage({ Subjects, defaultGradeLevel: 7 });
+    } = useGradePage({ Subjects, gradeLevel: 7 });
 
     return (
         <>
