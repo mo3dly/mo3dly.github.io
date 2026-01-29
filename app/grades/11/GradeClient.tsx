@@ -208,7 +208,7 @@ export default function Grade() {
                     <div className="mb-6 text-right">
                         <div className="flex items-center justify-between">
                             <div>
-                                <h1 ref={headingRef} className="text-2xl md:text-3xl font-extrabold text-gray-900 flex items-center gap-3">
+                                <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 flex items-center gap-3">
                                     ثاني ثانوي - حاسبة معدلي
                                 </h1>
                                 <p className="mt-2 text-sm text-gray-500">أدخل درجاتك واحصل على معدلك الدقيق وفق طريقة حساب وزارة التعليم السعودية —  <strong>{readableTerm}</strong></p>
@@ -216,7 +216,7 @@ export default function Grade() {
                         </div>
                     </div>
 
-                    <section className="mb-6 text-right grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+                    <section ref={headingRef} className="mb-6 text-right grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
                         {hasPathways && (
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-gray-700">المسار</label>

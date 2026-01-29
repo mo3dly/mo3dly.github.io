@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-[var(--header-bg)] border-b border-black/10">
+      <header className="z-40 bg-[var(--header-bg)] border-b border-black/10">
         <div className="px-4 py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Image src="/icons/mo3dly.webp" alt="شعار معدلي" width={42} height={42} priority />
