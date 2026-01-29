@@ -12,7 +12,7 @@ const cairo = Cairo({
 
 export const metadata = {
   title: {
-    default: "معدلي الدراسي",
+    default: "حاسبة معدلي - احسب معدلك الدراسي",
   },
   keywords: [
     "حاسبة المعدل",
