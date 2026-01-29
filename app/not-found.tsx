@@ -2,14 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-export const metadata = {
-  title: "الصفحة غير موجودة",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
 export default function NotFound() {
   const [countdown, setCountdown] = useState(3);
 
