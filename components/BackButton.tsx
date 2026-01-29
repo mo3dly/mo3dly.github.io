@@ -14,9 +14,51 @@ export default function BackButton({
   const router = useRouter();
 
   const handleBack = () => {
-    if (window.history.length > 1) {
-      router.back();
-    } else {
+    try {
+      const ref = typeof document !== "undefined" ? document.referrer : "";
+      const origin = typeof window !== "undefined" ? window.location.origin : "";
+
+      if (ref) {
+        const isInternal = ref.startsWith(origin);
+        if (isInternal) {
+          const pathname = new URL(ref).pathname.replace(/\/+$/, "");
+          if (pathname === "/mid" || pathname === "/sec" || pathname === "/faq") {
+            router.push("/");
+            return;
+          }
+          const gradesMatch = pathname.match(/^\/grades\/(\d+)(?:\/|$)/);
+          if (gradesMatch) {
+            const gradeNum = Number(gradesMatch[1]);
+            if ([7, 8, 9].includes(gradeNum)) {
+              router.push("/mid/");
+              return;
+            }
+            if ([10, 11, 12].includes(gradeNum)) {
+              router.push("/sec/");
+              return;
+            }
+            router.back();
+            return;
+          }
+          if (window.history.length > 1) {
+            router.back();
+            return;
+          }
+          router.push(fallback);
+          return;
+        } else {
+          router.push("/");
+          return;
+        }
+      }
+
+      if (window.history.length > 1) {
+        router.back();
+        return;
+      }
+
+      router.push(fallback);
+    } catch (e) {
       router.push(fallback);
     }
   };
