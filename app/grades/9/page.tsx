@@ -8,13 +8,13 @@ export const metadata  = {
     follow: true,
   },
   alternates: {
-    canonical: "https://mo3dly.github.io/grades/9/",
+    canonical: "https://mo3dly.github.io/grades/9",
   },
   openGraph: {
     title: "حساب معدل الصف الثالث متوسط - حاسبة معدلي",
     description:
       "احسب معدل الصف الثالث متوسط بادق طريقة وفق نظام الحساب الخاص بوزارة التعليم في السعودية باستخدام حاسبة معدلي.",
-    url: "https://mo3dly.github.io/grades/9/",
+    url: "https://mo3dly.github.io/grades/9",
     siteName: "حاسبة معدلي",
     type: "website",
   },

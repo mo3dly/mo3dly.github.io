@@ -24,7 +24,7 @@ export default function Page() {
                                 "@type": "ListItem",
                                 position: 2,
                                 name: "المرحلة المتوسطة",
-                                item: "https://mo3dly.github.io/mid/",
+                                item: "https://mo3dly.github.io/mid",
                             },
                         ],
                     }),

@@ -31,12 +31,12 @@ export default function BackButton({
           const gradeNum = Number(gradesMatch[1]);
 
           if ([7, 8, 9].includes(gradeNum)) {
-            router.push("/mid/");
+            router.push("/mid");
             return;
           }
 
           if ([10, 11, 12].includes(gradeNum)) {
-            router.push("/sec/");
+            router.push("/sec");
             return;
           }
         }

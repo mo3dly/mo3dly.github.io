@@ -9,13 +9,13 @@ export const metadata  = {
     follow: true,
   },
   alternates: {
-    canonical: "https://mo3dly.github.io/mid/",
+    canonical: "https://mo3dly.github.io/mid",
   },
   openGraph: {
     title: "حساب معدل المرحلة المتوسطة - حاسبة معدلي",
     description:
       "احسب معدل الدراسي للمرحلة المتوسطة بسهولة وبدون تعقيد وفق نظام وزارة التعليم السعودية.",
-    url: "https://mo3dly.github.io/mid/",
+    url: "https://mo3dly.github.io/mid",
     siteName: "حاسبة معدلي",
     type: "website",
   },

@@ -3,67 +3,67 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://mo3dly.github.io/</loc>
+    <loc>https://mo3dly.github.io</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/mid/</loc>
+    <loc>https://mo3dly.github.io/mid</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/sec/</loc>
+    <loc>https://mo3dly.github.io/sec</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/faq/</loc>
+    <loc>https://mo3dly.github.io/faq</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/privacy-policy/</loc>
+    <loc>https://mo3dly.github.io/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/grades/7/</loc>
+    <loc>https://mo3dly.github.io/grades/7</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/grades/8/</loc>
+    <loc>https://mo3dly.github.io/grades/8</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/grades/9/</loc>
+    <loc>https://mo3dly.github.io/grades/9</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/grades/10/</loc>
+    <loc>https://mo3dly.github.io/grades/10</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/grades/11/</loc>
+    <loc>https://mo3dly.github.io/grades/11</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mo3dly.github.io/grades/12/</loc>
+    <loc>https://mo3dly.github.io/grades/12</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

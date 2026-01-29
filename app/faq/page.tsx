@@ -4,7 +4,7 @@ export const metadata = {
   title: "معدلي الدراسي - الاسئلة الشائعة",
   description: "الاسئلة الشائعة عن موقع معدلي وطريقة حساب المعدل",
   alternates: {
-    canonical: "https://mo3dly.github.io/faq/",
+    canonical: "https://mo3dly.github.io/faq",
   },
 };
 

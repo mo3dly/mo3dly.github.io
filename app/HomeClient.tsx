@@ -79,7 +79,7 @@ export default function Home() {
                         "@context": "https://schema.org",
                         "@type": "WebPage",
                         "name": "حاسبة معدلي - الصفحة الرئيسية",
-                        "url": "https://mo3dly.github.io/",
+                        "url": "https://mo3dly.github.io",
                         "inLanguage": "ar-SA",
                         "description": "معدلي أول موقع دقيق لحساب المعدل الدراسي لطلاب المرحلتين المتوسطة والثانوية في السعودية وفق نظام وزارة التعليم.",
                         "mainEntity": {
@@ -89,32 +89,32 @@ export default function Home() {
                                 {
                                     "@type": "WebPage",
                                     "name": "أول متوسط",
-                                    "url": "https://mo3dly.github.io/grades/7/"
+                                    "url": "https://mo3dly.github.io/grades/7"
                                 },
                                 {
                                     "@type": "WebPage",
                                     "name": "ثاني متوسط",
-                                    "url": "https://mo3dly.github.io/grades/8/"
+                                    "url": "https://mo3dly.github.io/grades/8"
                                 },
                                 {
                                     "@type": "WebPage",
                                     "name": "ثالث متوسط",
-                                    "url": "https://mo3dly.github.io/grades/9/"
+                                    "url": "https://mo3dly.github.io/grades/9"
                                 },
                                 {
                                     "@type": "WebPage",
                                     "name": "أول ثانوي",
-                                    "url": "https://mo3dly.github.io/grades/10/"
+                                    "url": "https://mo3dly.github.io/grades/10"
                                 },
                                 {
                                     "@type": "WebPage",
                                     "name": "ثاني ثانوي",
-                                    "url": "https://mo3dly.github.io/grades/11/"
+                                    "url": "https://mo3dly.github.io/grades/11"
                                 },
                                 {
                                     "@type": "WebPage",
                                     "name": "ثالث ثانوي",
-                                    "url": "https://mo3dly.github.io/grades/12/"
+                                    "url": "https://mo3dly.github.io/grades/12"
                                 }
                             ]
                         }
@@ -139,7 +139,7 @@ export default function Home() {
                             <div className="flex flex-col items-center gap-4">
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                     <Link
-                                        href="/mid/"
+                                        href="/mid"
                                         aria-label="المرحلة المتوسطة"
                                         title="المرحلة المتوسطة"
                                         className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"
@@ -156,7 +156,7 @@ export default function Home() {
                                     </Link>
 
                                     <Link
-                                        href="/sec/"
+                                        href="/sec"
                                         aria-label="المرحلة الثانوية"
                                         title="المرحلة الثانوية"
                                         className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"

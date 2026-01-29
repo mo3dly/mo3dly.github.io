@@ -8,13 +8,13 @@ export const metadata  = {
     follow: true,
   },
   alternates: {
-    canonical: "https://mo3dly.github.io/privacy-policy/",
+    canonical: "https://mo3dly.github.io/privacy-policy",
   },
   openGraph: {
     title: "سياسة الخصوصية - حاسبة معدلي",
     description:
       "اطلع على سياسة الخصوصية لموقع معدّلي لفهم كيفية تعاملنا مع بياناتك وحمايتها.",
-    url: "https://mo3dly.github.io/privacy-policy/",
+    url: "https://mo3dly.github.io/privacy-policy",
     siteName: "حاسبة معدلي",
     type: "website",
   },

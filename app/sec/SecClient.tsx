@@ -18,13 +18,13 @@ export default function Page() {
                                 "@type": "ListItem",
                                 position: 1,
                                 name: "الرئيسية",
-                                item: "https://mo3dly.github.io/",
+                                item: "https://mo3dly.github.io",
                             },
                             {
                                 "@type": "ListItem",
                                 position: 2,
                                 name: "المرحلة الثانوية",
-                                item: "https://mo3dly.github.io/sec/",
+                                item: "https://mo3dly.github.io/sec",
                             },
                         ],
                     }),
@@ -50,7 +50,7 @@ export default function Page() {
                     <section className="mb-10">
                         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                             <Link
-                                href="/grades/10/"
+                                href="/grades/10"
                                 className="flex items-center justify-center rounded-xl border border-black/10 bg-gray-50 p-4 sm:p-6 text-center transition hover:bg-gray-100 hover:shadow">
                                 <h3 className="text-lg font-semibold text-gray-700">
                                     الاول ثانوي
@@ -58,7 +58,7 @@ export default function Page() {
                             </Link>
 
                             <Link
-                                href="/grades/11/"
+                                href="/grades/11"
                                 className="flex items-center justify-center rounded-xl border border-black/10 bg-gray-50 p-4 sm:p-6 text-center transition hover:bg-gray-100 hover:shadow">
                                 <h3 className="text-lg font-semibold text-gray-700">
                                     الثاني ثانوي
@@ -66,7 +66,7 @@ export default function Page() {
                             </Link>
 
                             <Link
-                                href="/grades/12/"
+                                href="/grades/12"
                                 className="flex items-center justify-center rounded-xl border border-black/10 bg-gray-50 p-4 sm:p-6 text-center transition hover:bg-gray-100 hover:shadow">
                                 <h3 className="text-lg font-semibold text-gray-700">
                                     الثالث ثانوي

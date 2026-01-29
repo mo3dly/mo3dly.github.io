@@ -8,12 +8,12 @@ export const metadata  = {
     follow: true,
   },
   alternates: {
-    canonical: "https://mo3dly.github.io/",
+    canonical: "https://mo3dly.github.io",
   },
   openGraph: {
     title: "حاسبة معدلي - احسب معدلك الدراسي",
     description: "موقع حاسبة معدلي يساعد طلاب المرحلة المتوسطة والثانوية في السعودية على حساب المعدل الدراسي بسهولة ودقة، وفق نظام وزارة التعليم بالسعودية.",
-    url: "https://mo3dly.github.io/",
+    url: "https://mo3dly.github.io",
     siteName: "حاسبة معدلي",
     type: "website",
   },

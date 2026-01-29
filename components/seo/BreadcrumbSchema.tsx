@@ -12,32 +12,32 @@ const gradeMap: Record<
 > = {
   "7": {
     stageName: "المرحلة المتوسطة",
-    stageUrl: "https://mo3dly.github.io/mid/",
+    stageUrl: "https://mo3dly.github.io/mid",
     gradeName: "أول متوسط"
   },
   "8": {
     stageName: "المرحلة المتوسطة",
-    stageUrl: "https://mo3dly.github.io/mid/",
+    stageUrl: "https://mo3dly.github.io/mid",
     gradeName: "ثاني متوسط"
   },
   "9": {
     stageName: "المرحلة المتوسطة",
-    stageUrl: "https://mo3dly.github.io/mid/",
+    stageUrl: "https://mo3dly.github.io/mid",
     gradeName: "ثالث متوسط"
   },
   "10": {
     stageName: "المرحلة الثانوية",
-    stageUrl: "https://mo3dly.github.io/sec/",
+    stageUrl: "https://mo3dly.github.io/sec",
     gradeName: "أول ثانوي"
   },
   "11": {
     stageName: "المرحلة الثانوية",
-    stageUrl: "https://mo3dly.github.io/sec/",
+    stageUrl: "https://mo3dly.github.io/sec",
     gradeName: "ثاني ثانوي"
   },
   "12": {
     stageName: "المرحلة الثانوية",
-    stageUrl: "https://mo3dly.github.io/sec/",
+    stageUrl: "https://mo3dly.github.io/sec",
     gradeName: "ثالث ثانوي"
   }
 };
@@ -51,7 +51,7 @@ export default function BreadcrumbSchema({ grade }: { grade: Grade }) {
         "@type": "ListItem",
         position: 1,
         name: "الرئيسية",
-        item: "https://mo3dly.github.io/"
+        item: "https://mo3dly.github.io"
       },
       {
         "@type": "ListItem",
@@ -63,7 +63,7 @@ export default function BreadcrumbSchema({ grade }: { grade: Grade }) {
         "@type": "ListItem",
         position: 3,
         name: gradeMap[grade].gradeName,
-        item: `https://mo3dly.github.io/grades/${grade}/`
+        item: `https://mo3dly.github.io/grades/${grade}`
       }
     ]
   };

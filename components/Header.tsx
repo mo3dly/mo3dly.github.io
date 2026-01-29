@@ -89,13 +89,13 @@ export default function Header() {
             </div>
 
             <div className="grid gap-2">
-              <Link href="/grades/7/" onClick={() => setOpen(false)} className={cardLink}>
+              <Link href="/grades/7" onClick={() => setOpen(false)} className={cardLink}>
                 الصف الأول متوسط
               </Link>
-              <Link href="/grades/8/" onClick={() => setOpen(false)} className={cardLink}>
+              <Link href="/grades/8" onClick={() => setOpen(false)} className={cardLink}>
                 الصف الثاني متوسط
               </Link>
-              <Link href="/grades/9/" onClick={() => setOpen(false)} className={cardLink}>
+              <Link href="/grades/9" onClick={() => setOpen(false)} className={cardLink}>
                 الصف الثالث متوسط
               </Link>
             </div>
@@ -106,7 +106,7 @@ export default function Header() {
               <span className="font-semibold">المرحلة الثانوية</span>
 
               <Link
-                href="/sec/"
+                href="/sec"
                 className="text-xs px-2 py-0.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/20 transition-colors"
               >
                 جميع المسارات متوفرة
@@ -114,20 +114,20 @@ export default function Header() {
             </div>
 
             <div className="grid gap-2">
-              <Link href="/grades/10/" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
+              <Link href="/grades/10" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
                 <span>اول ثانوي</span>
               </Link>
-              <Link href="/grades/11/" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
+              <Link href="/grades/11" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
                 <span>ثاني ثانوي</span>
               </Link>
-              <Link href="/grades/12/" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
+              <Link href="/grades/12" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
                 <span>ثالث ثانوي</span>
               </Link>
             </div>
           </div>
 
           <Link
-            href="/faq/"
+            href="/faq"
             onClick={() => setOpen(false)}
             className={`${primaryBtn} block text-center`}
           >
@@ -143,7 +143,7 @@ export default function Header() {
             </a>
 
             <Link
-              href="/privacy-policy/"
+              href="/privacy-policy"
               onClick={() => setOpen(false)}
               className="block hover:underline"
             >

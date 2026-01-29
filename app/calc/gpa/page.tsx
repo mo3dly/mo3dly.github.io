@@ -8,13 +8,13 @@ export const metadata  = {
     follow: true,
   },
   alternates: {
-    canonical: "https://mo3dly.github.io/calc/gpa/",
+    canonical: "https://mo3dly.github.io/calc/gpa",
   },
   openGraph: {
     title: "حساب المعدل التراكمي  الثانوي - حاسبة معدلي",
     description:
       "حساب المعدل التراكمي للمرحلة الثانوية بسهولة وبدون تعقيد.",
-    url: "https://mo3dly.github.io/calc/gpa/",
+    url: "https://mo3dly.github.io/calc/gpa",
     siteName: "حاسبة معدلي",
     type: "website",
   },

@@ -8,13 +8,13 @@ export const metadata  = {
     follow: true,
   },
   alternates: {
-    canonical: "https://mo3dly.github.io/grades/11/",
+    canonical: "https://mo3dly.github.io/grades/11",
   },
   openGraph: {
     title: "حساب معدل الصف الثاني ثانوي - حاسبة معدلي",
     description:
       "احسب معدل الصف الثاني ثانوي بادق طريقة وفق نظام الحساب الخاص بوزارة التعليم في السعودية باستخدام حاسبة معدلي.",
-    url: "https://mo3dly.github.io/grades/11/",
+    url: "https://mo3dly.github.io/grades/11",
     siteName: "حاسبة معدلي",
     type: "website",
   },
