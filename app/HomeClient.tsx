@@ -124,6 +124,13 @@ export default function Home() {
                 }}
             />
 
+            <Script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+                crossOrigin="anonymous"
+                strategy="afterInteractive"
+            />
+            
             <main className="mx-auto max-w-5xl px-4 md:px-6 py-8" style={{ backgroundColor: '#ffffff', color: '#2c3e50' }}>
                 <section className="mb-12 px-2">
                     <div className="max-w-2xl mx-auto">
