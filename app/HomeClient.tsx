@@ -244,6 +244,18 @@ export default function Home() {
                                 {(open, toggle) => (
                                     <>
                                         <Faq.Question isOpen={open} onClick={toggle}>
+                                            ماهو موقع حاسبة معدلي؟
+                                        </Faq.Question>
+                                        <Faq.Answer isOpen={open}>
+                                            حاسبة معدلي هي خدمة إلكترونية لحساب المعدل الدراسي بدقة لطلاب المتوسطة والثانوية في السعودية وفق آلية وزارة التعليم.
+                                        </Faq.Answer>
+                                    </>
+                                )}
+                            </Faq.Item>
+                            <Faq.Item index={1}>
+                                {(open, toggle) => (
+                                    <>
+                                        <Faq.Question isOpen={open} onClick={toggle}>
                                             كيف يتم حساب المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
@@ -254,7 +266,7 @@ export default function Home() {
                                 )}
                             </Faq.Item>
 
-                            <Faq.Item index={1}>
+                            <Faq.Item index={2}>
                                 {(open, toggle) => (
                                     <>
                                         <Faq.Question isOpen={open} onClick={toggle}>
@@ -269,7 +281,7 @@ export default function Home() {
                                 )}
                             </Faq.Item>
 
-                            <Faq.Item index={2}>
+                            <Faq.Item index={3}>
                                 {(open, toggle) => (
                                     <>
                                         <Faq.Question isOpen={open} onClick={toggle}>

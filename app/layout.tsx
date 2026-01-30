@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { describe } from "node:test";
 
 const cairo = Cairo({
   subsets: ["arabic"],
@@ -13,6 +14,7 @@ const cairo = Cairo({
 export const metadata = {
   title: {
     default: "حاسبة معدلي - احسب معدلك الدراسي",
+    description: "معدلي خدمة إلكترونية لحساب المعدل الدراسي بدقة لطلاب المتوسطة والثانوية في السعودية وفق آلية وزارة التعليم."
   },
   keywords: [
     "حاسبة المعدل",
