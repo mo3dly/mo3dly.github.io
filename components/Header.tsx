@@ -126,13 +126,25 @@ export default function Header() {
             </div>
           </div>
 
-          <Link
+          <div className="space-y-3">
+            <Link
+            href="/blog"
+            onClick={() => setOpen(false)}
+            className={`${primaryBtn} block text-center`}
+            >
+              المدونة
+            </Link>
+            
+            <br />
+
+            <Link
             href="/faq"
             onClick={() => setOpen(false)}
             className={`${primaryBtn} block text-center`}
-          >
-            الأسئلة الشائعة
-          </Link>
+            >
+              الأسئلة الشائعة
+            </Link>
+          </div>
 
           <div className="pt-4 border-t space-y-2 text-sm">
             <a
