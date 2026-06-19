@@ -5,6 +5,14 @@ import matter from "gray-matter";
 
 export const dynamic = "force-static";
 
+export const metadata = {
+  title: "معدلي الدراسي - المدونة",
+  description: "مقالات مع موقع معدلي الدراسي",
+  alternates: {
+    canonical: "https://mo3dly.github.io/blog",
+  },
+};
+
 export default function BlogPage() {
   const postsPath = path.join(process.cwd(), "content", "blog");
 

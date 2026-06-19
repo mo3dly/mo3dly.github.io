@@ -1,12 +1,46 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc"; // استخدام نسخة الـ RSC الحديثة
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+  const { slug } = await params;
+
+  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+
+  if (!fs.existsSync(filePath)) {
+    return {};
+  }
+
+  const file = fs.readFileSync(filePath, "utf8");
+  const { data } = matter(file);
+
+  return {
+    title: data.title,
+    description: data.description,
+    alternates: {
+      canonical: `https://mo3dly.github.io/blog/${slug}`,
+    },
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      url: `https://mo3dly.github.io/blog/${slug}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+    },
+  };
+}
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
