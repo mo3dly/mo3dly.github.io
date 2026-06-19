@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import matter from "gray-matter";
+import Script from "next/script";
 
 export const dynamic = "force-static";
 
@@ -37,6 +38,13 @@ export default function BlogPage() {
     });
 
   return (
+    <>
+    <Script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+      crossOrigin="anonymous"
+      strategy="afterInteractive"
+    />
     <main className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-5xl mx-auto">
         
@@ -69,5 +77,6 @@ export default function BlogPage() {
         </div>
       </div>
     </main>
+    </>
   );
 }

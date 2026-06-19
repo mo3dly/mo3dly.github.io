@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -73,6 +74,13 @@ export default async function BlogPost({ params }: Props) {
   const { content, data } = matter(file);
 
   return (
+    <>
+    <Script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+      crossOrigin="anonymous"
+      strategy="afterInteractive"
+    />
     <main className="min-h-screen bg-gray-50 py-10 px-4">
       <article className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-sm">
         <h1 className="text-3xl font-bold">{data.title || slug}</h1>
@@ -88,5 +96,6 @@ export default async function BlogPost({ params }: Props) {
         </div>
       </article>
     </main>
+    </>
   );
 }
