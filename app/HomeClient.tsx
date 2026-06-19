@@ -179,6 +179,54 @@ export default function Home() {
                                         <span>المرحلة الثانوية</span>
                                     </Link>
                                 </div>
+                                <Link
+    href="/calc/gpa"
+    aria-label="حساب المعدل التراكمي"
+    title="حساب المعدل التراكمي"
+    className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"
+>
+    <svg
+        className="w-6 h-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+    >
+        <path
+            d="M5 4H19C20.1 4 21 4.9 21 6V18C21 19.1 20.1 20 19 20H5C3.9 20 3 19.1 3 18V6C3 4.9 3.9 4 5 4Z"
+            stroke="#33365B"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path
+            d="M7 8H17"
+            stroke="#33365B"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+        />
+        <path
+            d="M7 12H11"
+            stroke="#33365B"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+        />
+        <path
+            d="M14 12H17"
+            stroke="#33365B"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+        />
+        <path
+            d="M9 16H15"
+            stroke="#33365B"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+        />
+    </svg>
+
+    <span>حساب المعدل التراكمي</span>
+</Link>
                             </div>
 
                         </div>
