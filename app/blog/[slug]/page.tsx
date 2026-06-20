@@ -9,6 +9,12 @@ import Script from "next/script";
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
+const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+
+interface Props {
+  params: Promise<{ slug: string }> | { slug: string };
+}
+
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
@@ -43,22 +49,16 @@ export async function generateMetadata({
   };
 }
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
-
 export async function generateStaticParams() {
   if (!fs.existsSync(BLOG_DIR)) return [];
-  
+
   const files = fs.readdirSync(BLOG_DIR);
-  
+
   return files
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => ({
       slug: file.replace(/\.mdx$/, ""),
     }));
-}
-
-interface Props {
-  params: Promise<{ slug: string }> | { slug: string }; 
 }
 
 export default async function BlogPost({ params }: Props) {
@@ -73,29 +73,37 @@ export default async function BlogPost({ params }: Props) {
   const file = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(file);
 
+  const words = content.trim().split(/\s+/).length;
+  const readingTime = Math.max(1, Math.ceil(words / 200));
+
   return (
     <>
-    <Script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
-      crossOrigin="anonymous"
-      strategy="afterInteractive"
-    />
-    <main className="min-h-screen bg-gray-50 py-10 px-4">
-      <article className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-sm">
-        <h1 className="text-3xl font-bold">{data.title || slug}</h1>
-        
-        {data.description && (
-          <p className="text-gray-500 mt-2">{data.description}</p>
-        )}
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
 
-        <hr className="my-6" />
+      <main className="min-h-screen bg-gray-50 py-10 px-4">
+        <article className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-sm">
+          <h1 className="text-3xl font-bold">{data.title || slug}</h1>
 
-        <div className="prose max-w-none">
-          <MDXRemote source={content} />
-        </div>
-      </article>
-    </main>
+          {data.description && (
+            <p className="text-gray-500 mt-2">{data.description}</p>
+          )}
+
+          <p className="text-sm text-gray-400 mt-2">
+            ⏱️ {readingTime} {readingTime === 1 ? "دقيقة قراءة" : "دقائق قراءة"}
+          </p>
+
+          <hr className="my-6" />
+
+          <div className="prose max-w-none">
+            <MDXRemote source={content} />
+          </div>
+        </article>
+      </main>
     </>
   );
 }
