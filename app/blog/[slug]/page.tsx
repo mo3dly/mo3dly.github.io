@@ -22,9 +22,7 @@ export async function generateMetadata({
 
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
 
-  if (!fs.existsSync(filePath)) {
-    return {};
-  }
+  if (!fs.existsSync(filePath)) return {};
 
   const file = fs.readFileSync(filePath, "utf8");
   const { data } = matter(file);
@@ -66,9 +64,7 @@ export default async function BlogPost({ params }: Props) {
 
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
 
-  if (!fs.existsSync(filePath)) {
-    notFound();
-  }
+  if (!fs.existsSync(filePath)) notFound();
 
   const file = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(file);
@@ -85,22 +81,50 @@ export default async function BlogPost({ params }: Props) {
         strategy="afterInteractive"
       />
 
-      <main className="min-h-screen bg-gray-50 py-10 px-4">
-        <article className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-sm">
-          <h1 className="text-3xl font-bold">{data.title || slug}</h1>
+      <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
+        {/* HEADER */}
+        <div className="border-b bg-white/70 backdrop-blur-md sticky top-0 z-10">
+          <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between text-sm text-gray-600">
+            <span>📖 {readingTime} دقيقة قراءة</span>
+            <span className="hidden sm:inline text-gray-400">
+              مدونة معدلي الدراسي
+            </span>
+          </div>
+        </div>
 
-          {data.description && (
-            <p className="text-gray-500 mt-2">{data.description}</p>
-          )}
+        {/* ARTICLE */}
+        <article className="max-w-3xl mx-auto px-4 py-10">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-10 transition-all">
 
-          <p className="text-sm text-gray-400 mt-2">
-            ⏱️ {readingTime} {readingTime === 1 ? "دقيقة قراءة" : "دقائق قراءة"}
-          </p>
+            {/* TITLE */}
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+              {data.title || slug}
+            </h1>
 
-          <hr className="my-6" />
+            {/* DESCRIPTION */}
+            {data.description && (
+              <p className="mt-4 text-lg text-gray-600 leading-8">
+                {data.description}
+              </p>
+            )}
 
-          <div className="prose max-w-none">
-            <MDXRemote source={content} />
+            {/* META */}
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-gray-500">
+              <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600">
+                ⏱ {readingTime} دقيقة قراءة
+              </span>
+              <span className="px-3 py-1 rounded-full bg-gray-100">
+                مقال تعليمي
+              </span>
+            </div>
+
+            <hr className="my-8 border-gray-100" />
+
+            {/* CONTENT */}
+            <div className="prose prose-slate max-w-none prose-p:leading-8 prose-headings:scroll-mt-24">
+              <MDXRemote source={content} />
+            </div>
+
           </div>
         </article>
       </main>
