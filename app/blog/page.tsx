@@ -71,41 +71,54 @@ export default function BlogPage() {
         strategy="afterInteractive"
       />
 
-      <main className="min-h-screen bg-gray-50 py-10 px-4">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">
-            المدونة
-          </h1>
+      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
+  <div className="max-w-6xl mx-auto">
+    <div className="text-center mb-12">
+      <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900">
+        المدونة
+      </h1>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition"
-              >
-                <h2 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition">
-                  {post.title}
-                </h2>
+      <p className="mt-4 text-gray-500 text-lg max-w-2xl mx-auto">
+        مقالات ونصائح حول المعدل الدراسي، الدراسة، والاختبارات لمساعدتك على
+        تحقيق أفضل النتائج.
+      </p>
+    </div>
 
-                {post.description && (
-                  <p className="text-sm text-gray-500 mt-2">
-                    {post.description}
-                  </p>
-                )}
+    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {posts.map((post) => (
+        <Link
+          key={post.slug}
+          href={`/blog/${post.slug}`}
+          className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
+        >
+          <span className="inline-flex w-fit rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+            {getPublishedText(post.date)}
+          </span>
 
-                <p className="text-xs text-gray-400 mt-3">
-                  {getPublishedText(post.date)}
-                </p>
+          <h2 className="mt-4 text-xl font-bold text-gray-900 transition-colors group-hover:text-blue-600">
+            {post.title}
+          </h2>
 
-                <div className="mt-4 text-blue-600 text-sm font-medium">
-                  قراءة المزيد →
-                </div>
-              </Link>
-            ))}
+          {post.description && (
+            <p className="mt-3 line-clamp-2 text-sm leading-7 text-gray-600">
+              {post.description}
+            </p>
+          )}
+
+          <div className="mt-auto pt-6 flex items-center justify-between">
+            <span className="text-sm font-semibold text-blue-600">
+              قراءة المقال
+            </span>
+
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+              →
+            </div>
           </div>
-        </div>
-      </main>
+        </Link>
+      ))}
+    </div>
+  </div>
+</main>
     </>
   );
 }
