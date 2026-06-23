@@ -3,11 +3,18 @@
 import Link from "next/link";
 import BackButton from "@/components/BackButton";
 import { Faq } from "@/components/Faq";
+import Script from "next/script";
 
 export default function Page() {
     return (
         <>
-            <script
+        <Script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+                crossOrigin="anonymous"
+                strategy="afterInteractive"
+            />
+            <Script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({

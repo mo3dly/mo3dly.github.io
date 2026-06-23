@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
 import BackButton from "@/components/BackButton";
-
+import Script from "next/script";
 
 function normalizeNumberInput(raw: string): number {
   if (!raw) return NaN;
@@ -44,6 +44,13 @@ export default function SecondaryGPA() {
   }, [first, second, third]);
 
   return (
+    <>
+    <Script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+                crossOrigin="anonymous"
+                strategy="afterInteractive"
+            />
     <div className="min-h-screen flex items-start justify-center px-4 py-8 bg-slate-50">
       <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-6 sm:p-8">
         <div className="flex flex-col gap-4">
@@ -109,6 +116,7 @@ export default function SecondaryGPA() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -8,6 +8,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { useGradePage } from "@/components/useGrade";
 import SubjectIcon from "@/components/SubjectIcon";
 import { useEffect, useState } from "react";
+import Script from "next/script";
 
 export const Subjects: SecSubjectsType = {
     cy: {
@@ -88,6 +89,12 @@ export default function Grade() {
 
     return (
         <>
+        <Script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+                crossOrigin="anonymous"
+                strategy="afterInteractive"
+            />
             <BreadcrumbSchema grade={grade as unknown as Grade} />
             <main className="container mx-auto px-4 py-10">
                 <section className="mx-auto max-w-4xl rounded-2xl border border-black/10 bg-gradient-to-b from-white to-gray-50 p-6 sm:p-8 shadow-lg overflow-hidden">
