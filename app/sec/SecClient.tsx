@@ -39,6 +39,7 @@ export default function Page() {
             />
 
             <main className="container mx-auto px-4 py-8">
+                
                 <section className="mx-auto max-w-3xl rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
                     <BackButton />
 
@@ -81,6 +82,29 @@ export default function Page() {
                             </Link>
                         </div>
                     </section>
+
+                    <Script
+                            id="adsense-script"
+                            async
+                            strategy="afterInteractive"
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+                            crossOrigin="anonymous"
+                          />
+                    
+                          <ins
+                            className="adsbygoogle"
+                            style={{ display: "block" }}
+                            data-ad-client="ca-pub-4968434285942225"
+                            data-ad-slot="3746520262"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"
+                          />
+                    
+                          <Script id="adsense-init" strategy="afterInteractive">
+                            {`
+                              (adsbygoogle = window.adsbygoogle || []).push({});
+                            `}
+                          </Script>
 
                     <section>
                         <div className="my-12 flex items-center gap-4">

@@ -83,6 +83,29 @@ export default function Page() {
                         </div>
                     </section>
 
+                    <Script
+                            id="adsense-script"
+                            async
+                            strategy="afterInteractive"
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+                            crossOrigin="anonymous"
+                          />
+                    
+                          <ins
+                            className="adsbygoogle"
+                            style={{ display: "block" }}
+                            data-ad-client="ca-pub-4968434285942225"
+                            data-ad-slot="3746520262"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"
+                          />
+                    
+                          <Script id="adsense-init" strategy="afterInteractive">
+                            {`
+                              (adsbygoogle = window.adsbygoogle || []).push({});
+                            `}
+                          </Script>
+
                     <section>
                         <div className="my-12 flex items-center gap-4">
                             <div className="h-px flex-1 bg-gray-200" />

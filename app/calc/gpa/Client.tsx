@@ -71,6 +71,7 @@ export default function SecondaryGPA() {
               </div>
             </div>
 
+
             <div className="w-full">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <NumberInput
@@ -100,6 +101,29 @@ export default function SecondaryGPA() {
                   </div>
                   <div className="text-xs text-gray-500">نسبة: أول 20% · ثاني 40% · ثالث 40%</div>
                 </div>
+
+                <Script
+                            id="adsense-script"
+                            async
+                            strategy="afterInteractive"
+                            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
+                            crossOrigin="anonymous"
+                          />
+                    
+                          <ins
+                            className="adsbygoogle"
+                            style={{ display: "block" }}
+                            data-ad-client="ca-pub-4968434285942225"
+                            data-ad-slot="3746520262"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"
+                          />
+                    
+                          <Script id="adsense-init" strategy="afterInteractive">
+                            {`
+                              (adsbygoogle = window.adsbygoogle || []).push({});
+                            `}
+                          </Script>
 
                 <div
                   aria-hidden
