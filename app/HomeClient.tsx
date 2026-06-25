@@ -5,67 +5,87 @@ import Link from 'next/link';
 import { Faq } from "@/components/Faq";
 import Script from "next/script";
 
-const Divider = ({ label }: { label?: string }) => (
-    <div className="my-12 flex items-center gap-4">
-        <div className="h-px flex-1 bg-gray-200" />
-        {label && (
-            <span className="text-sm text-gray-400 whitespace-nowrap">
-                {label}
-            </span>
-        )}
-        <div className="h-px flex-1 bg-gray-200" />
-    </div>
-);
-
 export default function Home() {
-    const [activeFaq, setActiveFaq] = useState<number | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     useEffect(() => {
         document.body.style.overflow = isDialogOpen ? 'hidden' : 'unset';
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
+        return () => { document.body.style.overflow = 'unset'; };
     }, [isDialogOpen]);
 
     const steps = [
-        { number: 1, title: 'اختر مرحلتك الدراسية', description: '' },
-        { number: 2, title: 'أدخل درجات المواد', description: '' },
-        { number: 3, title: 'احصل على المعدل', description: '' }
+        { number: 1, title: 'اختر مرحلتك الدراسية' },
+        { number: 2, title: 'أدخل درجات المواد' },
+        { number: 3, title: 'احصل على المعدل فوراً' },
     ];
 
     const features = [
         {
             icon: (
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M4 4h16v16H4z" stroke="#33365B" strokeWidth="2" rx="2" />
                     <path d="M7 9h10M7 13h6" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
             title: 'مطابق لنظام وزارة التعليم',
-            description: 'يتم حساب المعدل وفق آلية وزارة التعليم في المملكة العربية السعودية، مع دعم أوزان المواد، السلوك، والمواظبة.'
+            description: 'يُحسب المعدل وفق آلية وزارة التعليم مع دعم أوزان المواد والسلوك والمواظبة.',
         },
         {
             icon: (
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M12 4v6" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M6 14h12" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M6 14l-2 4M12 14v4M18 14l2 4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M6 14h12M6 14l-2 4M12 14v4M18 14l2 4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'دعم جميع مسارات المرحلة الثانوية',
-            description: 'يشمل المسار العام، مسار علوم الحاسب والهندسة، المسار الصحي، والمسار الشرعي، مسار ادارة الاعمال.'
+            title: 'جميع مسارات الثانوية',
+            description: 'يشمل المسار العام، علوم الحاسب، الصحي، الشرعي، وإدارة الأعمال.',
         },
         {
             icon: (
-                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <rect x="3" y="5" width="18" height="14" rx="2" stroke="#33365B" strokeWidth="2" />
                     <path d="M8 15l2-2 2 2 4-4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'مشاركة المعدل عبر الصور',
-            description: 'إنشاء صورة تلقائية لنتيجة المعدل قابلة للمشاركة عبر واتساب ووسائل التواصل الاجتماعي.'
-        }
+            title: 'مشاركة النتيجة كصورة',
+            description: 'أنشئ صورة للمعدل وشاركها عبر واتساب ووسائل التواصل.',
+        },
+    ];
+
+    const navCards = [
+        {
+            href: '/mid',
+            label: 'المرحلة المتوسطة',
+            sub: 'حساب المعدل للصف الاول متوسط حتى الثالث متوسط',
+            icon: (
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 5.5C3 4.67 3.67 4 4.5 4H19.5C20.33 4 21 4.67 21 5.5V18.5C21 19.33 20.33 20 19.5 20H4.5C3.67 20 3 19.33 3 18.5V5.5Z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M7 8.5H17M7 11.5H13" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+            ),
+        },
+        {
+            href: '/sec',
+            label: 'المرحلة الثانوية',
+            sub: 'حساب المعدل للصف الاول ثانوي حتى الثالث ثانوي',
+            icon: (
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M16 15c0 .8-.7 1.5-1.5 1.5H9.5C8.7 16.5 8 15.8 8 15v-3" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            ),
+        },
+        {
+            href: '/calc/gpa',
+            label: 'المعدل التراكمي',
+            sub: 'حساب المعدل التراكمي للمرحلة الثانوية كاملة',
+            icon: (
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 4H19C20.1 4 21 4.9 21 6V18C21 19.1 20.1 20 19 20H5C3.9 20 3 19.1 3 18V6C3 4.9 3.9 4 5 4Z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M7 8H17M7 12H11M14 12H17M9 16H15" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+            ),
+        },
     ];
 
     return (
@@ -82,218 +102,111 @@ export default function Home() {
                         "url": "https://mo3dly.github.io",
                         "inLanguage": "ar-SA",
                         "description": "معدلي أول موقع دقيق لحساب المعدل الدراسي لطلاب المرحلتين المتوسطة والثانوية في السعودية وفق نظام وزارة التعليم.",
-                        "mainEntity": {
-                            "@type": "SiteNavigationElement",
-                            "name": "التنقل الرئيسي",
-                            "hasPart": [
-                                {
-                                    "@type": "WebPage",
-                                    "name": "أول متوسط",
-                                    "url": "https://mo3dly.github.io/grades/7"
-                                },
-                                {
-                                    "@type": "WebPage",
-                                    "name": "ثاني متوسط",
-                                    "url": "https://mo3dly.github.io/grades/8"
-                                },
-                                {
-                                    "@type": "WebPage",
-                                    "name": "ثالث متوسط",
-                                    "url": "https://mo3dly.github.io/grades/9"
-                                },
-                                {
-                                    "@type": "WebPage",
-                                    "name": "أول ثانوي",
-                                    "url": "https://mo3dly.github.io/grades/10"
-                                },
-                                {
-                                    "@type": "WebPage",
-                                    "name": "ثاني ثانوي",
-                                    "url": "https://mo3dly.github.io/grades/11"
-                                },
-                                {
-                                    "@type": "WebPage",
-                                    "name": "ثالث ثانوي",
-                                    "url": "https://mo3dly.github.io/grades/12"
-                                }
-                            ]
-                        }
-
-
                     }),
                 }}
             />
-
             <Script
                 async
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
                 crossOrigin="anonymous"
                 strategy="afterInteractive"
             />
-            
-            <main className="mx-auto max-w-5xl px-4 md:px-6 py-8" style={{ backgroundColor: '#ffffff', color: '#2c3e50' }}>
-                <section className="mb-12 px-2">
-                    <div className="max-w-2xl mx-auto">
-                        <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center" style={{ border: '1px solid #e5e7eb' }}>
-                            <div className="mb-6">
-                                <h2 className="text-xl md:text-2xl font-bold mb-3" style={{ color: '#33365B' }}>
-                                    احسب معدلك الدراسي بدقة مع حاسبة معدلي
-                                </h2>
-                                <p className="text-base md:text-lg mb-6" style={{ color: '#6c757d' }}>
-                                    اختر مرحلتك فقط، ودع حاسبة معدلي تحسب لك معدلك الدراسي بدقة للمرحلتين المتوسطة والثانوية حسب نظام وزارة التعليم في السعودية.
-                                </p>
+
+            <main className="mx-auto max-w-2xl px-4 py-8" dir="rtl">
+
+                {/* ── Hero ── */}
+                <section className="mb-10 text-center">
+                    <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-snug">
+                        احسب معدلك الدراسي بدقة
+                    </h1>
+                    <p className="mt-2 text-sm text-gray-500 max-w-sm mx-auto leading-relaxed">
+                        اختر مرحلتك فقط — حاسبة معدلي تحسب لك المعدل وفق نظام وزارة التعليم في السعودية
+                    </p>
+                </section>
+
+                {/* ── Nav Cards ── */}
+                <section className="mb-10 flex flex-col gap-3">
+                    {navCards.map((card) => (
+                        <Link
+                            key={card.href}
+                            href={card.href}
+                            className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                        >
+                            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#33365B]/6">
+                                {card.icon}
                             </div>
-                            <div className="flex flex-col items-center gap-4">
-                                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                    <Link
-                                        href="/mid"
-                                        aria-label="المرحلة المتوسطة"
-                                        title="المرحلة المتوسطة"
-                                        className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"
-                                    >
-                                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                                            <path d="M3 5.5C3 4.67 3.67 4 4.5 4H19.5C20.33 4 21 4.67 21 5.5V18.5C21 19.33 20.33 20 19.5 20H4.5C3.67 20 3 19.33 3 18.5V5.5Z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M7 8.5H17" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
-                                            <path d="M7 11.5H13" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
-                                            <path d="M14.5 14.5l4-4" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M18 13l1 1l-1 1l-1-1 1-1z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
+                            <div className="flex-1 text-right min-w-0">
+                                <p className="text-sm font-semibold text-gray-900">{card.label}</p>
+                                <p className="text-xs text-gray-400 mt-0.5">{card.sub}</p>
+                            </div>
+                            <svg className="w-4 h-4 text-gray-300 flex-shrink-0 rotate-180" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </Link>
+                    ))}
+                </section>
 
-                                        <span>المرحلة المتوسطة</span>
-                                    </Link>
+                {/* ── Ad ── */}
+                <div className="mb-10 overflow-hidden rounded-xl">
+                    <ins
+                        className="adsbygoogle"
+                        style={{ display: "block" }}
+                        data-ad-client="ca-pub-4968434285942225"
+                        data-ad-slot="8269633566"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"
+                    />
+                    <Script id="adsense-home" strategy="afterInteractive">
+                        {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+                    </Script>
+                </div>
 
-                                    <Link
-                                        href="/sec"
-                                        aria-label="المرحلة الثانوية"
-                                        title="المرحلة الثانوية"
-                                        className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"
-                                    >
-                                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                                            <path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M12 8v5" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
-                                            <path d="M12 13l2 2" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
-                                            <path d="M16 15c0 .8-.7 1.5-1.5 1.5H9.5C8.7 16.5 8 15.8 8 15v-1.5" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                            <circle cx="17.5" cy="16.5" r="0.9" stroke="#33365B" strokeWidth="1.2" />
-                                        </svg>
-
-                                        <span>المرحلة الثانوية</span>
-                                    </Link>
+                {/* ── How it works ── */}
+                <section className="mb-10">
+                    <h2 className="text-lg font-bold text-gray-900 text-center mb-5">
+                        كيف يعمل الموقع؟
+                    </h2>
+                    <div className="flex flex-col gap-3">
+                        {steps.map((step, i) => (
+                            <div key={step.number} className="flex items-center gap-4 rounded-xl border border-gray-100 bg-white px-5 py-4">
+                                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#33365B] text-white text-sm font-bold">
+                                    {step.number}
                                 </div>
-                                <Link
-    href="/calc/gpa"
-    aria-label="حساب المعدل التراكمي"
-    title="حساب المعدل التراكمي"
-    className="w-full sm:w-56 inline-flex items-center justify-center gap-3 px-6 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transform transition duration-200 hover:-translate-y-1 text-sm font-semibold text-gray-800"
->
-    <svg
-        className="w-6 h-6"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden
-    >
-        <path
-            d="M5 4H19C20.1 4 21 4.9 21 6V18C21 19.1 20.1 20 19 20H5C3.9 20 3 19.1 3 18V6C3 4.9 3.9 4 5 4Z"
-            stroke="#33365B"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        />
-        <path
-            d="M7 8H17"
-            stroke="#33365B"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-        />
-        <path
-            d="M7 12H11"
-            stroke="#33365B"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-        />
-        <path
-            d="M14 12H17"
-            stroke="#33365B"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-        />
-        <path
-            d="M9 16H15"
-            stroke="#33365B"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-        />
-    </svg>
-
-    <span>حساب المعدل التراكمي</span>
-</Link>
+                                <p className="text-sm font-medium text-gray-800">{step.title}</p>
+                                {i < steps.length - 1 && (
+                                    <div className="flex-1" />
+                                )}
                             </div>
-
-                        </div>
+                        ))}
                     </div>
                 </section>
 
-                <section className="mb-12 px-2">
-                    <h2 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: '#33365B' }}>
-                        كيف يعمل موقع معدلي؟
+                {/* ── Features ── */}
+                <section className="mb-10">
+                    <h2 className="text-lg font-bold text-gray-900 text-center mb-5">
+                        مميزات معدلي
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {steps.map((step) => (
-                            <div key={step.number} className="relative">
-                                <div className="bg-white rounded-xl p-6 text-center h-full" style={{ border: '1px solid #e5e7eb' }}>
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-lg font-bold" style={{ backgroundColor: '#33365B' }}>
-                                        {step.number}
-                                    </div>
-                                    <h3 className="text-lg font-semibold mb-2" style={{ color: '#33365B' }}>
-                                        {step.title}
-                                    </h3>
-                                    <p style={{ color: '#6c757d' }}>
-                                        {step.description}
-                                    </p>
+                    <div className="flex flex-col gap-3">
+                        {features.map((f, i) => (
+                            <div key={i} className="flex items-start gap-4 rounded-xl border border-gray-100 bg-white px-5 py-4">
+                                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#33365B]/6">
+                                    {f.icon}
+                                </div>
+                                <div className="text-right min-w-0">
+                                    <p className="text-sm font-semibold text-gray-900">{f.title}</p>
+                                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">{f.description}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </section>
 
-                <section className="mb-12 px-2">
-                    <h2
-                        className="text-xl md:text-2xl font-bold text-center mb-8"
-                        style={{ color: "#33365B" }}
-                    >
-                        مميزات موقع معدلي
+                {/* ── FAQ ── */}
+                <section className="mb-10">
+                    <h2 className="text-lg font-bold text-gray-900 text-center mb-5">
+                        الأسئلة الشائعة
                     </h2>
-
-                    <div className="flex justify-center">
-                        <div className="inline-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-                            {features.map((feature, index) => (
-                                <div
-                                    key={index}
-                                    className="bg-white rounded-xl p-5 text-center hover:shadow-lg transition-shadow duration-300 w-64"
-                                    style={{ border: "1px solid #e5e7eb" }}
-                                >
-                                    <div className="flex justify-center mb-3">
-                                        {feature.icon}
-                                    </div>
-
-                                    <h3 className="text-lg font-semibold mb-2" style={{ color: "#33365B" }}>
-                                        {feature.title}
-                                    </h3>
-
-                                    <p className="text-sm" style={{ color: "#6c757d" }}>
-                                        {feature.description}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                <section className="mb-12 px-2">
-                    <div className="bg-white rounded-2xl shadow p-6 md:p-8" style={{ border: "1px solid #e5e7eb" }}>
-                        <h2 className="text-xl md:text-2xl font-bold text-center mb-8" style={{ color: "#33365B" }}>
-                            الأسئلة الشائعة
-                        </h2>
+                    <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
                         <Faq>
                             <Faq.Item index={0}>
                                 {(open, toggle) => (
@@ -314,13 +227,11 @@ export default function Home() {
                                             كيف يتم حساب المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            يقوم موقع حاسبة معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة
-                                            على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم.
+                                            يقوم موقع حاسبة معدلي بحساب المعدل بقسمة مجموع الدرجات الموزونة على إجمالي الحصص وفق النظام المعتمد من وزارة التعليم.
                                         </Faq.Answer>
                                     </>
                                 )}
                             </Faq.Item>
-
                             <Faq.Item index={2}>
                                 {(open, toggle) => (
                                     <>
@@ -328,14 +239,11 @@ export default function Home() {
                                             هل يدعم الموقع جميع مسارات المرحلة الثانوية؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            نعم، يدعم موقع حاسبة معدلي مسارات الثانوية الخمس جميعها
-                                            (المسار العام، الصحة والحياة، علوم الحاسب والهندسة،
-                                            إدارة الأعمال، المسار الشرعي).
+                                            نعم، يدعم موقع حاسبة معدلي مسارات الثانوية الخمس جميعها (المسار العام، الصحة والحياة، علوم الحاسب والهندسة، إدارة الأعمال، المسار الشرعي).
                                         </Faq.Answer>
                                     </>
                                 )}
                             </Faq.Item>
-
                             <Faq.Item index={3}>
                                 {(open, toggle) => (
                                     <>
@@ -343,39 +251,15 @@ export default function Home() {
                                             هل يتم احتساب مادة المواظبة ضمن المعدل؟
                                         </Faq.Question>
                                         <Faq.Answer isOpen={open}>
-                                            نعم، يتم احتساب مادة المواظبة ضمن المعدل حسب الإجراءات التنفيذية للائحة تقويم الطالب المعتمدة من وزارة التعليم، ويكون وزنها (نصابها) خمس حصص أسبوعية.
+                                            نعم، يتم احتساب مادة المواظبة ضمن المعدل حسب الإجراءات التنفيذية للائحة تقويم الطالب المعتمدة من وزارة التعليم، ويكون وزنها خمس حصص أسبوعية.
                                         </Faq.Answer>
-
                                     </>
                                 )}
                             </Faq.Item>
                         </Faq>
                     </div>
                 </section>
-                <style jsx global>{`
-          body {
-            background-color: #ffffff;
-            color: #2c3e50;
-          }
 
-          ::-webkit-scrollbar {
-            width: 8px;
-          }
-
-          ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-          }
-
-          ::-webkit-scrollbar-thumb {
-            background: #33365B;
-            border-radius: 4px;
-          }
-
-          ::-webkit-scrollbar-thumb:hover {
-            background: #2a2d4a;
-          }
-        `}</style>
             </main>
         </>
     );

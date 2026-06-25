@@ -31,6 +31,9 @@ export function getGradeLevelLabel(level: number | string | null | undefined) {
     if (level === 7 || String(level) === "7") return "الصف الأول متوسط";
     if (level === 8 || String(level) === "8") return "الصف الثاني متوسط";
     if (level === 9 || String(level) === "9") return "الصف الثالث متوسط";
+    if (level === 10 || String(level) === "10") return "الصف الأول ثانوي";
+    if (level === 11 || String(level) === "11") return "الصف الثاني ثانوي";
+    if (level === 12 || String(level) === "12") return "الصف الثالث ثانوي";
     return level ? `الصف ${level}` : "";
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 type BackButtonProps = {
   fallback?: string;
@@ -12,43 +12,28 @@ export default function BackButton({
   variant = "top",
 }: BackButtonProps) {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleBack = () => {
-    try {
-      const ref = typeof document !== "undefined" ? document.referrer : "";
-      const origin = typeof window !== "undefined" ? window.location.origin : "";
-
-      if (ref && ref.startsWith(origin)) {
-        const pathname = new URL(ref).pathname.replace(/\/+$/, "");
-
-        if (pathname === "/mid" || pathname === "/sec" || pathname === "/faq") {
-          router.push("/");
-          return;
-        }
-
-        const gradesMatch = pathname.match(/^\/grades\/(\d+)(?:\/|$)/);
-        if (gradesMatch) {
-          const gradeNum = Number(gradesMatch[1]);
-
-          if ([7, 8, 9].includes(gradeNum)) {
-            router.push("/mid");
-            return;
-          }
-
-          if ([10, 11, 12].includes(gradeNum)) {
-            router.push("/sec");
-            return;
-          }
-        }
-
-        router.push("/");
+    const gradesMatch = pathname?.match(/^\/grades\/(\d+)(?:\/|$)/);
+    if (gradesMatch) {
+      const gradeNum = Number(gradesMatch[1]);
+      if ([7, 8, 9].includes(gradeNum)) {
+        router.push("/mid");
         return;
       }
-
-      router.push("/");
-    } catch {
-      router.push(fallback);
+      if ([10, 11, 12].includes(gradeNum)) {
+        router.push("/sec");
+        return;
+      }
     }
+
+    if (pathname === "/mid" || pathname === "/sec" || pathname === "/faq" || pathname?.startsWith("/calc")) {
+      router.push("/");
+      return;
+    }
+
+    router.push(fallback);
   };
 
   if (variant === "top") {
