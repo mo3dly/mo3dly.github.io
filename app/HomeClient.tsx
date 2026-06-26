@@ -86,6 +86,16 @@ export default function Home() {
                 </svg>
             ),
         },
+        {
+            href: '/calc/weighted',
+            label: 'النسبة الموزونة',
+            sub: 'حساب النسبة الموزونة المطلوبة للقبول الجامعي مع دعم لاختبار ستيب',
+            icon: (
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L9 9H2l5.5 4-2 7L12 16l6.5 4-2-7L22 9h-7L12 2z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            ),
+        },
     ];
 
     return (
