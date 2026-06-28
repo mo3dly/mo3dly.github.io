@@ -122,16 +122,18 @@ export default function SecondaryGPA() {
             </p>
           )}
 
-          <div className="flex justify-center mb-6">
+          <div className="mb-10 overflow-hidden rounded-xl">
             <ins
               className="adsbygoogle"
-              style={{ display: "inline-block", width: "300px", height: "100px" }}
+              style={{ display: "block" }}
               data-ad-client="ca-pub-4968434285942225"
-              data-ad-slot="6516165822"
-            />
-            <Script id="adsense-init" strategy="afterInteractive">
-              {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-            </Script>
+              data-ad-slot="8269633566"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+              />
+              <Script id="adsense-home" strategy="afterInteractive">
+                  {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+              </Script>
           </div>
 
           {/* ── Progress bar ── */}

@@ -70,14 +70,16 @@ export default function Page() {
                     </div>
 
                     {/* ── Ad ── */}
-                    <div className="flex justify-center mb-8">
+                    <div className="mb-10 overflow-hidden rounded-xl">
                         <ins
-                            className="adsbygoogle"
-                            style={{ display: "inline-block", width: "300px", height: "250px" }}
-                            data-ad-client="ca-pub-4968434285942225"
-                            data-ad-slot="8269633566"
+                        className="adsbygoogle"
+                        style={{ display: "block" }}
+                        data-ad-client="ca-pub-4968434285942225"
+                        data-ad-slot="8269633566"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"
                         />
-                        <Script id="adsense-init" strategy="afterInteractive">
+                        <Script id="adsense-home" strategy="afterInteractive">
                             {`(adsbygoogle = window.adsbygoogle || []).push({});`}
                         </Script>
                     </div>
