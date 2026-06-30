@@ -156,20 +156,6 @@ export default function Home() {
                     ))}
                 </section>
 
-                {/* ── Ad ── */}
-                <div className="mb-10 w-full max-w-full overflow-hidden rounded-xl">
-    <ins
-        className="adsbygoogle"
-        style={{ display: "block", width: "100%" }}
-        data-ad-client="ca-pub-4968434285942225"
-        data-ad-slot="8269633566"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-    />
-    ...
-</div>
-
-
                 {/* ── How it works ── */}
                 <section className="mb-10">
                     <h2 className="text-lg font-bold text-gray-900 text-center mb-5">
