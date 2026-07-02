@@ -69,21 +69,6 @@ export default function Page() {
                         ))}
                     </div>
 
-                    {/* ── Ad ── */}
-                    <div className="mb-10 overflow-hidden rounded-xl">
-                        <ins
-                        className="adsbygoogle"
-                        style={{ display: "block" }}
-                        data-ad-client="ca-pub-4968434285942225"
-                        data-ad-slot="8269633566"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"
-                        />
-                        <Script id="adsense-home" strategy="afterInteractive">
-                            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-                        </Script>
-                    </div>
-
                     {/* ── FAQ ── */}
                     <div className="border-t border-gray-100 pt-8">
                         <h2 className="text-base font-bold text-gray-900 text-center mb-5">الأسئلة الشائعة</h2>
