@@ -16,6 +16,8 @@ export default function Header() {
     " bg-white/60 border border-black/5 text-[var(--text)] hover:shadow hover:bg-white transition-shadow";
   const cardLink =
     "flex rtl-flex items-center justify-between w-full p-3 rounded-xl bg-white/60 border border-black/5 hover:shadow-md transition-shadow text-right";
+  const calcCardLink =
+    "flex rtl-flex items-center justify-between w-full p-3 rounded-xl bg-[var(--primary)]/5 border border-[var(--primary)]/15 hover:shadow-md transition-shadow text-right";
 
   return (
     <>
@@ -114,14 +116,27 @@ export default function Header() {
             </div>
 
             <div className="grid gap-2">
-              <Link href="/grades/10" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
-                <span>اول ثانوي</span>
+              <Link href="/grades/10" onClick={() => setOpen(false)} className={cardLink}>
+                اول ثانوي
               </Link>
-              <Link href="/grades/11" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
-                <span>ثاني ثانوي</span>
+              <Link href="/grades/11" onClick={() => setOpen(false)} className={cardLink}>
+                ثاني ثانوي
               </Link>
-              <Link href="/grades/12" onClick={() => setOpen(false)} className={`${cardLink} flex justify-between`}>
-                <span>ثالث ثانوي</span>
+              <Link href="/grades/12" onClick={() => setOpen(false)} className={cardLink}>
+                ثالث ثانوي
+              </Link>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <span className="font-semibold">القبول الجامعي</span>
+
+            <div className="grid gap-2">
+              <Link href="/calc/weighted" onClick={() => setOpen(false)} className={calcCardLink}>
+                حساب النسبة الموزونة
+              </Link>
+              <Link href="/calc/gpa" onClick={() => setOpen(false)} className={calcCardLink}>
+                حساب المعدل التراكمي
               </Link>
             </div>
           </div>
