@@ -15,9 +15,14 @@
   --color-foreground: var(--foreground);
 }
 
-html, body {
+html, body, #__next {
   overflow-x: hidden;
   width: 100%;
+  position: relative;
+}
+
+ins.adsbygoogle, ins.adsbygoogle iframe {
+  max-width: 100vw !important;
 }
 
 body {
