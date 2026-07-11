@@ -16,8 +16,6 @@ export default function Header() {
     " bg-white/60 border border-black/5 text-[var(--text)] hover:shadow hover:bg-white transition-shadow";
   const cardLink =
     "flex rtl-flex items-center justify-between w-full p-3 rounded-xl bg-white/60 border border-black/5 hover:shadow-md transition-shadow text-right";
-  const calcCardLink =
-    "flex rtl-flex items-center justify-between w-full p-3 rounded-xl bg-[var(--primary)]/5 border border-[var(--primary)]/15 hover:shadow-md transition-shadow text-right";
 
   return (
     <>
@@ -132,10 +130,10 @@ export default function Header() {
             <span className="font-semibold">القبول الجامعي</span>
 
             <div className="grid gap-2">
-              <Link href="/calc/weighted" onClick={() => setOpen(false)} className={calcCardLink}>
+              <Link href="/calc/weighted" onClick={() => setOpen(false)} className={cardLink}>
                 حساب النسبة الموزونة
               </Link>
-              <Link href="/calc/gpa" onClick={() => setOpen(false)} className={calcCardLink}>
+              <Link href="/calc/gpa" onClick={() => setOpen(false)} className={cardLink}>
                 حساب المعدل التراكمي
               </Link>
             </div>
