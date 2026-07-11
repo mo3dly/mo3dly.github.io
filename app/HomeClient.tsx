@@ -114,7 +114,7 @@ export default function Home() {
                 strategy="afterInteractive"
             />
 
-            <main className="mx-auto max-w-2xl px-4 py-8" dir="rtl">
+            <main className="w-full overflow-x-hidden px-3 sm:px-4 py-8" dir="rtl">
 
                 {/* ── Hero ── */}
                 <section className="mb-8 text-center">
