@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
 import BackButton from "@/components/BackButton";
 import Script from "next/script";
+import AdUnit from "@/components/AdUnit";
 
 type ScoreField = {
     id: string;
@@ -244,20 +245,7 @@ function WeightedScoreContent() {
                                     </button>
                                 </div>
                             </div>
-
-                            <div className="flex justify-center mt-8">
-                                <ins
-                                    className="adsbygoogle"
-                                    style={{ display: "block" }}
-                                    data-ad-client="ca-pub-4968434285942225"
-                                    data-ad-slot="3746520262"
-                                    data-ad-format="auto"
-                                    data-full-width-responsive="true"
-                                />
-                                <Script id="adsense-result" strategy="afterInteractive">
-                                    {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-                                </Script>
-                            </div>
+                            <AdUnit slot="3746520262" />
                         </div>
                     ) : (
                         <div className="animate-in fade-in duration-300">
