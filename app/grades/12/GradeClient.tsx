@@ -243,7 +243,7 @@ export default function Grade() {
             <BreadcrumbSchema grade={grade as unknown as Grade} />
 
             <main className="container mx-auto px-4 py-8 pb-36" dir="rtl">
-                <section className="mx-auto max-w-4xl rounded-2xl border border-black/10 bg-gradient-to-b from-white to-gray-50 p-5 sm:p-8 shadow-lg overflow-hidden">
+                <section className="mx-auto max-w-4xl rounded-2xl border border-black/10 bg-gradient-to-b from-white to-gray-50 p-5 sm:p-8 shadow-lg">
                     <BackButton />
 
                     {/* ── Header ── */}
