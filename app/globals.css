@@ -21,10 +21,6 @@ html, body, #__next {
   position: relative;
 }
 
-ins.adsbygoogle, ins.adsbygoogle iframe {
-  max-width: 100vw !important;
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
