@@ -402,18 +402,6 @@ function WeightedScoreContent() {
                         </div>
                     )}
 
-                    <div className="flex justify-center mt-8">
-                        <ins
-                            className="adsbygoogle"
-                            style={{ display: "inline-block", width: "300px", height: "250px" }}
-                            data-ad-client="ca-pub-4968434285942225"
-                            data-ad-slot="8269633566"
-                        />
-                        <Script id="adsense-bottom" strategy="afterInteractive">
-                            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-                        </Script>
-                    </div>
-
                 </section>
             </main>
         </>
