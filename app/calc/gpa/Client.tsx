@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
 import BackButton from "@/components/BackButton";
 import Script from "next/script";
+import AdUnit from "@/components/AdUnit";
 
 function normalizeNumberInput(raw: string): number {
   if (!raw) return NaN;
@@ -137,6 +138,7 @@ export default function SecondaryGPA() {
               />
             </div>
           </div>
+          <AdUnit slot="3746520262" />
         </section>
       </main>
     </>
