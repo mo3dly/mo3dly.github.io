@@ -36,7 +36,7 @@ export default function AdUnit({
     }, []);
 
     return (
-        <div className={`w-full max-w-full overflow-hidden ${className}`} style={{ minWidth: 0 }}>
+        <div className={`w-full max-w-full ${className}`} style={{ minWidth: 0 }}>
             <ins
                 ref={insRef}
                 className="adsbygoogle"
