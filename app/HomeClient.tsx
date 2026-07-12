@@ -16,30 +16,33 @@ export default function Home() {
     const features = [
         {
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M4 4h16v16H4z" stroke="#33365B" strokeWidth="2" rx="2" />
                     <path d="M7 9h10M7 13h6" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'مطابق لنظام وزارة التعليم',
+            title: 'مطابق لنظام التعليم',
+            description: 'يُحسب المعدل وفق آلية وزارة التعليم مع أوزان المواد والسلوك والمواظبة.',
         },
         {
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M12 4v6" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                     <path d="M6 14h12M6 14l-2 4M12 14v4M18 14l2 4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'يشمل جميع مسارات الثانوية',
+            title: 'جميع مسارات الثانوية',
+            description: 'العام، الصحي، الحاسب، الشرعي، وإدارة الأعمال كاملة.',
         },
         {
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <rect x="3" y="5" width="18" height="14" rx="2" stroke="#33365B" strokeWidth="2" />
                     <path d="M8 15l2-2 2 2 4-4" stroke="#33365B" strokeWidth="2" strokeLinecap="round" />
                 </svg>
             ),
-            title: 'مشاركة النتيجة كصورة',
+            title: 'مشاركة سريعة',
+            description: 'احفظ نتيجتك صورة وشاركها عبر واتساب والتواصل.',
         },
     ];
 
@@ -47,9 +50,9 @@ export default function Home() {
         {
             href: '/mid',
             label: 'المرحلة المتوسطة',
-            sub: 'الصف الأول متوسط حتى الثالث متوسط',
+            sub: 'الصف الأول حتى الثالث متوسط',
             icon: (
-                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M3 5.5C3 4.67 3.67 4 4.5 4H19.5C20.33 4 21 4.67 21 5.5V18.5C21 19.33 20.33 20 19.5 20H4.5C3.67 20 3 19.33 3 18.5V5.5Z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M7 8.5H17M7 11.5H13" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
@@ -58,9 +61,9 @@ export default function Home() {
         {
             href: '/sec',
             label: 'المرحلة الثانوية',
-            sub: 'الصف الأول ثانوي حتى الثالث ثانوي',
+            sub: 'الصف الأول حتى الثالث ثانوي',
             icon: (
-                <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M16 15c0 .8-.7 1.5-1.5 1.5H9.5C8.7 16.5 8 15.8 8 15v-3" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -72,8 +75,9 @@ export default function Home() {
         {
             href: '/calc/gpa',
             label: 'المعدل التراكمي',
+            description: 'احسب معدلك التراكمي للمرحلة الثانوية كاملة',
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M5 4H19C20.1 4 21 4.9 21 6V18C21 19.1 20.1 20 19 20H5C3.9 20 3 19.1 3 18V6C3 4.9 3.9 4 5 4Z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M7 8H17M7 12H11M14 12H17M9 16H15" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
@@ -82,8 +86,9 @@ export default function Home() {
         {
             href: '/calc/weighted',
             label: 'النسبة الموزونة',
+            description: 'احسب نسبتك الموزونة للقبول الجامعي',
             icon: (
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
                     <path d="M12 2L9 9H2l5.5 4-2 7L12 16l6.5 4-2-7L22 9h-7L12 2z" stroke="#33365B" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
             ),
@@ -114,70 +119,103 @@ export default function Home() {
                 strategy="afterInteractive"
             />
 
-            <main className="w-full overflow-x-hidden px-3 sm:px-4 py-8" dir="rtl">
+            <main className="w-full overflow-x-hidden px-3 sm:px-4 py-6 sm:py-10" dir="rtl">
 
-                {/* ── Hero ── */}
-                <section className="mb-8 text-center">
-                    <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-snug">
-                        احسب معدلك الدراسي بدقة
-                    </h1>
-                    <p className="mt-2 text-sm text-gray-500 max-w-sm mx-auto leading-relaxed">
-                        اختر مرحلتك، أدخل درجاتك، واحصل على معدلك فوراً وفق نظام وزارة التعليم
-                    </p>
-                </section>
-
-                {/* ── Stage Cards ── */}
-                <section className="mb-4 grid grid-cols-2 gap-3">
-                    {stageCards.map((card) => (
-                        <Link
-                            key={card.href}
-                            href={card.href}
-                            className="flex flex-col items-center text-center gap-2 rounded-2xl border border-gray-200 bg-white px-4 py-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                        >
-                            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#33365B]/6">
-                                {card.icon}
-                            </div>
-                            <p className="text-sm font-bold text-gray-900">{card.label}</p>
-                            <p className="text-xs text-gray-400 leading-relaxed">{card.sub}</p>
-                        </Link>
-                    ))}
-                </section>
-
-                {/* ── Calc Cards ── */}
-                <section className="mb-10 grid grid-cols-2 gap-3">
-                    {calcCards.map((card) => (
-                        <Link
-                            key={card.href}
-                            href={card.href}
-                            className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white px-4 py-3 hover:shadow-sm transition-shadow duration-200"
-                        >
-                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[#33365B]/6">
-                                {card.icon}
-                            </div>
-                            <p className="text-xs font-semibold text-gray-800">{card.label}</p>
-                        </Link>
-                    ))}
-                </section>
-
-                {/* ── Features ── */}
-                <section className="mb-10">
-                    <div className="rounded-2xl border border-gray-200 bg-white px-5 py-4 flex flex-col gap-3">
-                        {features.map((f, i) => (
-                            <div key={i} className="flex items-center gap-3">
-                                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[#33365B]/6">
-                                    {f.icon}
-                                </div>
-                                <p className="text-xs font-medium text-gray-700">{f.title}</p>
-                            </div>
-                        ))}
+                {/* ── Hero Section ── */}
+                <section className="mb-12 text-center max-w-3xl mx-auto">
+                    <div className="mb-6">
+                        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-3">
+                            احسب معدلك بدقة
+                        </h1>
+                        <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                            موقع دقيق لحساب المعدل الدراسي وفق نظام وزارة التعليم، مع دعم حسابات القبول الجامعي
+                        </p>
                     </div>
                 </section>
 
-                {/* ── FAQ ── */}
-                <section className="mb-10">
-                    <h2 className="text-lg font-bold text-gray-900 text-center mb-5">
-                        الأسئلة الشائعة
-                    </h2>
+                {/* ── GPA Calculator Tools Section ── */}
+                <section className="mb-12">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="mb-5">
+                            <h2 className="text-lg font-bold text-gray-900">أداة حساب المعدل</h2>
+                            <p className="text-sm text-gray-500 mt-1">اختر مرحلتك الدراسية وابدأ حساب معدلك</p>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {stageCards.map((card) => (
+                                <Link
+                                    key={card.href}
+                                    href={card.href}
+                                    className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:shadow-md transition-all duration-200"
+                                >
+                                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#33365B]/6 group-hover:bg-[#33365B]/10 transition-colors">
+                                        {card.icon}
+                                    </div>
+                                    <div className="text-right flex-1 min-w-0">
+                                        <p className="text-sm font-semibold text-gray-900">{card.label}</p>
+                                        <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{card.sub}</p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── College Admission Tools Section ── */}
+                <section className="mb-12">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="mb-5">
+                            <h2 className="text-lg font-bold text-gray-900">أدوات القبول الجامعي</h2>
+                            <p className="text-sm text-gray-500 mt-1">حسابات إضافية لمساعدتك في رحلة القبول الجامعي</p>
+                        </div>
+                        <div className="rounded-2xl border border-[#33365B]/20 bg-gradient-to-br from-[#33365B]/5 to-white p-6 sm:p-8">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {calcCards.map((card) => (
+                                    <Link
+                                        key={card.href}
+                                        href={card.href}
+                                        className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:shadow-md transition-all duration-200"
+                                    >
+                                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#33365B]/6 group-hover:bg-[#33365B]/10 transition-colors">
+                                            {card.icon}
+                                        </div>
+                                        <div className="text-right flex-1 min-w-0">
+                                            <p className="text-sm font-semibold text-gray-900">{card.label}</p>
+                                            <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">{card.description}</p>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── Features Section ── */}
+                <section className="mb-12">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="mb-6 text-center">
+                            <h2 className="text-lg font-bold text-gray-900">لماذا معدلي؟</h2>
+                            <p className="text-sm text-gray-500 mt-1">المميزات التي تجعل موقعنا الخيار الأفضل</p>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            {features.map((f, i) => (
+                                <div key={i} className="rounded-xl border border-gray-200 bg-white p-6 text-center hover:shadow-md transition-shadow">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#33365B]/6 mx-auto mb-4">
+                                        {f.icon}
+                                    </div>
+                                    <p className="font-semibold text-gray-900 text-sm mb-2">{f.title}</p>
+                                    <p className="text-xs text-gray-500 leading-relaxed">{f.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── FAQ Section ── */}
+                <section className="mb-8 max-w-2xl mx-auto">
+                    <div className="mb-6 text-center">
+                        <h2 className="text-lg font-bold text-gray-900">الأسئلة الشائعة</h2>
+                        <p className="text-sm text-gray-500 mt-1">إجابات على أكثر الأسئلة التي تصلنا</p>
+                    </div>
                     <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
                         <Faq>
                             <Faq.Item index={0}>
