@@ -25,7 +25,8 @@ export default function AdUnit({
     const pushed = useRef(false);
 
     useEffect(() => {
-        if (pushed.current) return;
+        if (pushed.current || !insRef.current) return;
+        if (insRef.current.offsetWidth === 0) return;
         try {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
             pushed.current = true;
@@ -35,11 +36,11 @@ export default function AdUnit({
     }, []);
 
     return (
-        <div className={`w-full overflow-hidden ${className}`}>
+        <div className={`w-full max-w-full overflow-hidden ${className}`} style={{ minWidth: 0 }}>
             <ins
                 ref={insRef}
                 className="adsbygoogle"
-                style={{ display: "block" }}
+                style={{ display: "block", width: "100%" }}
                 data-ad-client="ca-pub-4968434285942225"
                 data-ad-slot={slot}
                 data-ad-format={format}
@@ -48,4 +49,3 @@ export default function AdUnit({
         </div>
     );
 }
-
