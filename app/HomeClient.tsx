@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Faq } from "@/components/Faq";
 import Script from "next/script";
+import Image from "next/image";
 
 export default function Home() {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -93,6 +94,19 @@ export default function Home() {
                 </svg>
             ),
         },
+        {
+            href: '/calc/kfupm-weighted',
+            label: 'النسبة الموزونة',
+            description: 'احسب نسبتك الموزونة للقبول في جامعة الملك فهد للبترول والمعادن للمساري المبكر والالحاقي',
+            icon: (
+                <Image
+                src="/icons/kfupm.svg"
+                alt="KFUPM"
+                width={50}
+                height={50}
+                />
+            ),
+        },
     ];
 
     return (
@@ -167,7 +181,6 @@ export default function Home() {
                             <h2 className="text-lg font-bold text-gray-900">أدوات القبول الجامعي</h2>
                             <p className="text-sm text-gray-500 mt-1">حسابات إضافية لمساعدتك في رحلة القبول الجامعي</p>
                         </div>
-                        <div className="rounded-2xl border border-[#33365B]/20 bg-gradient-to-br from-[#33365B]/5 to-white p-6 sm:p-8">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 {calcCards.map((card) => (
                                     <Link
@@ -185,7 +198,6 @@ export default function Home() {
                                     </Link>
                                 ))}
                             </div>
-                        </div>
                     </div>
                 </section>
 
