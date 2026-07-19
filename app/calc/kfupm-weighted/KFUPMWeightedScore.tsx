@@ -7,7 +7,7 @@ import DrawrProgressbar from "@/components/DrawrProgressbar";
 type Track = "early" | "transfer";
 
 const DATA_SOURCE = "اجتهاد طلابي";
-const AD_INTERVAL = 6;
+const AD_INTERVAL = 8;
 const MAX_ADS = 3;
 
 interface Major {
