@@ -7,6 +7,8 @@ import DrawrProgressbar from "@/components/DrawrProgressbar";
 type Track = "early" | "transfer";
 
 const DATA_SOURCE = "اجتهاد طلابي";
+const AD_INTERVAL = 6;
+const MAX_ADS = 3;
 
 interface Major {
     name: string;
@@ -123,15 +125,24 @@ export default function KFUPMWeightedScore() {
     }, [result, track]);
 
     const scoreKey = track === "early" ? "earlyMinScore" : "transferMinScore";
-    const middleIndex = Math.floor(nearestMajors.length / 2);
+
+    const adIndices = useMemo(() => {
+        const indices: number[] = [];
+        for (let i = AD_INTERVAL - 1; i < nearestMajors.length && indices.length < MAX_ADS; i += AD_INTERVAL) {
+            indices.push(i);
+        }
+        return indices;
+    }, [nearestMajors]);
 
     useEffect(() => {
         if (result === null) return;
         try {
-            // @ts-ignore
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            adIndices.forEach(() => {
+                // @ts-ignore
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            });
         } catch (e) {}
-    }, [result]);
+    }, [result, adIndices]);
 
     return (
         <main dir="rtl" className="w-full overflow-x-hidden bg-gray-50 min-h-screen py-6 sm:py-10 px-3 sm:px-4">
@@ -339,8 +350,9 @@ export default function KFUPMWeightedScore() {
                                             </div>
                                             <span className="text-sm font-bold text-[#33365B] shrink-0">{minScore}%</span>
                                         </div>
-                                        {index === middleIndex && (
+                                        {adIndices.includes(index) && (
                                             <ins
+                                                key={`ad-${index}`}
                                                 className="adsbygoogle"
                                                 style={{ display: "block" }}
                                                 data-ad-format="fluid"
