@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
 
@@ -119,10 +119,19 @@ export default function KFUPMWeightedScore() {
         const key = track === "early" ? "earlyMinScore" : "transferMinScore";
         return [...majors]
             .filter((m) => m[key] > 0)
-            .sort((a, b) => a[key] - b[key]);
+            .sort((a, b) => Math.abs(a[key] - result) - Math.abs(b[key] - result));
     }, [result, track]);
 
     const scoreKey = track === "early" ? "earlyMinScore" : "transferMinScore";
+    const middleIndex = Math.floor(nearestMajors.length / 2);
+
+    useEffect(() => {
+        if (result === null) return;
+        try {
+            // @ts-ignore
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {}
+    }, [result]);
 
     return (
         <main dir="rtl" className="w-full overflow-x-hidden bg-gray-50 min-h-screen py-6 sm:py-10 px-3 sm:px-4">
@@ -307,7 +316,7 @@ export default function KFUPMWeightedScore() {
                         </div>
 
                         <div className="space-y-2">
-                            {nearestMajors.map((m) => {
+                            {nearestMajors.map((m, index) => {
                                 const minScore = m[scoreKey];
                                 const diff = result - minScore;
                                 const status =
@@ -320,17 +329,26 @@ export default function KFUPMWeightedScore() {
                                 }[status];
 
                                 return (
-                                    <div
-                                        key={m.name}
-                                        className="flex items-center justify-between bg-gray-50 rounded-xl p-3 gap-2"
-                                    >
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm font-medium text-gray-800">{m.name}</span>
-                                            <span className={`text-[11px] w-fit rounded-full px-2 py-0.5 ${badge.cls}`}>
-                                                {badge.text}
-                                            </span>
+                                    <div key={m.name}>
+                                        <div className="flex items-center justify-between bg-gray-50 rounded-xl p-3 gap-2">
+                                            <div className="flex flex-col gap-1">
+                                                <span className="text-sm font-medium text-gray-800">{m.name}</span>
+                                                <span className={`text-[11px] w-fit rounded-full px-2 py-0.5 ${badge.cls}`}>
+                                                    {badge.text}
+                                                </span>
+                                            </div>
+                                            <span className="text-sm font-bold text-[#33365B] shrink-0">{minScore}%</span>
                                         </div>
-                                        <span className="text-sm font-bold text-[#33365B] shrink-0">{minScore}%</span>
+                                        {index === middleIndex && (
+                                            <ins
+                                                className="adsbygoogle"
+                                                style={{ display: "block" }}
+                                                data-ad-format="fluid"
+                                                data-ad-layout-key="-hb-7+2h-1m-4u"
+                                                data-ad-client="ca-pub-4968434285942225"
+                                                data-ad-slot="5503304771"
+                                            />
+                                        )}
                                     </div>
                                 );
                             })}
