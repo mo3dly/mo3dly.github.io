@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
+import AdUnit from "@/components/AdUnit";
 
 type Track = "early" | "transfer";
 
@@ -133,16 +134,6 @@ export default function KFUPMWeightedScore() {
         }
         return indices;
     }, [nearestMajors]);
-
-    useEffect(() => {
-        if (result === null) return;
-        try {
-            adIndices.forEach(() => {
-                // @ts-ignore
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            });
-        } catch (e) {}
-    }, [result, adIndices]);
 
     return (
         <main dir="rtl" className="w-full overflow-x-hidden bg-gray-50 min-h-screen py-6 sm:py-10 px-3 sm:px-4">
@@ -351,14 +342,10 @@ export default function KFUPMWeightedScore() {
                                             <span className="text-sm font-bold text-[#33365B] shrink-0">{minScore}%</span>
                                         </div>
                                         {adIndices.includes(index) && (
-                                            <ins
-                                                key={`ad-${index}`}
-                                                className="adsbygoogle"
-                                                style={{ display: "block" }}
-                                                data-ad-format="fluid"
-                                                data-ad-layout-key="-hb-7+2h-1m-4u"
-                                                data-ad-client="ca-pub-4968434285942225"
-                                                data-ad-slot="5503304771"
+                                            <AdUnit
+                                                slot="5503304771"
+                                                format="fluid"
+                                                layoutKey="-hb-7+2h-1m-4u"
                                             />
                                         )}
                                     </div>
