@@ -12,6 +12,7 @@ type Props = {
     slot: string;
     format?: string;
     fullWidthResponsive?: boolean;
+    layoutKey?: string;
     className?: string;
 };
 
@@ -19,6 +20,7 @@ export default function AdUnit({
     slot,
     format = "auto",
     fullWidthResponsive = true,
+    layoutKey,
     className = "",
 }: Props) {
     const insRef = useRef<HTMLModElement>(null);
@@ -26,7 +28,12 @@ export default function AdUnit({
 
     useEffect(() => {
         if (pushed.current || !insRef.current) return;
-        if (insRef.current.offsetWidth === 0) return;
+        // AdSense marks an <ins> after processing it. Respect that marker so
+        // React re-renders/Strict Mode cannot enqueue the same unit twice.
+        if (insRef.current.getAttribute("data-adsbygoogle-status")) {
+            pushed.current = true;
+            return;
+        }
         try {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
             pushed.current = true;
@@ -45,6 +52,7 @@ export default function AdUnit({
                 data-ad-slot={slot}
                 data-ad-format={format}
                 data-full-width-responsive={fullWidthResponsive ? "true" : "false"}
+                {...(layoutKey ? { "data-ad-layout-key": layoutKey } : {})}
             />
         </div>
     );
