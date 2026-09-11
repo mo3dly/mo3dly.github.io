@@ -8,6 +8,10 @@ declare global {
     }
 }
 
+// A module-level guard also covers React Strict Mode and repeated effect
+// execution for the same DOM node, not just re-renders of this component.
+const processedAdElements = new WeakSet<HTMLModElement>();
+
 type Props = {
     slot: string;
     format?: string;
@@ -27,17 +31,20 @@ export default function AdUnit({
     const pushed = useRef(false);
 
     useEffect(() => {
-        if (pushed.current || !insRef.current) return;
+        const element = insRef.current;
+        if (!element || pushed.current || processedAdElements.has(element)) return;
         // AdSense marks an <ins> after processing it. Respect that marker so
         // React re-renders/Strict Mode cannot enqueue the same unit twice.
-        if (insRef.current.getAttribute("data-adsbygoogle-status")) {
+        if (element.getAttribute("data-adsbygoogle-status")) {
             pushed.current = true;
             return;
         }
+        processedAdElements.add(element);
         try {
             (window.adsbygoogle = window.adsbygoogle || []).push({});
             pushed.current = true;
         } catch (e) {
+            processedAdElements.delete(element);
             console.error("AdSense push failed:", e);
         }
     }, []);

@@ -126,12 +126,6 @@ export default function Home() {
                     }),
                 }}
             />
-            <Script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
-                crossOrigin="anonymous"
-                strategy="afterInteractive"
-            />
 
             <main className="w-full overflow-x-hidden px-3 sm:px-4 py-6 sm:py-10" dir="rtl">
 

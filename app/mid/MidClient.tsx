@@ -15,12 +15,7 @@ export default function Page() {
     return (
         <>
             <Script
-                async
-                strategy="afterInteractive"
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
-                crossOrigin="anonymous"
-            />
-            <Script
+                id="breadcrumb-schema-mid"
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({

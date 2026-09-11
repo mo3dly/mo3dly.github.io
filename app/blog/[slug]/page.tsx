@@ -4,7 +4,6 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Script from "next/script";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -74,12 +73,6 @@ export default async function BlogPost({ params }: Props) {
 
   return (
     <>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
 
       <main className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
         {/* HEADER */}

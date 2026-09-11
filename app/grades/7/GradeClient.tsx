@@ -6,7 +6,6 @@ import Result from "@/components/Result";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { useGradePage } from "@/components/useGrade";
 import SubjectIcon from "@/components/SubjectIcon";
-import Script from "next/script";
 
 export const Subjects: SubjectsType = {
     first: [
@@ -70,12 +69,6 @@ export default function Grade() {
 
     return (
         <>
-            <Script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
-                crossOrigin="anonymous"
-                strategy="afterInteractive"
-            />
             <BreadcrumbSchema grade="7" />
 
             <main className="container mx-auto px-4 py-8 pb-36" dir="rtl">

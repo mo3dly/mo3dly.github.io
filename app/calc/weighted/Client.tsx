@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
 import BackButton from "@/components/BackButton";
-import Script from "next/script";
 import AdUnit from "@/components/AdUnit";
 
 type ScoreField = {
@@ -193,12 +192,6 @@ function WeightedScoreContent() {
 
     return (
         <>
-            <Script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4968434285942225"
-                crossOrigin="anonymous"
-                strategy="afterInteractive"
-            />
 
             <main className="container mx-auto px-4 py-8" dir="rtl">
                 <section className="mx-auto max-w-xl rounded-2xl border border-black/10 bg-gradient-to-b from-white to-gray-50 p-5 sm:p-8 shadow-lg">
