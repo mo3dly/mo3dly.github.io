@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import NextImage from "next/image";
 import { GPAResult as CalculationResult } from "@/types/gpa";
 import { snapdom } from "@zumer/snapdom";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
@@ -17,7 +18,6 @@ export default function Result({ calculationResult, onReset }: Props) {
     const subjectsRef = useRef<HTMLTableElement | null>(null);
     const visibleSubjectsRef = useRef<HTMLDivElement | null>(null);
     const logoImgRef = useRef<HTMLImageElement | null>(null);
-    const [logoLoaded, setLogoLoaded] = useState(false);
 
     const termLabel = getTermLabel((calculationResult?.term as unknown as string) ?? "");
     const gradeLevelLabel = getGradeLevelLabel((calculationResult?.gradeLevel as unknown as number) ?? 0);
@@ -152,7 +152,7 @@ export default function Result({ calculationResult, onReset }: Props) {
             )}
 
             <section
-                ref={nodeRef as any}
+                ref={nodeRef}
                 id="ForImageCapture"
                 className="
                     w-full bg-white px-3 py-4
@@ -165,14 +165,13 @@ export default function Result({ calculationResult, onReset }: Props) {
             >
                 {/* ── Header ── */}
                 <div className="flex items-center gap-3 py-2 px-1 mb-1">
-                    <img
+                    <NextImage
                         ref={logoImgRef}
                         src="/icons/mo3dly.webp"
                         alt="شعار معدلي"
                         width={44}
                         height={44}
                         loading="eager"
-                        onLoad={() => setLogoLoaded(true)}
                         className="block h-11 w-11 rounded-xl"
                         style={{ objectFit: "cover" }}
                     />
@@ -230,7 +229,7 @@ export default function Result({ calculationResult, onReset }: Props) {
                         </svg>
                         <span>
                             تحتاج تحسب معدلك؟ ابحث في قوقل عن:{" "}
-                            <span className="font-semibold text-gray-700">"معدلي الدراسي"</span>
+                            <span className="font-semibold text-gray-700">&quot;معدلي الدراسي&quot;</span>
                         </span>
                     </div>
 
@@ -283,7 +282,7 @@ export default function Result({ calculationResult, onReset }: Props) {
                 </div>
             </section>
             
-            <AdUnit slot="3746520262" />
+            <AdUnit slot="3746520262" className="mb-6" />
 
             {/* ── Visible subjects summary (outside image capture) ── */}
             {calculationResult.subjects && calculationResult.subjects.length > 0 && (

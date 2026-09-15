@@ -1,19 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Faq } from "@/components/Faq";
 import Script from "next/script";
 import Image from "next/image";
 
 export default function Home() {
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    useEffect(() => {
-        document.body.style.overflow = isDialogOpen ? 'hidden' : 'unset';
-        return () => { document.body.style.overflow = 'unset'; };
-    }, [isDialogOpen]);
-
     const features = [
         {
             icon: (

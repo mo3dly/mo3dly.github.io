@@ -27,9 +27,7 @@ type PathwaySubjectsArgs = BaseUseGradePageArgs & {
     hasPathways: true;
 };
 
-type UseGradePageArgs = SimpleSubjectsArgs | PathwaySubjectsArgs;
-
-export function useGradePage(args: SimpleSubjectsArgs): {
+type BaseGradePageResult = {
     readonly term: Term | "";
     readonly setTerm: React.Dispatch<React.SetStateAction<Term | "">>;
     readonly subjectsInput: SubjectInput[];
@@ -54,42 +52,26 @@ export function useGradePage(args: SimpleSubjectsArgs): {
     readonly currentSubjects: { name: string; weight: number }[];
 };
 
-export function useGradePage(args: PathwaySubjectsArgs): {
-    readonly term: Term | "";
-    readonly setTerm: React.Dispatch<React.SetStateAction<Term | "">>;
-    readonly subjectsInput: SubjectInput[];
-    readonly setSubjectsInput: React.Dispatch<React.SetStateAction<SubjectInput[]>>;
-    readonly loading: boolean;
-    readonly setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    readonly calculationResult: GPAResult | null;
-    readonly setCalculationResult: React.Dispatch<React.SetStateAction<GPAResult | null>>;
-    readonly tempGrades: Record<string, string>;
-    readonly setTempGrades: React.Dispatch<React.SetStateAction<Record<string, string>>>;
-    readonly errors: Record<string, string | null>;
-    readonly setErrors: React.Dispatch<React.SetStateAction<Record<string, string | null>>>;
-    readonly showResult: boolean;
-    readonly setShowResult: React.Dispatch<React.SetStateAction<boolean>>;
-    readonly headingRef: React.RefObject<HTMLHeadingElement | null>;
-    readonly scrollToTop: () => void;
-    readonly readableTerm: string;
-    readonly validateField: (name: string, value: string) => string | null;
-    readonly handleInputChange: (name: string, value: string) => void;
-    readonly onCalculate: () => void;
-    readonly anyErrors: boolean;
-    readonly currentSubjects: { name: string; weight: number }[];
+type PathwayGradePageResult = BaseGradePageResult & {
     readonly pathway: PathwaySystem | string | null;
     readonly setPathway: React.Dispatch<React.SetStateAction<PathwaySystem | string | null>>;
     readonly availablePathways: string[];
 };
 
-export function useGradePage(args: any): any {
+export function useGradePage(args: SimpleSubjectsArgs): BaseGradePageResult;
+
+export function useGradePage(args: PathwaySubjectsArgs): PathwayGradePageResult;
+
+export function useGradePage(
+    args: SimpleSubjectsArgs | PathwaySubjectsArgs
+): BaseGradePageResult | PathwayGradePageResult {
     const {
         Subjects,
         gradeLevel,
         initialLoading = true,
         hasPathways = false,
         initialPathway = null,
-    } = args;
+    } = args as PathwaySubjectsArgs;
 
     const [term, setTerm] = useState<Term | "">("");
     const [pathway, setPathway] = useState<PathwaySystem | string | null>(initialPathway ?? null);
@@ -111,7 +93,7 @@ export function useGradePage(args: any): any {
 
         if (hasPathways) {
             if (!resolvedPathway) return [];
-            const byPath = (Subjects as any)[resolvedPathway];
+            const byPath = (Subjects as SecSubjectsType)[resolvedPathway as keyof SecSubjectsType];
             if (!byPath) return [];
             return (byPath[term as Term] ?? []) as { name: string; weight: number }[];
         } else {
@@ -122,6 +104,10 @@ export function useGradePage(args: any): any {
         }
     }, [Subjects, term, hasPathways, resolvedPathway]);
 
+    // getTerm() is date-based and this page is statically exported, so the
+    // term is resolved after mount (using the client's real date) rather
+    // than via a lazy initializer, to avoid a hydration mismatch between the
+    // static-rendered term and the client-detected term.
     useEffect(() => {
         const detectedTerm = getTerm();
         const initialTerm =
@@ -133,6 +119,10 @@ export function useGradePage(args: any): any {
         }
 
         setLoading(false);
+        // Intentionally runs once on mount only; including availablePathways/
+        // hasPathways/pathway here would re-run this on every render since
+        // they're derived fresh each render, defeating the "once on mount" intent.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -225,9 +215,10 @@ export function useGradePage(args: any): any {
             });
             setCalculationResult(result);
             setShowResult(true);
-        } catch (e: any) {
+        } catch (e: unknown) {
             setCalculationResult(null);
-            alert(e?.message ?? "حدث خطأ أثناء الحساب");
+            const message = e instanceof Error ? e.message : "حدث خطأ أثناء الحساب";
+            alert(message);
         }
     };
 

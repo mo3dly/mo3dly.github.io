@@ -164,7 +164,8 @@ function NumberInput({ label, subtitle, value, onChange, invalid = false }: Numb
   };
 
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    const text = (e.clipboardData || (window as any).clipboardData).getData("text").trim();
+    const legacyClipboardData = (window as unknown as { clipboardData?: DataTransfer }).clipboardData;
+    const text = (e.clipboardData || legacyClipboardData)!.getData("text").trim();
     const normalized = text.replace(",", ".");
     if (!/^\d*\.?\d*$/.test(normalized)) {
       e.preventDefault();

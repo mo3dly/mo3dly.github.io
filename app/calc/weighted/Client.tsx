@@ -71,7 +71,8 @@ function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>, value: string) 
 }
 
 function handlePaste(e: React.ClipboardEvent<HTMLInputElement>, onChange: (v: string) => void) {
-    const text = (e.clipboardData || (window as any).clipboardData).getData("text").trim();
+    const legacyClipboardData = (window as unknown as { clipboardData?: DataTransfer }).clipboardData;
+    const text = (e.clipboardData || legacyClipboardData)!.getData("text").trim();
     const normalized = text.replace(",", ".");
     if (!/^\d*\.?\d*$/.test(normalized)) {
         e.preventDefault();
