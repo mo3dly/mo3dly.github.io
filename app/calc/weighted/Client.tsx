@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
 import BackButton from "@/components/BackButton";
-import AdUnit from "@/components/AdUnit";
 
 type ScoreField = {
     id: string;
@@ -239,7 +238,6 @@ function WeightedScoreContent() {
                                     </button>
                                 </div>
                             </div>
-                            <AdUnit slot="3746520262" />
                         </div>
                     ) : (
                         <div className="animate-in fade-in duration-300">

@@ -3,13 +3,10 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
-import AdUnit from "@/components/AdUnit";
 
 type Track = "early" | "transfer";
 
 const DATA_SOURCE = "اجتهاد طلابي";
-const AD_INTERVAL = 8;
-const MAX_ADS = 3;
 
 interface Major {
     name: string;
@@ -126,14 +123,6 @@ export default function KFUPMWeightedScore() {
     }, [result, track]);
 
     const scoreKey = track === "early" ? "earlyMinScore" : "transferMinScore";
-
-    const adIndices = useMemo(() => {
-        const indices: number[] = [];
-        for (let i = AD_INTERVAL - 1; i < nearestMajors.length && indices.length < MAX_ADS; i += AD_INTERVAL) {
-            indices.push(i);
-        }
-        return indices;
-    }, [nearestMajors]);
 
     return (
         <main dir="rtl" className="w-full overflow-x-hidden bg-gray-50 min-h-screen py-6 sm:py-10 px-3 sm:px-4">
@@ -341,13 +330,6 @@ export default function KFUPMWeightedScore() {
                                             </div>
                                             <span className="text-sm font-bold text-[#33365B] shrink-0">{minScore}%</span>
                                         </div>
-                                        {adIndices.includes(index) && (
-                                            <AdUnit
-                                                slot="5503304771"
-                                                format="fluid"
-                                                layoutKey="-hb-7+2h-1m-4u"
-                                            />
-                                        )}
                                     </div>
                                 );
                             })}

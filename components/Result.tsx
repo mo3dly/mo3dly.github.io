@@ -6,7 +6,6 @@ import { GPAResult as CalculationResult } from "@/types/gpa";
 import { snapdom } from "@zumer/snapdom";
 import DrawrProgressbar from "@/components/DrawrProgressbar";
 import { getPathwayLabel, getTermLabel, getGradeLevelLabel, getGPARating } from "@/utils/labels";
-import AdUnit from "@/components/AdUnit";
 
 type Props = {
     calculationResult: CalculationResult;
@@ -282,8 +281,6 @@ export default function Result({ calculationResult, onReset }: Props) {
                 </div>
             </section>
             
-            <AdUnit slot="3746520262" className="mb-6" />
-
             {/* ── Visible subjects summary (outside image capture) ── */}
             {calculationResult.subjects && calculationResult.subjects.length > 0 && (
                 <div ref={visibleSubjectsRef} className="mt-4 sm:mx-auto sm:max-w-[720px]" dir="rtl">
